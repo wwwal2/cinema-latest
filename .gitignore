@@ -1,3 +1,13 @@
 node_modules
 sshKey.pub
 sshKey
+
+.DS_store
+*.txt
+.env
+
+.idea/
+.vscode/
+*.sw*
+
+*.log
