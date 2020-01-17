@@ -16,7 +16,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    'no-param-reassign': 0,
-    'class-methods-use-this': 0
+    'react/forbid-prop-types': 0,
   },
 };
