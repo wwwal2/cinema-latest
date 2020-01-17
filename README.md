@@ -10,3 +10,4 @@ React, Redux, propTypes, css-modules
 
 ## Contributing
 Alex Smirnov
+
