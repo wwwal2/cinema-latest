@@ -11,3 +11,5 @@ sshKey
 *.sw*
 
 *.log
+
+requst.data.js

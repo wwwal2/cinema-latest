@@ -1,0 +1,14 @@
+.background {
+  background-color: aquamarine;
+}
+
+.display {
+  display: grid;
+  grid-template-columns: 1fr 15fr 5fr;
+	gap: 10px;
+	height: 10vh;
+}
+
+.logo {
+	height: 100%;
+}
