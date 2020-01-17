@@ -6,7 +6,7 @@ export default function Menu(props) {
   const { tabNames } = props;
   const tabs = tabNames.map((tabName) => <div>{tabName}</div>);
   return (
-    <div className={menuStyle.background}>
+    <div className={menuStyle.menuContainer}>
       {tabs}
     </div>
   );

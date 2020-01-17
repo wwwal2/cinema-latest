@@ -1,0 +1,16 @@
+.container {
+	position: relative;
+	display: inline-block;
+	background-color: lightcoral;
+}
+
+.button {
+	height: 100%;
+}
+
+.dropDown {
+	position: absolute;
+	background-color: teal;
+	height: 400px;
+	width: 100%;
+}

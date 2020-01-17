@@ -1,5 +1,5 @@
 
-.background {
+.menuContainer {
 	background-color: yellow;
 	display: flex;
 	justify-content: space-evenly;
