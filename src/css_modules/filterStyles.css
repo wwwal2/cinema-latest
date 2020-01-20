@@ -6,6 +6,11 @@
 	display: flex;
 }
 
+.applyReset {
+	display: flex;
+	justify-content: space-between;
+}
+
 .buttonContainer {
 	position: relative;
 	display: flex;
@@ -17,7 +22,7 @@
 	position: absolute;
 	background-color: teal;
 	height: 400px;
-	width: 100%;
+	width: 35%;
 }
 
 .arrow {

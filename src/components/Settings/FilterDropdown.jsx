@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import filterStyles from '../css_modules/filterStyles.css';
+import filterStyles from '../../css_modules/filterStyles.css';
 
 export default function FilterDropdown(props) {
-  const { name, countryNames, rating } = props;
+  const {
+    apply, reset, countryNames, rating,
+  } = props;
 
   function generateSelect(optionsArr) {
     const generate = optionsArr.map((option) => {
@@ -18,7 +20,14 @@ export default function FilterDropdown(props) {
 
   return (
     <div>
-      {name}
+      <div className={filterStyles.applyReset}>
+        <button type="button">
+          {apply}
+        </button>
+        <button type="button">
+          {reset}
+        </button>
+      </div>
       <div>
         <input type="text" placeholder="Enter year" />
       </div>
@@ -35,13 +44,15 @@ export default function FilterDropdown(props) {
 }
 
 FilterDropdown.propTypes = {
-  name: PropTypes.string,
+  apply: PropTypes.string,
+  reset: PropTypes.string,
   countryNames: PropTypes.array,
   rating: PropTypes.array,
 };
 
 FilterDropdown.defaultProps = {
-  name: 'filter',
+  apply: 'Apply',
+  reset: 'Reset',
   countryNames: [
     'USA',
     'Germany',
@@ -49,5 +60,5 @@ FilterDropdown.defaultProps = {
     'France',
     'Russia',
   ],
-  rating: [4, 5, 6, 7, 8, 9, 10],
+  rating: [3, 4, 5, 6, 7, 8, 9, 10],
 };
