@@ -9,6 +9,10 @@
   height: 100px;
 }
 
+.logoContainer {
+  height: inherit;
+}
+
 .logo {
-	height: 100px;
+  height: 100%;
 }

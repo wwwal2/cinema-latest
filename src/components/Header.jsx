@@ -15,7 +15,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <div className={headerStyles.display}>
-        <div>
+        <div className={headerStyles.logoContainer}>
           <img alt="out of logo" src={logo} className={headerStyles.logo} />
         </div>
         <Menu />

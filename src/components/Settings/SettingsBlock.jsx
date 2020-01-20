@@ -10,7 +10,7 @@ export default class Filter extends React.Component {
     super(props);
     this.state = {
       settings: 'Filters',
-      position: 'show',
+      position: 'hide',
     };
   }
 

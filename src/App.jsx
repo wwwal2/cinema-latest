@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './components/Header';
+import Body from './components/Body/Body';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Header />
+        <Body />
       </div>
     );
   }
