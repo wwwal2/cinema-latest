@@ -4,7 +4,7 @@ import menuStyle from '../css_modules/menuStyles.css';
 
 export default function Menu(props) {
   const { tabNames } = props;
-  const tabs = tabNames.map((tabName) => <div>{tabName}</div>);
+  const tabs = tabNames.map((tabName) => <div key={tabName}>{tabName}</div>);
   return (
     <div className={menuStyle.menuContainer}>
       {tabs}
@@ -18,10 +18,8 @@ Menu.propTypes = {
 
 Menu.defaultProps = {
   tabNames: [
-    'main',
-    'popular',
-    'favorite',
-    'filters',
-    'options',
+    'Main',
+    'Popular',
+    'Favorite',
   ],
 };

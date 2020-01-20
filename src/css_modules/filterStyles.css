@@ -1,16 +1,55 @@
 .container {
-	position: relative;
-	display: inline-block;
 	background-color: lightcoral;
 }
 
-.button {
-	height: 100%;
+.flex {
+	display: flex;
 }
 
-.dropDown {
+.hide {
+	display: none;
+}
+
+.applyReset {
+	display: flex;
+	justify-content: space-between;
+}
+
+.buttonContainer {
+	position: relative;
+	display: flex;
+	height: 100%;
+	justify-content: space-evenly;
+}
+
+.show {
 	position: absolute;
 	background-color: teal;
 	height: 400px;
-	width: 100%;
+	width: 36%;
+}
+
+.arrow {
+	width: 0;
+	height: 0;
+	border: 0 solid transparent;
+	cursor: pointer;
+}
+
+.left {
+	border-top-width: 1vw;
+	border-bottom-width: 1vw;
+	border-right: 1vw solid rgb(248, 248, 248);
+}
+.left:hover {
+	border-right: 1vw solid rgb(255, 0, 0);
+}
+
+.right {
+	border-top-width: 1vw;
+	border-bottom-width: 1vw;
+	border-left: 1vw solid rgb(248, 248, 248);
+}
+.right:hover {
+	border-left: 1vw solid rgb(255, 0, 0);
 }

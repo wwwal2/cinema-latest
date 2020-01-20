@@ -4,11 +4,15 @@
 
 .display {
   display: grid;
-  grid-template-columns: 1fr 15fr 5fr;
+  grid-template-columns: 1fr 15fr 5fr 5fr;
   gap: 10px;
   height: 100px;
 }
 
+.logoContainer {
+  height: inherit;
+}
+
 .logo {
-	height: 100px;
+  height: 100%;
 }

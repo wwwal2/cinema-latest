@@ -1,0 +1,17 @@
+.subgrid {
+	display: grid;
+	grid-template-columns: 5fr 1fr;
+}
+
+.search {
+	grid-row: 1;
+	grid-column: 1;
+	width: 100%;
+}
+
+.start {
+	grid-row: 1;
+	grid-column: 2;
+	width: 100%;
+}
+
