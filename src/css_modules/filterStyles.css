@@ -1,11 +1,16 @@
 .container {
-	position: relative;
-	display: inline-block;
 	background-color: lightcoral;
 }
 
-.button {
+.flex {
+	display: flex;
+}
+
+.buttonContainer {
+	position: relative;
+	display: flex;
 	height: 100%;
+	justify-content: space-evenly;
 }
 
 .dropDown {
@@ -13,4 +18,29 @@
 	background-color: teal;
 	height: 400px;
 	width: 100%;
+}
+
+.arrow {
+	width: 0;
+	height: 0;
+	border: 0 solid transparent;
+	cursor: pointer;
+}
+
+.left {
+	border-top-width: 2vh;
+	border-bottom-width: 2vh;
+	border-right: 2vh solid rgb(248, 248, 248);
+}
+.left:hover {
+	border-right: 2vh solid rgb(255, 0, 0);
+}
+
+.right {
+	border-top-width: 2vh;
+	border-bottom-width: 2vh;
+	border-left: 2vh solid rgb(248, 248, 248);
+}
+.right:hover {
+	border-left: 2vh solid rgb(255, 0, 0);
 }

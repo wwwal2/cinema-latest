@@ -3,7 +3,7 @@ import headerStyles from '../css_modules/headerStyles.css';
 import logo from '../../images/logo.png';
 
 import Menu from './Menu';
-import Filter from './Filter';
+import Filter from './Settings/SettingsBlock';
 
 export default class Header extends React.Component {
   constructor(props) {
