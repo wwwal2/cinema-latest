@@ -10,36 +10,39 @@ export default class Filter extends React.Component {
     super(props);
     this.state = {
       settings: 'Filters',
+      position: 'show',
     };
+  }
+
+  dropDown(info) {
+    this.setState({
+      settings: info,
+    });
   }
 
   render() {
     const { filters, options } = this.props;
-    const { settings } = this.state;
+    const { settings, position } = this.state;
 
     return (
       <div className={filterStyles.container}>
         <div className={filterStyles.buttonContainer}>
           <button
             type="button"
-            onClick={() => this.setState({
-              settings: filters,
-            })}
+            onClick={() => this.dropDown(filters)}
           >
             {filters}
           </button>
           <button
             type="button"
-            onClick={() => this.setState({
-              settings: options,
-            })}
+            onClick={() => this.dropDown(options)}
           >
             {options}
           </button>
         </div>
-        <div className={filterStyles.dropDown}>
+        <div className={filterStyles[position]}>
           {
-            settings === 'Filters'
+            settings === filters
               ? <FilterDropdown />
               : <OptionsDropdown />
           }

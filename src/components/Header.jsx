@@ -4,6 +4,7 @@ import logo from '../../images/logo.png';
 
 import Menu from './Menu';
 import Filter from './Settings/SettingsBlock';
+import Search from './Search/SearchBlock';
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export default class Header extends React.Component {
         </div>
         <Menu />
         <Filter />
+        <Search />
       </div>
     );
   }
