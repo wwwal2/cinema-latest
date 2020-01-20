@@ -1,6 +1,8 @@
 import React from 'react';
 import bodyStyles from '../../css_modules/bodyStyles.css';
 
+import Card from './Card';
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -12,16 +14,28 @@ export default class App extends React.Component {
       .then((res) => {
         return res.json();
       })
-      .then((result) => {
-        console.log(result);
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          isLoaded: true,
+          items: res.results,
+        });
       });
   }
 
   render() {
-    return (
-      <div className={bodyStyles.pageBody}>
-        body
-      </div>
-    );
+    const { isLoaded, items } = this.state;
+    if (isLoaded) {
+      return (
+        <div className={bodyStyles.pageBody}>
+          {items.map((item) => {
+            return (
+              <Card key={item.id} item={item} />
+            );
+          })}
+        </div>
+      );
+    }
+    return <h1>Loading</h1>;
   }
 }
