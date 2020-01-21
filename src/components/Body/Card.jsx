@@ -1,14 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import menuStyle from '../../css_modules/bodyStyles.css';
+import bodyStyles from './bodyStyles.css';
+import favoriteOn from '../../../images/starFilled.png';
+import favoriteOff from '../../../images/starEmpty.png';
 
-export default function Card(props) {
-  const { item } = props;
-  return (
-    <h2>
-      {item.title}
-    </h2>
-  );
+export default class Card extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      favorite: 'off',
+    };
+  }
+
+  toggleFavorite() {
+    const { favorite } = this.state;
+    if (favorite === 'off') {
+      this.setState({
+        favorite: 'on',
+      });
+    } else {
+      this.setState({
+        favorite: 'off',
+      });
+    }
+  }
+
+  render() {
+    const { item } = this.props;
+    const { favorite } = this.state;
+    const textLength = 200;
+    return (
+      <div className={bodyStyles.card}>
+        <img
+          role="button"
+          alt="favorite"
+          src={
+            favorite === 'off'
+              ? favoriteOff
+              : favoriteOn
+          }
+          className={bodyStyles.favorite}
+          onClick={() => this.toggleFavorite()}
+          onKeyDown={() => this.toggleFavorite()}
+        />
+        <h3>
+          {`${item.title} (${item.release_date.substr(0, 4)})`}
+        </h3>
+        <div>
+          <img alt="poster" src={`http://image.tmdb.org/t/p/w185/${item.poster_path}`} />
+        </div>
+        <p>
+          {
+            item.overview.length > textLength
+              ? `${item.overview.substr(0, textLength)}...`
+              : item.overview
+          }
+        </p>
+      </div>
+    );
+  }
 }
 
 Card.propTypes = {

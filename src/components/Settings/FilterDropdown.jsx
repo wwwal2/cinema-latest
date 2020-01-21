@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import filterStyles from '../../css_modules/filterStyles.css';
+import settingsStyles from './settingsStyles.css';
 
 export default function FilterDropdown(props) {
   const {
@@ -20,7 +20,7 @@ export default function FilterDropdown(props) {
 
   return (
     <div>
-      <div className={filterStyles.applyReset}>
+      <div className={settingsStyles.applyReset}>
         <button type="button">
           {apply}
         </button>

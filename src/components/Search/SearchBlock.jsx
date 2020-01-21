@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import searchStyles from '../../css_modules/searchStyles.css';
+import searchStyles from './searchStyles.css';
 
 export default function Search(props) {
   const { placeHolder, start } = props;

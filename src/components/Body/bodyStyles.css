@@ -1,0 +1,22 @@
+.pageBody {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 50px;
+	justify-content: center;
+	align-items: first baseline;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: aqua;
+}
+
+.favorite {
+	align-self: flex-end;
+	height: 30px;
+	width: 30px;
+	border: none;
+}
