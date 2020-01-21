@@ -20,3 +20,6 @@
 	width: 30px;
 	border: none;
 }
+.favorite:hover {
+	cursor: pointer;
+}

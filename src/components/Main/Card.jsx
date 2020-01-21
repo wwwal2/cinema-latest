@@ -8,19 +8,19 @@ export default class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorite: 'off',
+      favorite: false,
     };
   }
 
   toggleFavorite() {
     const { favorite } = this.state;
-    if (favorite === 'off') {
+    if (!favorite) {
       this.setState({
-        favorite: 'on',
+        favorite: true,
       });
     } else {
       this.setState({
-        favorite: 'off',
+        favorite: false,
       });
     }
   }
@@ -35,7 +35,7 @@ export default class Card extends React.Component {
           role="button"
           alt="favorite"
           src={
-            favorite === 'off'
+            !favorite
               ? favoriteOff
               : favoriteOn
           }

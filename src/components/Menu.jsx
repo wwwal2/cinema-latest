@@ -8,11 +8,14 @@ export default function Menu(props) {
 
   const tabs = tabNames.map((tabName) => {
     return (
-      <Link to={routes[tabName.toLowerCase()]} className={menuStyle.tabs}>
+      <Link
+        to={routes[tabName.toLowerCase()]}
+        className={menuStyle.tabs}
+        key={tabName}
+      >
         <button
           className={menuStyle.tabs}
           type="button"
-          key={tabName}
         >
           {tabName}
         </button>
