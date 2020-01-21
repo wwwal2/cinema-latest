@@ -3,7 +3,7 @@ import bodyStyles from './bodyStyles.css';
 
 import Card from './Card';
 
-export default class App extends React.Component {
+export default class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -36,6 +36,6 @@ export default class App extends React.Component {
         </div>
       );
     }
-    return <h1>Loading</h1>;
+    return <h1>MAIN</h1>;
   }
 }

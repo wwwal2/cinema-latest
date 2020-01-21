@@ -1,6 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import Header from './components/Header';
-import Body from './components/Body/Body';
+import Main from './components/Main/Main';
+import Favorite from './components/Favorite/Favorite';
+import Popular from './components/Popular/Popular';
 import Footer from './components/Footer';
 
 export default class App extends React.Component {
@@ -10,12 +14,22 @@ export default class App extends React.Component {
   }
 
   render() {
+    const routes = {
+      main: '/',
+      favorite: '/favorite',
+      popular: '/popular',
+    };
+
     return (
-      <div>
-        <Header />
-        <Body />
+      <Router>
+        <Header routes={routes} />
+        <Switch>
+          <Route path={`${routes.main}`} exact component={Main} />
+          <Route path={`${routes.favorite}`} exact component={Favorite} />
+          <Route path={`${routes.popular}`} exact component={Popular} />
+        </Switch>
         <Footer />
-      </div>
+      </Router>
     );
   }
 }
