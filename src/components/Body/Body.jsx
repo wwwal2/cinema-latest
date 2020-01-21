@@ -1,5 +1,5 @@
 import React from 'react';
-import bodyStyles from '../../css_modules/bodyStyles.css';
+import bodyStyles from './bodyStyles.css';
 
 import Card from './Card';
 

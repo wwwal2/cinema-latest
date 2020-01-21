@@ -18,5 +18,6 @@ module.exports = {
   rules: {
     'react/forbid-prop-types': 0,
     'arrow-body-style': 0,
+    'jsx-a11y/no-noninteractive-element-to-interactive-role': 0,
   },
 };

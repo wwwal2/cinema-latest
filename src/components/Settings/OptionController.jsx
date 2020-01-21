@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import filterStyles from '../../css_modules/filterStyles.css';
+import settingsStyles from './settingsStyles.css';
 
 export default class OptionsController extends React.Component {
   constructor(props) {
@@ -22,17 +22,17 @@ export default class OptionsController extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={filterStyles.flex}>
+      <div className={settingsStyles.flex}>
         <div className="label">{name}</div>
         <i
-          className={cx(filterStyles.arrow, filterStyles.left)}
+          className={cx(settingsStyles.arrow, settingsStyles.left)}
           onClick={() => this.handleChange(-1)}
           onKeyDown={() => this.handleChange(-1)}
           role="toolbar"
         />
         <div className="value">{value}</div>
         <i
-          className={cx(filterStyles.arrow, filterStyles.right)}
+          className={cx(settingsStyles.arrow, settingsStyles.right)}
           onClick={() => this.handleChange(+1)}
           onKeyDown={() => this.handleChange(+1)}
           role="toolbar"

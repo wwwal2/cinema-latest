@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import filterStyles from '../../css_modules/filterStyles.css';
+import settingsStyles from './settingsStyles.css';
 
 import FilterDropdown from './FilterDropdown';
 import OptionsDropdown from './OptionsDropdown';
@@ -25,8 +25,8 @@ export default class Filter extends React.Component {
     const { settings, position } = this.state;
 
     return (
-      <div className={filterStyles.container}>
-        <div className={filterStyles.buttonContainer}>
+      <div className={settingsStyles.container}>
+        <div className={settingsStyles.buttonContainer}>
           <button
             type="button"
             onClick={() => this.dropDown(filters)}
@@ -40,7 +40,7 @@ export default class Filter extends React.Component {
             {options}
           </button>
         </div>
-        <div className={filterStyles[position]}>
+        <div className={settingsStyles[position]}>
           {
             settings === filters
               ? <FilterDropdown />
