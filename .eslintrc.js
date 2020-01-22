@@ -4,7 +4,8 @@ module.exports = {
     es6: true,
   },
   extends: [
-		'airbnb',
+    'airbnb-base',
+    "airbnb/rules/react",
 		'airbnb/hooks',
   ],
   globals: {
@@ -18,6 +19,5 @@ module.exports = {
   rules: {
     'react/forbid-prop-types': 0,
     'arrow-body-style': 0,
-    'jsx-a11y/no-noninteractive-element-to-interactive-role': 0,
   },
 };

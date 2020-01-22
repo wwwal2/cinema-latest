@@ -17,11 +17,6 @@
 	width: 36%;
 }
 
-.applyReset {
-	display: flex;
-	justify-content: space-between;
-}
-
 .buttonContainer {
 	position: relative;
 	display: flex;

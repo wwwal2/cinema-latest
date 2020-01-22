@@ -27,15 +27,11 @@ export default class OptionsController extends React.Component {
         <i
           className={cx(settingsStyles.arrow, settingsStyles.left)}
           onClick={() => this.handleChange(-1)}
-          onKeyDown={() => this.handleChange(-1)}
-          role="toolbar"
         />
         <div className="value">{value}</div>
         <i
           className={cx(settingsStyles.arrow, settingsStyles.right)}
           onClick={() => this.handleChange(+1)}
-          onKeyDown={() => this.handleChange(+1)}
-          role="toolbar"
         />
       </div>
     );

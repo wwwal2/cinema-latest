@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import settingsStyles from '../settingsStyles.css';
+import filtersStyles from './filtersStyles.css';
 
 export default function FilterPayload(props) {
   const [movieYear, setYear] = useState('');
+  const [timerId, setTimerId] = useState('');
+  const [hintPosition, setHintPosition] = useState('hide');
+
   const {
-    apply, reset, placeholder, placeholderYear, maxYear, minYear, countryNames, rating,
+    apply,
+    reset,
+    placeholder,
+    placeholderYear,
+    maxYear,
+    minYear,
+    countryNames,
+    rating,
+    notification,
   } = props;
 
   function generateSelect(optionsArr) {
@@ -27,8 +38,13 @@ export default function FilterPayload(props) {
 
   function validate(number) {
     if (number > maxYear || number < minYear) {
-      console.log('You picked wrong number');
+      clearTimeout(timerId);
+      setHintPosition('show');
+      const timer = setTimeout(() => {
+        setHintPosition('hide');
+      }, 5000);
       setYear('');
+      setTimerId(timer);
     }
   }
 
@@ -40,7 +56,7 @@ export default function FilterPayload(props) {
   }
   return (
     <div>
-      <div className={settingsStyles.applyReset}>
+      <div className={filtersStyles.applyReset}>
         <button type="button">
           {apply}
         </button>
@@ -48,7 +64,7 @@ export default function FilterPayload(props) {
           {reset}
         </button>
       </div>
-      <div>
+      <div className={filtersStyles.inputContainer}>
         <input
           value={movieYear}
           type="text"
@@ -56,6 +72,9 @@ export default function FilterPayload(props) {
           onKeyPress={(event) => submit(event)}
           onChange={(event) => permit(event.target.value)}
         />
+        <div className={filtersStyles[hintPosition]}>
+          {notification}
+        </div>
       </div>
       <div>
         <div>Countries</div>
@@ -78,6 +97,7 @@ FilterPayload.propTypes = {
   minYear: PropTypes.number,
   countryNames: PropTypes.array,
   rating: PropTypes.array,
+  notification: PropTypes.string,
 };
 
 FilterPayload.defaultProps = {
@@ -95,4 +115,5 @@ FilterPayload.defaultProps = {
     'Russia',
   ],
   rating: [3, 4, 5, 6, 7, 8, 9],
+  notification: 'Please input correct date from \'1980\' to \' 2020\'',
 };

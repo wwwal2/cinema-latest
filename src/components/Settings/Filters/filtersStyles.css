@@ -1,0 +1,20 @@
+.applyReset {
+	display: flex;
+	justify-content: space-between;
+}
+
+.inputContainer {
+  display: relative;
+
+}
+
+.show {
+  position: absolute;
+  background-color: #fffacd;
+}
+
+.hide {
+  position: absolute;
+  background-color: #fffacd;
+  display: none;
+}
