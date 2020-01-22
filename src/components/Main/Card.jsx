@@ -14,16 +14,11 @@ export default class Card extends React.Component {
 
   toggleFavorite() {
     const { favorite } = this.state;
-    if (!favorite) {
-      this.setState({
-        favorite: true,
-      });
-    } else {
-      this.setState({
-        favorite: false,
-      });
-    }
+    this.setState({
+      favorite: !favorite,
+    });
   }
+
 
   render() {
     const { item } = this.props;
