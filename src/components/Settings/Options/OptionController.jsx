@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import settingsStyles from './settingsStyles.css';
+import settingsStyles from '../settingsStyles.css';
 
 export default class OptionsController extends React.Component {
   constructor(props) {

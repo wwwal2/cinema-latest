@@ -6,8 +6,15 @@
 	display: flex;
 }
 
-.hide {
+.truePosition {
 	display: none;
+}
+
+.falsePosition {
+	position: absolute;
+	background-color: teal;
+	height: 400px;
+	width: 36%;
 }
 
 .applyReset {
@@ -22,12 +29,6 @@
 	justify-content: space-evenly;
 }
 
-.show {
-	position: absolute;
-	background-color: teal;
-	height: 400px;
-	width: 36%;
-}
 
 .arrow {
 	width: 0;

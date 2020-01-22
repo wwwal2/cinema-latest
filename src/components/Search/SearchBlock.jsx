@@ -50,14 +50,14 @@ Search.propTypes = {
   placeHolder: PropTypes.string,
   start: PropTypes.string,
   readTheStore: PropTypes.string,
-  testOne: PropTypes.string,
-  testTwo: PropTypes.string,
+  testOne: PropTypes.func,
+  testTwo: PropTypes.func,
 };
 
 Search.defaultProps = {
   placeHolder: 'Search movies',
   start: 'Start',
   readTheStore: 'store',
-  testOne: 'action',
-  testTwo: 'action',
+  testOne: () => 'missing function',
+  testTwo: () => 'missing function',
 };

@@ -2,19 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import settingsStyles from './settingsStyles.css';
 
-import FilterDropdown from './FilterDropdown';
-import OptionsDropdown from './OptionsDropdown';
+import FilterPayload from './Filters/FilterPayload';
+import OptionsPayload from './Options/OptionsPayload';
 
 export default class Filter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       settings: 'Filters',
-      position: 'hide',
+      dropdown: false,
     };
   }
 
-  dropDown(info) {
+  toggle(info) {
+    const { settings, dropdown } = this.state;
+    if (info === settings) {
+      this.setState({
+        dropdown: !dropdown,
+      });
+    }
     this.setState({
       settings: info,
     });
@@ -22,29 +28,29 @@ export default class Filter extends React.Component {
 
   render() {
     const { filters, options } = this.props;
-    const { settings, position } = this.state;
+    const { settings, dropdown } = this.state;
 
     return (
       <div className={settingsStyles.container}>
         <div className={settingsStyles.buttonContainer}>
           <button
             type="button"
-            onClick={() => this.dropDown(filters)}
+            onClick={() => this.toggle(filters)}
           >
             {filters}
           </button>
           <button
             type="button"
-            onClick={() => this.dropDown(options)}
+            onClick={() => this.toggle(options)}
           >
             {options}
           </button>
         </div>
-        <div className={settingsStyles[position]}>
+        <div className={settingsStyles[`${dropdown}Position`]}>
           {
             settings === filters
-              ? <FilterDropdown />
-              : <OptionsDropdown />
+              ? <FilterPayload />
+              : <OptionsPayload />
           }
         </div>
       </div>
