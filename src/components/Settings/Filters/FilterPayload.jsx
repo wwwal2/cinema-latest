@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import settingsStyles from '../settingsStyles.css';
 
 export default function FilterPayload(props) {
+  const [movieYear, setYear] = useState('');
   const {
-    apply, reset, placeholder, year, countryNames, rating,
+    apply, reset, placeholder, placeholderYear, maxYear, minYear, countryNames, rating,
   } = props;
 
   function generateSelect(optionsArr) {
@@ -18,6 +19,25 @@ export default function FilterPayload(props) {
     return generate;
   }
 
+  function permit(value) {
+    if (/^\d+$/.test(value) || value === '') {
+      setYear(value);
+    }
+  }
+
+  function validate(number) {
+    if (number > maxYear || number < minYear) {
+      console.log('You picked wrong number');
+      setYear('');
+    }
+  }
+
+  function submit(e) {
+    if (e.key === 'Enter') {
+      validate(movieYear);
+      setYear('');
+    }
+  }
   return (
     <div>
       <div className={settingsStyles.applyReset}>
@@ -30,9 +50,11 @@ export default function FilterPayload(props) {
       </div>
       <div>
         <input
+          value={movieYear}
           type="text"
-          placeholder={year + placeholder}
-          // onKeyPress{}
+          placeholder={placeholderYear + placeholder}
+          onKeyPress={(event) => submit(event)}
+          onChange={(event) => permit(event.target.value)}
         />
       </div>
       <div>
@@ -51,7 +73,9 @@ FilterPayload.propTypes = {
   apply: PropTypes.string,
   reset: PropTypes.string,
   placeholder: PropTypes.string,
-  year: PropTypes.number,
+  placeholderYear: PropTypes.number,
+  maxYear: PropTypes.number,
+  minYear: PropTypes.number,
   countryNames: PropTypes.array,
   rating: PropTypes.array,
 };
@@ -60,7 +84,9 @@ FilterPayload.defaultProps = {
   apply: 'Apply',
   reset: 'Reset',
   placeholder: ' year',
-  year: 2019,
+  placeholderYear: 2019,
+  maxYear: 2020,
+  minYear: 1980,
   countryNames: [
     'USA',
     'Germany',
