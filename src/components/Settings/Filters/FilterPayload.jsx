@@ -2,10 +2,23 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import filtersStyles from './filtersStyles.css';
 
+import Select from './Select';
+
+function useHook(initialValue) {
+  const [value, setValue] = useState(initialValue);
+  function set(val) {
+    setValue(val);
+  }
+  return {
+    value,
+    set,
+  };
+}
+
 export default function FilterPayload(props) {
-  const [movieYear, setYear] = useState('');
-  const [timerId, setTimerId] = useState('');
-  const [hintPosition, setHintPosition] = useState('hide');
+  const movieYear = useHook('');
+  const timerId = useHook('');
+  const hintPosition = useHook('hide');
 
   const {
     apply,
@@ -19,39 +32,28 @@ export default function FilterPayload(props) {
     notification,
   } = props;
 
-  function generateSelect(optionsArr) {
-    const generate = optionsArr.map((option) => {
-      return (
-        <option value={option} key={option}>
-          {option}
-        </option>
-      );
-    });
-    return generate;
-  }
-
   function permit(value) {
     if (/^\d+$/.test(value) || value === '') {
-      setYear(value);
+      movieYear.set(value);
     }
   }
 
   function validate(number) {
     if (number > maxYear || number < minYear) {
-      clearTimeout(timerId);
-      setHintPosition('show');
+      clearTimeout(timerId.value);
+      hintPosition.set('show');
       const timer = setTimeout(() => {
-        setHintPosition('hide');
+        hintPosition.set('hide');
       }, 5000);
-      setYear('');
-      setTimerId(timer);
+      movieYear.set('');
+      timerId.set(timer);
     }
   }
 
   function submit(e) {
     if (e.key === 'Enter') {
-      validate(movieYear);
-      setYear('');
+      validate(movieYear.value);
+      movieYear.set('');
     }
   }
   return (
@@ -66,23 +68,23 @@ export default function FilterPayload(props) {
       </div>
       <div className={filtersStyles.inputContainer}>
         <input
-          value={movieYear}
+          value={movieYear.value}
           type="text"
           placeholder={placeholderYear + placeholder}
           onKeyPress={(event) => submit(event)}
           onChange={(event) => permit(event.target.value)}
         />
-        <div className={filtersStyles[hintPosition]}>
+        <div className={filtersStyles[hintPosition.value]}>
           {notification}
         </div>
       </div>
       <div>
         <div>Countries</div>
-        <select id="countries">{generateSelect(countryNames)}</select>
+        <Select selectOptions={countryNames} />
       </div>
       <div>
         <div>Rating</div>
-        <select id="rating">{generateSelect(rating)}</select>
+        <Select selectOptions={rating} />
       </div>
     </div>
   );
@@ -115,5 +117,5 @@ FilterPayload.defaultProps = {
     'Russia',
   ],
   rating: [3, 4, 5, 6, 7, 8, 9],
-  notification: 'Please input correct date from \'1980\' to \' 2020\'',
+  notification: 'Please input correct date from \'1980\' to \'2020\'',
 };

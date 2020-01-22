@@ -3,21 +3,17 @@ import PropTypes from 'prop-types';
 
 export default function FilterPayload(props) {
   const { selectOptions } = props;
-
-  const createOptions = () => {
-    const generate = selectOptions.map((option) => {
-      return (
-        <option value={option} key={option}>
-          {option}
-        </option>
-      );
-    });
-    return generate;
-  };
+  const generate = selectOptions.map((option) => {
+    return (
+      <option value={option} key={option}>
+        {option}
+      </option>
+    );
+  });
 
   return (
     <select>
-      {createOptions}
+      {generate}
     </select>
   );
 }
