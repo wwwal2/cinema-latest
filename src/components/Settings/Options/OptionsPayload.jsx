@@ -3,7 +3,7 @@ import React from 'react';
 
 import OptionController from './OptionController';
 
-export default function OptionsDropdown() {
+export default function OptionsPayload() {
   return (
     <div>
       <OptionController name="Main page card limit" />

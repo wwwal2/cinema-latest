@@ -12,13 +12,13 @@ export default class Main extends React.Component {
   }
 
   componentDidMount() {
-    this.request.getByRating(3).then((data) => {
-      console.log(data);
-      this.setState({
-        isLoaded: true,
-        items: data.results,
-      });
-    });
+    // this.request.getByRating(3).then((data) => {
+    //   console.log(data);
+    //   this.setState({
+    //     isLoaded: true,
+    //     items: data.results,
+    //   });
+    // });
   }
 
   render() {
