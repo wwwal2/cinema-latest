@@ -51,6 +51,12 @@ export default class Card extends React.Component {
               : item.overview
           }
         </p>
+        <p>
+          Rate
+          {
+            item.vote_average
+          }
+        </p>
       </div>
     );
   }

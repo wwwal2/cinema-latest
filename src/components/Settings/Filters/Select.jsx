@@ -31,7 +31,7 @@ function Select(props) {
   return (
     rating[0]
       ? generateSelect(rating, addRating)
-      : generateSelect(Object.keys(genres), addGenre)
+      : generateSelect(genres.map((genre) => genre.name), addGenre)
   );
 }
 
@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Select);
 
 Select.propTypes = {
-  genres: PropTypes.object,
+  genres: PropTypes.array,
   rating: PropTypes.array,
   addRating: PropTypes.func,
   addGenre: PropTypes.func,
@@ -58,9 +58,7 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
-  genres: {
-    properties: false,
-  },
+  genres: [],
   rating: [],
   addRating: () => { },
   addGenre: () => { },

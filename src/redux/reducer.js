@@ -3,6 +3,7 @@ const initialState = {
   rating: '8',
   genre: 'Action',
   year: '2019',
+  trigger: true,
 };
 
 export default function reducer(state = initialState, action) {
@@ -31,6 +32,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         year: action.payload,
+      };
+    case 'UPDATE':
+      return {
+        ...state,
+        trigger: !state.trigger,
       };
     default:
       return state;

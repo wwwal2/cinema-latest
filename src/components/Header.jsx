@@ -5,7 +5,7 @@ import headerStyles from '../css_modules/headerStyles.css';
 import logo from '../../images/logo.png';
 
 import Menu from './Menu';
-import Filter from './Settings/SettingsBlock';
+import Settings from './Settings/SettingsBlock';
 import Search from './Search/SearchBlock';
 
 export default class Header extends React.Component {
@@ -22,7 +22,7 @@ export default class Header extends React.Component {
           <img alt="out of logo" src={logo} className={headerStyles.logo} />
         </div>
         <Menu routes={routes} />
-        <Filter />
+        <Settings />
         <Search />
       </div>
     );

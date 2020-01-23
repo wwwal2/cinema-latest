@@ -22,7 +22,8 @@ export default function YearFilter(props) {
     notification,
   } = props;
 
-  function permit(value) {
+  function permit(event) {
+    const { value } = event.target;
     if (/^\d+$/.test(value) || value === '') {
       movieYear.set(value);
     }
@@ -53,8 +54,8 @@ export default function YearFilter(props) {
           value={movieYear.value}
           type="text"
           placeholder={placeholderYear}
-          onKeyPress={(event) => submit(event)}
-          onChange={(event) => permit(event.target.value)}
+          onKeyPress={submit}
+          onChange={permit}
         />
         <div className={filtersStyles[hintPosition.value]}>
           {notification}
