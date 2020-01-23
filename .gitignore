@@ -12,4 +12,5 @@ sshKey
 
 *.log
 
-requst.data.js
+hints.js
+genres.js

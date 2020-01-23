@@ -23,11 +23,11 @@ export default function FilterPayload(props) {
   const {
     apply,
     reset,
-    placeholder,
+    // placeholder,
     placeholderYear,
     maxYear,
     minYear,
-    countryNames,
+    genres,
     rating,
     notification,
   } = props;
@@ -70,7 +70,7 @@ export default function FilterPayload(props) {
         <input
           value={movieYear.value}
           type="text"
-          placeholder={placeholderYear + placeholder}
+          placeholder={placeholderYear}
           onKeyPress={(event) => submit(event)}
           onChange={(event) => permit(event.target.value)}
         />
@@ -80,11 +80,11 @@ export default function FilterPayload(props) {
       </div>
       <div>
         <div>Countries</div>
-        <Select selectOptions={countryNames} />
+        <Select genres={genres} />
       </div>
       <div>
         <div>Rating</div>
-        <Select selectOptions={rating} />
+        <Select rating={rating} />
       </div>
     </div>
   );
@@ -93,11 +93,11 @@ export default function FilterPayload(props) {
 FilterPayload.propTypes = {
   apply: PropTypes.string,
   reset: PropTypes.string,
-  placeholder: PropTypes.string,
+  // placeholder: PropTypes.string,
   placeholderYear: PropTypes.number,
   maxYear: PropTypes.number,
   minYear: PropTypes.number,
-  countryNames: PropTypes.array,
+  genres: PropTypes.object,
   rating: PropTypes.array,
   notification: PropTypes.string,
 };
@@ -105,17 +105,26 @@ FilterPayload.propTypes = {
 FilterPayload.defaultProps = {
   apply: 'Apply',
   reset: 'Reset',
-  placeholder: ' year',
+  // placeholder: ' year',
   placeholderYear: 2019,
   maxYear: 2020,
   minYear: 1980,
-  countryNames: [
-    'USA',
-    'Germany',
-    'Italy',
-    'France',
-    'Russia',
-  ],
+  genres: {
+    Action: 28,
+    Adventure: 12,
+    Animation: 16,
+    Comedy: 35,
+    Crime: 80,
+    Documentary: 99,
+    Drama: 18,
+    Fantasy: 14,
+    History: 36,
+    Horror: 27,
+    Music: 10402,
+    Thriller: 53,
+    War: 10752,
+    Western: 37,
+  },
   rating: [3, 4, 5, 6, 7, 8, 9],
   notification: 'Please input correct date from \'1980\' to \'2020\'',
 };
