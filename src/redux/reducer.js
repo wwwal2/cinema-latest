@@ -1,8 +1,9 @@
 const initialState = {
   storeTest: 'empty',
-  rating: 'empty',
-  genre: 'empty',
-  year: 'empty',
+  rating: '8',
+  genre: 'Action',
+  year: '2019',
+  trigger: true,
 };
 
 export default function reducer(state = initialState, action) {
@@ -20,17 +21,22 @@ export default function reducer(state = initialState, action) {
     case 'ADDRATING':
       return {
         ...state,
-        genre: action.payload,
+        rating: action.payload,
       };
     case 'ADDGENRE':
       return {
         ...state,
-        rating: action.payload,
+        genre: action.payload,
       };
     case 'ADDYEAR':
       return {
         ...state,
         year: action.payload,
+      };
+    case 'UPDATE':
+      return {
+        ...state,
+        trigger: !state.trigger,
       };
     default:
       return state;

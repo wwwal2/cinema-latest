@@ -3,6 +3,7 @@ const test2 = (payload) => ({ type: 'TEST2', payload });
 const addRating = (payload) => ({ type: 'ADDRATING', payload });
 const addGenre = (payload) => ({ type: 'ADDGENRE', payload });
 const addYear = (payload) => ({ type: 'ADDYEAR', payload });
+const update = () => ({ type: 'UPDATE' });
 
 export {
   test,
@@ -10,4 +11,5 @@ export {
   addRating,
   addGenre,
   addYear,
+  update,
 };

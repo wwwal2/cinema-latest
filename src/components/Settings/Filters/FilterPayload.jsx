@@ -1,86 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import filtersStyles from './filtersStyles.css';
 
+import * as genres from '../../Main/genres.json';
+import TopButtons from './TopButtons';
+import YearFilter from './YearFilter';
 import Select from './Select';
 
-function useHook(initialValue) {
-  const [value, setValue] = useState(initialValue);
-  function set(val) {
-    setValue(val);
-  }
-  return {
-    value,
-    set,
-  };
-}
-
 export default function FilterPayload(props) {
-  const movieYear = useHook('');
-  const timerId = useHook('');
-  const hintPosition = useHook('hide');
+  const { rating } = props;
 
-  const {
-    apply,
-    reset,
-    // placeholder,
-    placeholderYear,
-    maxYear,
-    minYear,
-    genres,
-    rating,
-    notification,
-  } = props;
-
-  function permit(value) {
-    if (/^\d+$/.test(value) || value === '') {
-      movieYear.set(value);
-    }
-  }
-
-  function validate(number) {
-    if (number > maxYear || number < minYear) {
-      clearTimeout(timerId.value);
-      hintPosition.set('show');
-      const timer = setTimeout(() => {
-        hintPosition.set('hide');
-      }, 5000);
-      movieYear.set('');
-      timerId.set(timer);
-    }
-  }
-
-  function submit(e) {
-    if (e.key === 'Enter') {
-      validate(movieYear.value);
-      movieYear.set('');
-    }
-  }
   return (
     <div>
-      <div className={filtersStyles.applyReset}>
-        <button type="button">
-          {apply}
-        </button>
-        <button type="button">
-          {reset}
-        </button>
-      </div>
-      <div className={filtersStyles.inputContainer}>
-        <input
-          value={movieYear.value}
-          type="text"
-          placeholder={placeholderYear}
-          onKeyPress={(event) => submit(event)}
-          onChange={(event) => permit(event.target.value)}
-        />
-        <div className={filtersStyles[hintPosition.value]}>
-          {notification}
-        </div>
-      </div>
+      <TopButtons />
+      <YearFilter />
       <div>
-        <div>Countries</div>
-        <Select genres={genres} />
+        <div>Genres</div>
+        <Select genres={genres.default} />
       </div>
       <div>
         <div>Rating</div>
@@ -91,40 +26,9 @@ export default function FilterPayload(props) {
 }
 
 FilterPayload.propTypes = {
-  apply: PropTypes.string,
-  reset: PropTypes.string,
-  // placeholder: PropTypes.string,
-  placeholderYear: PropTypes.number,
-  maxYear: PropTypes.number,
-  minYear: PropTypes.number,
-  genres: PropTypes.object,
   rating: PropTypes.array,
-  notification: PropTypes.string,
 };
 
 FilterPayload.defaultProps = {
-  apply: 'Apply',
-  reset: 'Reset',
-  // placeholder: ' year',
-  placeholderYear: 2019,
-  maxYear: 2020,
-  minYear: 1980,
-  genres: {
-    Action: 28,
-    Adventure: 12,
-    Animation: 16,
-    Comedy: 35,
-    Crime: 80,
-    Documentary: 99,
-    Drama: 18,
-    Fantasy: 14,
-    History: 36,
-    Horror: 27,
-    Music: 10402,
-    Thriller: 53,
-    War: 10752,
-    Western: 37,
-  },
   rating: [3, 4, 5, 6, 7, 8, 9],
-  notification: 'Please input correct date from \'1980\' to \'2020\'',
 };

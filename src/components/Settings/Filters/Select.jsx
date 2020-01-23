@@ -4,31 +4,34 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../redux/actions';
 
-function FilterPayload(props) {
+function Select(props) {
   const {
-    genres, rating, addRating, readTheStore,
+    genres,
+    rating,
+    addRating,
+    addGenre,
+    readTheStore,
   } = props;
+
+  function generateSelect(options, reduxAction) {
+    console.log(readTheStore);
+    return (
+      <select onChange={(event) => reduxAction(event.target.value)}>
+        {options.map((option) => {
+          return (
+            <option value={option} key={option}>
+              {option}
+            </option>
+          );
+        })}
+      </select>
+    );
+  }
+
   return (
-    <select onChange={
-      (event) => {
-        console.log(readTheStore, event.target.value);
-        return addRating(event.target.value);
-      }
-    }
-    >
-      {
-        (rating[0]
-          ? rating
-          : Object.keys(genres))
-          .map((option) => {
-            return (
-              <option value={option} key={option}>
-                {option}
-              </option>
-            );
-          })
-      }
-    </select>
+    rating[0]
+      ? generateSelect(rating, addRating)
+      : generateSelect(genres.map((genre) => genre.name), addGenre)
   );
 }
 
@@ -44,20 +47,20 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterPayload);
+export default connect(mapStateToProps, mapDispatchToProps)(Select);
 
-FilterPayload.propTypes = {
-  genres: PropTypes.object,
+Select.propTypes = {
+  genres: PropTypes.array,
   rating: PropTypes.array,
   addRating: PropTypes.func,
+  addGenre: PropTypes.func,
   readTheStore: PropTypes.object,
 };
 
-FilterPayload.defaultProps = {
-  genres: {
-    properties: false,
-  },
+Select.defaultProps = {
+  genres: [],
   rating: [],
   addRating: () => { },
+  addGenre: () => { },
   readTheStore: {},
 };
