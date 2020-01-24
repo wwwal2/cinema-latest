@@ -1,6 +1,6 @@
 export default class Request {
   constructor() {
-    this.urlBase = 'https://api.themoviedb.org/3/discover/movie?api_key=80ab1c9954395b4f678edc2f29c0a276&language=en-US';
+    this.urlBase = 'https://api.themoviedb.org/3/discover/movie?api_key=80ab1c9954395b4f678edc2f29c0a276&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false';
   }
 
   async getData(url) {
@@ -13,7 +13,7 @@ export default class Request {
     return response;
   }
 
-  getByRating(rate) {
-    return this.getData(`&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_average.gte=${rate}&vote_average.lte=${rate + 1}`);
+  getMovies(page = 1, year = 2019, rate = 8, genre = 'Action') {
+    return this.getData(`&page=${page}&year=${year}&vote_average.gte=${rate}&vote_average.lte=${rate + 1}&with_genres=${genre}`);
   }
 }

@@ -1,42 +1,52 @@
-const initialState = {
-  storeTest: 'empty',
-  rating: '8',
-  genre: 'Action',
-  year: '2019',
-  trigger: true,
-};
+import defaultOptions from '../defaultOptions';
+import {
+  TEST,
+  TEST2,
+  ADDRATING,
+  ADDGENRE,
+  ADDYEAR,
+  UPDATE,
+  RESET,
+} from '../constants';
+
+const initialState = defaultOptions;
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'TEST':
+    case TEST:
       return {
         ...state,
         storeTest: action.payload,
       };
-    case 'TEST2':
+    case TEST2:
       return {
         ...state,
         storeTest: action.payload,
       };
-    case 'ADDRATING':
+    case ADDRATING:
       return {
         ...state,
         rating: action.payload,
       };
-    case 'ADDGENRE':
+    case ADDGENRE:
       return {
         ...state,
         genre: action.payload,
       };
-    case 'ADDYEAR':
+    case ADDYEAR:
       return {
         ...state,
         year: action.payload,
       };
-    case 'UPDATE':
+    case UPDATE:
       return {
         ...state,
-        trigger: !state.trigger,
+        updateCounter: state.updateCounter + 1,
+      };
+    case RESET:
+      return {
+        ...defaultOptions,
+        updateCounter: state.updateCounter,
       };
     default:
       return state;
