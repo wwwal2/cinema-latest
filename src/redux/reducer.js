@@ -1,10 +1,10 @@
 import defaultOptions from '../defaultOptions';
 import {
   TEST,
-  TEST2,
-  ADDRATING,
-  ADDGENRE,
-  ADDYEAR,
+  TEST_2,
+  ADD_RATING,
+  ADD_GENRE,
+  ADD_YEAR,
   UPDATE,
   RESET,
 } from '../constants';
@@ -18,22 +18,22 @@ export default function reducer(state = initialState, action) {
         ...state,
         storeTest: action.payload,
       };
-    case TEST2:
+    case TEST_2:
       return {
         ...state,
         storeTest: action.payload,
       };
-    case ADDRATING:
+    case ADD_RATING:
       return {
         ...state,
         rating: action.payload,
       };
-    case ADDGENRE:
+    case ADD_GENRE:
       return {
         ...state,
         genre: action.payload,
       };
-    case ADDYEAR:
+    case ADD_YEAR:
       return {
         ...state,
         year: action.payload,
@@ -46,7 +46,6 @@ export default function reducer(state = initialState, action) {
     case RESET:
       return {
         ...defaultOptions,
-        updateCounter: state.updateCounter,
       };
     default:
       return state;

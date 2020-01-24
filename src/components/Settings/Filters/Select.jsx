@@ -6,20 +6,18 @@ import * as actions from '../../../redux/actions';
 
 function Select(props) {
   const {
-    genres,
-    rating,
+    selected,
+    allGenres,
+    ratingPoints,
     addRating,
     addGenre,
-    // readTheStore,
-    selectProps,
   } = props;
 
-  function generateSelect(options, selected, reduxAction) {
-    // console.log(readTheStore);
+  function generateSelect(options, current, reduxAction) {
     return (
       <select
         onChange={(event) => reduxAction(event.target.value)}
-        defaultValue={selected}
+        value={current}
       >
         {options.map((option) => {
           return (
@@ -36,15 +34,11 @@ function Select(props) {
   }
 
   return (
-    rating[0]
-      ? generateSelect(rating, selectProps.rating, addRating)
-      : generateSelect(genres.map((genre) => genre.name), selectProps.genre, addGenre)
+    ratingPoints[0]
+      ? generateSelect(ratingPoints, selected, addRating)
+      : generateSelect(allGenres.map((genre) => genre.name), selected, addGenre)
   );
 }
-
-// const mapStateToProps = (state) => (
-//   { readTheStore: state }
-// );
 
 const mapDispatchToProps = (dispatch) => {
   const { addRating, addGenre } = bindActionCreators(actions, dispatch);
@@ -57,17 +51,17 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(Select);
 
 Select.propTypes = {
-  genres: PropTypes.array,
-  rating: PropTypes.array,
+  allGenres: PropTypes.array,
+  ratingPoints: PropTypes.array,
   addRating: PropTypes.func,
   addGenre: PropTypes.func,
-  // readTheStore: PropTypes.object,
+  readTheStore: PropTypes.object,
 };
 
 Select.defaultProps = {
-  genres: [],
-  rating: [],
+  allGenres: [],
+  ratingPoints: [],
   addRating: () => { },
   addGenre: () => { },
-  // readTheStore: {},
+  readTheStore: {},
 };
