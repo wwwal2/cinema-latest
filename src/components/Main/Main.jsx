@@ -16,10 +16,14 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    const { readRating, readGenre } = this.props;
+    const {
+      readYear,
+      readRating,
+      readGenre,
+    } = this.props;
     this.request.getMovies(
       1,
-      2019,
+      readYear,
       Number(readRating),
       genres.default.find((genre) => genre.name === readGenre).id,
     ).then((data) => {
@@ -31,12 +35,17 @@ class Main extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { readRating, readGenre, updateCounter } = this.props;
+    const {
+      readYear,
+      readRating,
+      readGenre,
+      updateCounter,
+    } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
       this.request.getMovies(
         1,
-        2019,
+        readYear,
         Number(readRating),
         genres.default.find((genre) => genre.name === readGenre).id,
       ).then((data) => {
@@ -71,6 +80,7 @@ class Main extends React.Component {
 
 const mapStateToProps = (state) => (
   {
+    readYear: state.year,
     readRating: state.rating,
     readGenre: state.genre,
     updateCounter: state.updateCounter,
@@ -80,12 +90,14 @@ const mapStateToProps = (state) => (
 export default connect(mapStateToProps, null)(Main);
 
 Main.propTypes = {
+  readYear: PropTypes.string,
   readRating: PropTypes.string,
   readGenre: PropTypes.string,
   updateCounter: PropTypes.number,
 };
 
 Main.defaultProps = {
+  readYear: '',
   readRating: '',
   readGenre: '',
   updateCounter: 0,

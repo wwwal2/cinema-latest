@@ -1,9 +1,10 @@
 export default {
   storeTest: 'empty',
-  rating: '8',
-  genre: 'Drama',
   year: '2019',
+  genre: 'Action',
+  rating: '7',
   updateCounter: 0,
 };
 
-// you can see available genres in tab: Filters -> Genres
+// you can see available genres in Header tab: Filters -> Genres
+// or in file: src/components/Main/genres.json
