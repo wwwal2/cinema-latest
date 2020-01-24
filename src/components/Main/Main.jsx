@@ -16,20 +16,30 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    const { readRating } = this.props;
-    this.request.getByRating(Number(readRating)).then((data) => {
+    const { readRating, readGenre } = this.props;
+    this.request.getMovies(
+      1,
+      2019,
+      Number(readRating),
+      genres.default.find((genre) => genre.name === readGenre).id,
+    ).then((data) => {
       this.setState({
         isLoaded: true,
         items: data.results,
       });
     });
-    console.log(genres.default.find((genre) => genre.name === 'Action'), readRating);
   }
 
   componentDidUpdate(prevProps) {
-    const { readRating, trigger } = this.props;
-    if (prevProps.trigger !== trigger) {
-      this.request.getByRating(Number(readRating)).then((data) => {
+    const { readRating, readGenre, updateCounter } = this.props;
+
+    if (prevProps.updateCounter !== updateCounter) {
+      this.request.getMovies(
+        1,
+        2019,
+        Number(readRating),
+        genres.default.find((genre) => genre.name === readGenre).id,
+      ).then((data) => {
         this.setState({
           isLoaded: true,
           items: data.results,
@@ -62,7 +72,8 @@ class Main extends React.Component {
 const mapStateToProps = (state) => (
   {
     readRating: state.rating,
-    trigger: state.trigger,
+    readGenre: state.genre,
+    updateCounter: state.updateCounter,
   }
 );
 
@@ -70,10 +81,12 @@ export default connect(mapStateToProps, null)(Main);
 
 Main.propTypes = {
   readRating: PropTypes.string,
-  trigger: PropTypes.bool,
+  readGenre: PropTypes.string,
+  updateCounter: PropTypes.number,
 };
 
 Main.defaultProps = {
   readRating: '',
-  trigger: true,
+  readGenre: '',
+  updateCounter: 0,
 };

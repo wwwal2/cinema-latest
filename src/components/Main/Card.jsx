@@ -42,7 +42,7 @@ export default class Card extends React.Component {
           {`${item.title} (${item.release_date.substr(0, 4)})`}
         </h3>
         <div>
-          <img alt="poster" src={`http://image.tmdb.org/t/p/w185/${item.poster_path}`} />
+          <img alt="no poster to this movie" src={`http://image.tmdb.org/t/p/w185/${item.poster_path}`} />
         </div>
         <p>
           {

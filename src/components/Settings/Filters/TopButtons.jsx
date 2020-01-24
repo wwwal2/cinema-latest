@@ -8,7 +8,6 @@ import * as actions from '../../../redux/actions';
 
 function TopButtons(props) {
   const {
-    apply,
     reset,
     update,
   } = props;
@@ -17,10 +16,10 @@ function TopButtons(props) {
     <div>
       <div className={filtersStyles.applyReset}>
         <button type="button" onClick={() => update()}>
-          {apply}
+          Apply
         </button>
-        <button type="button">
-          {reset}
+        <button type="button" onClick={() => reset()}>
+          Reset
         </button>
       </div>
     </div>
@@ -28,22 +27,21 @@ function TopButtons(props) {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const { update } = bindActionCreators(actions, dispatch);
+  const { update, reset } = bindActionCreators(actions, dispatch);
   return {
     update: () => update(),
+    reset: () => reset(),
   };
 };
 
 export default connect(null, mapDispatchToProps)(TopButtons);
 
 TopButtons.propTypes = {
-  apply: PropTypes.string,
-  reset: PropTypes.string,
   update: PropTypes.func,
+  reset: PropTypes.func,
 };
 
 TopButtons.defaultProps = {
-  apply: 'Apply',
-  reset: 'Reset',
   update: () => { },
+  reset: () => { },
 };

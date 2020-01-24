@@ -10,16 +10,23 @@ function Select(props) {
     rating,
     addRating,
     addGenre,
-    readTheStore,
+    // readTheStore,
+    selectProps,
   } = props;
 
-  function generateSelect(options, reduxAction) {
-    console.log(readTheStore);
+  function generateSelect(options, selected, reduxAction) {
+    // console.log(readTheStore);
     return (
-      <select onChange={(event) => reduxAction(event.target.value)}>
+      <select
+        onChange={(event) => reduxAction(event.target.value)}
+        defaultValue={selected}
+      >
         {options.map((option) => {
           return (
-            <option value={option} key={option}>
+            <option
+              value={option}
+              key={option}
+            >
               {option}
             </option>
           );
@@ -30,14 +37,14 @@ function Select(props) {
 
   return (
     rating[0]
-      ? generateSelect(rating, addRating)
-      : generateSelect(genres.map((genre) => genre.name), addGenre)
+      ? generateSelect(rating, selectProps.rating, addRating)
+      : generateSelect(genres.map((genre) => genre.name), selectProps.genre, addGenre)
   );
 }
 
-const mapStateToProps = (state) => (
-  { readTheStore: state }
-);
+// const mapStateToProps = (state) => (
+//   { readTheStore: state }
+// );
 
 const mapDispatchToProps = (dispatch) => {
   const { addRating, addGenre } = bindActionCreators(actions, dispatch);
@@ -47,14 +54,14 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Select);
+export default connect(null, mapDispatchToProps)(Select);
 
 Select.propTypes = {
   genres: PropTypes.array,
   rating: PropTypes.array,
   addRating: PropTypes.func,
   addGenre: PropTypes.func,
-  readTheStore: PropTypes.object,
+  // readTheStore: PropTypes.object,
 };
 
 Select.defaultProps = {
@@ -62,5 +69,5 @@ Select.defaultProps = {
   rating: [],
   addRating: () => { },
   addGenre: () => { },
-  readTheStore: {},
+  // readTheStore: {},
 };
