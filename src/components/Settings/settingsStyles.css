@@ -6,11 +6,11 @@
 	display: flex;
 }
 
-.truePosition {
+.falsePosition {
 	display: none;
 }
 
-.falsePosition {
+.truePosition {
 	position: absolute;
 	background-color: teal;
 	height: 400px;
