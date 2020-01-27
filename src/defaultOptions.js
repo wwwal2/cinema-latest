@@ -3,6 +3,9 @@ export default {
   year: '2019',
   genre: 'Action',
   rating: '7',
+  main: 8,
+  popular: 12,
+  favorite: 4,
   updateCounter: 0,
 };
 

@@ -16,22 +16,22 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    const {
-      readYear,
-      readRating,
-      readGenre,
-    } = this.props;
-    this.request.getMovies(
-      1,
-      readYear,
-      Number(readRating),
-      genres.default.find((genre) => genre.name === readGenre).id,
-    ).then((data) => {
-      this.setState({
-        isLoaded: true,
-        items: data.results,
-      });
-    });
+    // const {
+    //   readYear,
+    //   readRating,
+    //   readGenre,
+    // } = this.props;
+    // this.request.getMovies(
+    //   1,
+    //   readYear,
+    //   Number(readRating),
+    //   genres.default.find((genre) => genre.name === readGenre).id,
+    // ).then((data) => {
+    //   this.setState({
+    //     isLoaded: true,
+    //     items: data.results,
+    //   });
+    // });
   }
 
   componentDidUpdate(prevProps) {

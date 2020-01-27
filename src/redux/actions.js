@@ -6,6 +6,7 @@ import {
   ADD_YEAR,
   UPDATE,
   RESET,
+  CHANGE_CARD_NUM,
 } from '../constants';
 
 const test = (payload) => ({ type: TEST, payload });
@@ -15,6 +16,14 @@ const addGenre = (payload) => ({ type: ADD_GENRE, payload });
 const addYear = (payload) => ({ type: ADD_YEAR, payload });
 const update = () => ({ type: UPDATE });
 const reset = () => ({ type: RESET });
+const changeCardNum = (payload, target, distance) => (
+  {
+    type: CHANGE_CARD_NUM,
+    payload,
+    target,
+    distance,
+  }
+);
 
 export {
   test,
@@ -24,4 +33,5 @@ export {
   addYear,
   update,
   reset,
+  changeCardNum,
 };
