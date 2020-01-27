@@ -1,11 +1,10 @@
 .applyReset {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .inputContainer {
-  display: relative;
-
+  position: relative;
 }
 
 .show {
