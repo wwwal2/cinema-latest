@@ -5,6 +5,7 @@ import {
   ADD_RATING,
   ADD_GENRE,
   ADD_YEAR,
+  ADD_RESULTS,
   UPDATE,
   RESET,
   CHANGE_CARD_NUM,
@@ -38,6 +39,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         year: action.payload,
+      };
+    case ADD_RESULTS:
+      return {
+        ...state,
+        totalResults: action.payload,
       };
     case UPDATE:
       return {

@@ -96,7 +96,7 @@ YearFilter.propTypes = {
 YearFilter.defaultProps = {
   storeYear: '',
   maxYear: 2020,
-  minYear: 1980,
-  notification: 'Please input correct date from \'1980\' to \'2020\'',
+  minYear: 1950,
+  notification: 'Please input correct date from \'1950\' to \'2020\'',
   addYear: () => { },
 };

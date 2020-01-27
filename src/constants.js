@@ -3,6 +3,7 @@ const TEST_2 = 'TEST_2';
 const ADD_RATING = 'ADD_RATING';
 const ADD_GENRE = 'ADD_GENRE';
 const ADD_YEAR = 'ADD_YEAR';
+const ADD_RESULTS = 'ADD_RESULTS';
 const UPDATE = 'UPDATE';
 const RESET = 'RESET';
 const CHANGE_CARD_NUM = 'CHANGE_CARD_NUM';
@@ -17,6 +18,7 @@ export {
   ADD_RATING,
   ADD_GENRE,
   ADD_YEAR,
+  ADD_RESULTS,
   UPDATE,
   RESET,
   CHANGE_CARD_NUM,
