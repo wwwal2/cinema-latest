@@ -49,7 +49,6 @@ export default function reducer(state = initialState, action) {
         ...defaultOptions,
       };
     case CHANGE_CARD_NUM:
-      console.log(action);
       if (action.distance <= 0) {
         return state;
       }

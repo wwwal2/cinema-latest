@@ -16,7 +16,7 @@ const addGenre = (payload) => ({ type: ADD_GENRE, payload });
 const addYear = (payload) => ({ type: ADD_YEAR, payload });
 const update = () => ({ type: UPDATE });
 const reset = () => ({ type: RESET });
-const changeCardNum = (payload, target, distance) => (
+const changePayloadNum = (payload, target, distance) => (
   {
     type: CHANGE_CARD_NUM,
     payload,
@@ -33,5 +33,5 @@ export {
   addYear,
   update,
   reset,
-  changeCardNum,
+  changePayloadNum,
 };

@@ -8,45 +8,35 @@ import settingsStyles from '../settingsStyles.css';
 
 import * as actions from '../../../redux/actions';
 import {
-  // defaultCardsNum,
   maxCardsNum,
   minCardsNum,
   changeStep,
 } from '../../../constants';
 
 function OptionsController(props) {
-  // function handleChange(direction, distance) {
-  //   if (distance <= 0) {
-  //     return;
-  //   }
-  //   this.setState((state) => ({
-  //     cardsNum: state.cardsNum + direction,
-  //   }));
-  // }
-
   const {
-    name,
-    action,
-    cards,
-    changeCardNum,
+    label,
+    target,
+    allControllers,
+    changePayloadNum,
   } = props;
 
   return (
     <div className={settingsStyles.flex}>
-      <div className="label">{name}</div>
+      <div className="label">{label}</div>
       <i
         className={cx(settingsStyles.arrow, settingsStyles.left)}
         onClick={
-          () => changeCardNum(-changeStep, action.toLowerCase(), cards[action] - minCardsNum)
+          () => changePayloadNum(-changeStep, target, allControllers[target] - minCardsNum)
         }
       />
       <div className="value">
-        {cards[action]}
+        {allControllers[target]}
       </div>
       <i
         className={cx(settingsStyles.arrow, settingsStyles.right)}
         onClick={
-          () => changeCardNum(changeStep, action.toLowerCase(), (maxCardsNum - cards[action]))
+          () => changePayloadNum(changeStep, target, maxCardsNum - allControllers[target])
         }
       />
     </div>
@@ -55,33 +45,33 @@ function OptionsController(props) {
 
 const mapStateToProps = (state) => (
   {
-    cards: {
-      Main: state.main,
-      Popular: state.popular,
-      Favorite: state.favorite,
+    allControllers: {
+      main: state.main,
+      popular: state.popular,
+      favorite: state.favorite,
     },
   }
 );
 
 const mapDispatchToProps = (dispatch) => {
-  const { changeCardNum } = bindActionCreators(actions, dispatch);
+  const { changePayloadNum } = bindActionCreators(actions, dispatch);
   return {
-    changeCardNum: (payload, target, distance) => changeCardNum(payload, target, distance),
+    changePayloadNum: (payload, target, distance) => changePayloadNum(payload, target, distance),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OptionsController);
 
 OptionsController.propTypes = {
-  name: PropTypes.string,
-  action: PropTypes.string,
-  cards: PropTypes.object,
-  changeCardNum: PropTypes.func,
+  label: PropTypes.string,
+  target: PropTypes.string,
+  allControllers: PropTypes.object,
+  changePayloadNum: PropTypes.func,
 };
 
 OptionsController.defaultProps = {
-  name: 'Controller',
-  action: '',
-  cards: {},
-  changeCardNum: () => { },
+  label: 'Controller',
+  target: '',
+  allControllers: {},
+  changePayloadNum: () => { },
 };

@@ -7,9 +7,9 @@ import OptionController from './OptionController';
 export default function OptionsPayload() {
   return (
     <div>
-      <OptionController name="Main page card limit" action="Main" />
-      <OptionController name="Popular page card limit" action="Popular" />
-      <OptionController name="Favorite page card limit" action="Favorite" />
+      <OptionController label="Main page card limit" target="main" />
+      <OptionController label="Popular page card limit" target="popular" />
+      <OptionController label="Favorite page card limit" target="favorite" />
     </div>
   );
 }

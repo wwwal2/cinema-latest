@@ -7,7 +7,6 @@ const UPDATE = 'UPDATE';
 const RESET = 'RESET';
 const CHANGE_CARD_NUM = 'CHANGE_CARD_NUM';
 
-const defaultCardsNum = 8;
 const minCardsNum = 4;
 const maxCardsNum = 20;
 const changeStep = 4;
@@ -21,7 +20,6 @@ export {
   UPDATE,
   RESET,
   CHANGE_CARD_NUM,
-  defaultCardsNum,
   minCardsNum,
   maxCardsNum,
   changeStep,
