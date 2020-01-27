@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import bodyStyles from './bodyStyles.css';
 
-import Request from '../Request';
+import Request from './Request';
+import * as actions from '../../redux/actions';
 import * as genres from './genres.json';
 
 import Card from './Card';
@@ -16,22 +19,22 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    const {
-      readYear,
-      readRating,
-      readGenre,
-    } = this.props;
-    this.request.getMovies(
-      1,
-      readYear,
-      Number(readRating),
-      genres.default.find((genre) => genre.name === readGenre).id,
-    ).then((data) => {
-      this.setState({
-        isLoaded: true,
-        items: data.results,
-      });
-    });
+    // const {
+    //   readYear,
+    //   readRating,
+    //   readGenre,
+    // } = this.props;
+    // this.request.getMovies(
+    //   1,
+    //   readYear,
+    //   Number(readRating),
+    //   genres.default.find((genre) => genre.name === readGenre).id,
+    // ).then((data) => {
+    //   this.setState({
+    //     isLoaded: true,
+    //     items: data.results,
+    //   });
+    // });
   }
 
   componentDidUpdate(prevProps) {
@@ -40,6 +43,8 @@ class Main extends React.Component {
       readRating,
       readGenre,
       updateCounter,
+      main,
+      addResults,
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
@@ -49,9 +54,11 @@ class Main extends React.Component {
         Number(readRating),
         genres.default.find((genre) => genre.name === readGenre).id,
       ).then((data) => {
+        addResults(data.total_results);
+        const cardPayload = data.results.slice(0, main);
         this.setState({
           isLoaded: true,
-          items: data.results,
+          items: cardPayload,
         });
       });
     }
@@ -84,16 +91,26 @@ const mapStateToProps = (state) => (
     readRating: state.rating,
     readGenre: state.genre,
     updateCounter: state.updateCounter,
+    main: state.main,
   }
 );
 
-export default connect(mapStateToProps, null)(Main);
+const mapDispatchToProps = (dispatch) => {
+  const { addResults } = bindActionCreators(actions, dispatch);
+  return {
+    addResults: (payload) => addResults(payload),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
   readYear: PropTypes.string,
   readRating: PropTypes.string,
   readGenre: PropTypes.string,
   updateCounter: PropTypes.number,
+  main: PropTypes.number,
+  addResults: PropTypes.func,
 };
 
 Main.defaultProps = {
@@ -101,4 +118,6 @@ Main.defaultProps = {
   readRating: '',
   readGenre: '',
   updateCounter: 0,
+  main: 0,
+  addResults: () => { },
 };

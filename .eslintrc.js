@@ -17,6 +17,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'no-param-reassign': 0,
     'react/forbid-prop-types': 0,
     'arrow-body-style': 0,
     'no-underscore-dangle': 0,

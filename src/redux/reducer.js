@@ -5,8 +5,10 @@ import {
   ADD_RATING,
   ADD_GENRE,
   ADD_YEAR,
+  ADD_RESULTS,
   UPDATE,
   RESET,
+  CHANGE_CARD_NUM,
 } from '../constants';
 
 const initialState = defaultOptions;
@@ -38,6 +40,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         year: action.payload,
       };
+    case ADD_RESULTS:
+      return {
+        ...state,
+        totalResults: action.payload,
+      };
     case UPDATE:
       return {
         ...state,
@@ -47,6 +54,15 @@ export default function reducer(state = initialState, action) {
       return {
         ...defaultOptions,
       };
+    case CHANGE_CARD_NUM:
+      if (action.distance <= 0) {
+        return state;
+      }
+      return {
+        ...state,
+        [action.target]: state[action.target] + action.payload,
+      };
+
     default:
       return state;
   }

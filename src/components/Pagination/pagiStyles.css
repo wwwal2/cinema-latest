@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  height: 60px;
+}
+
+.label {
+  text-align: center;
+}
+
+img {
+  height: 100%;
+}
+img:hover {
+  background-color: #ff7f50;
+  cursor: pointer;
+}
+
+input::placeholder {
+  font-size: 30px;
+  text-align: center;
+}

@@ -16,7 +16,7 @@ export default class Filter extends React.Component {
 
   toggle(info) {
     const { settings, dropdown } = this.state;
-    if (info === settings) {
+    if (info === settings || dropdown === false) {
       this.setState({
         dropdown: !dropdown,
       });

@@ -7,6 +7,8 @@ import Favorite from './components/Favorite/Favorite';
 import Popular from './components/Popular/Popular';
 import Footer from './components/Footer';
 
+import Pagination from './components/Pagination/Pagination';
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -28,6 +30,7 @@ export default class App extends React.Component {
           <Route path={`${routes.favorite}`} exact component={Favorite} />
           <Route path={`${routes.popular}`} exact component={Popular} />
         </Switch>
+        <Pagination />
         <Footer />
       </Router>
     );

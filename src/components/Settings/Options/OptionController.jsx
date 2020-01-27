@@ -1,47 +1,77 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import cx from 'classnames';
 import settingsStyles from '../settingsStyles.css';
 
-export default class OptionsController extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 8,
-    };
-  }
+import * as actions from '../../../redux/actions';
+import {
+  maxCardsNum,
+  minCardsNum,
+  changeStep,
+} from '../../../constants';
 
-  handleChange(num) {
-    this.setState((state) => ({
-      value: state.value + num,
-    }));
-  }
+function OptionsController(props) {
+  const {
+    label,
+    target,
+    allControllers,
+    changePayloadNum,
+  } = props;
 
-  render() {
-    const { name } = this.props;
-    const { value } = this.state;
-
-    return (
-      <div className={settingsStyles.flex}>
-        <div className="label">{name}</div>
-        <i
-          className={cx(settingsStyles.arrow, settingsStyles.left)}
-          onClick={() => this.handleChange(-1)}
-        />
-        <div className="value">{value}</div>
-        <i
-          className={cx(settingsStyles.arrow, settingsStyles.right)}
-          onClick={() => this.handleChange(+1)}
-        />
+  return (
+    <div className={settingsStyles.flex}>
+      <div className="label">{label}</div>
+      <i
+        className={cx(settingsStyles.arrow, settingsStyles.left)}
+        onClick={
+          () => changePayloadNum(-changeStep, target, allControllers[target] - minCardsNum)
+        }
+      />
+      <div className="value">
+        {allControllers[target]}
       </div>
-    );
-  }
+      <i
+        className={cx(settingsStyles.arrow, settingsStyles.right)}
+        onClick={
+          () => changePayloadNum(changeStep, target, maxCardsNum - allControllers[target])
+        }
+      />
+    </div>
+  );
 }
 
+const mapStateToProps = (state) => (
+  {
+    allControllers: {
+      main: state.main,
+      popular: state.popular,
+      favorite: state.favorite,
+    },
+  }
+);
+
+const mapDispatchToProps = (dispatch) => {
+  const { changePayloadNum } = bindActionCreators(actions, dispatch);
+  return {
+    changePayloadNum: (payload, target, distance) => changePayloadNum(payload, target, distance),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OptionsController);
+
 OptionsController.propTypes = {
-  name: PropTypes.string,
+  label: PropTypes.string,
+  target: PropTypes.string,
+  allControllers: PropTypes.object,
+  changePayloadNum: PropTypes.func,
 };
 
 OptionsController.defaultProps = {
-  name: 'Controller',
+  label: 'Controller',
+  target: '',
+  allControllers: {},
+  changePayloadNum: () => { },
 };

@@ -3,7 +3,14 @@ export default {
   year: '2019',
   genre: 'Action',
   rating: '7',
+  totalResults: 0,
+  APIpage: 1,
+  innerPage: 1,
   updateCounter: 0,
+  // movie cards payload per page
+  main: 8,
+  popular: 12,
+  favorite: 4,
 };
 
 // you can see available genres in Header tab: Filters -> Genres
