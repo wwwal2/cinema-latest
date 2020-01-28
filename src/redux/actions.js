@@ -5,6 +5,7 @@ import {
   ADD_GENRE,
   ADD_YEAR,
   ADD_RESULTS,
+  ADD_UI_PAGE_NUM,
   UPDATE,
   RESET,
   CHANGE_CARD_NUM,
@@ -16,6 +17,7 @@ const addRating = (payload) => ({ type: ADD_RATING, payload });
 const addGenre = (payload) => ({ type: ADD_GENRE, payload });
 const addYear = (payload) => ({ type: ADD_YEAR, payload });
 const addResults = (payload) => ({ type: ADD_RESULTS, payload });
+const addUIPageNum = (payload) => ({ type: ADD_UI_PAGE_NUM, payload });
 const update = () => ({ type: UPDATE });
 const reset = () => ({ type: RESET });
 const changePayloadNum = (payload, target, distance) => (
@@ -34,6 +36,7 @@ export {
   addGenre,
   addYear,
   addResults,
+  addUIPageNum,
   update,
   reset,
   changePayloadNum,

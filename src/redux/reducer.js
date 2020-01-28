@@ -6,6 +6,7 @@ import {
   ADD_GENRE,
   ADD_YEAR,
   ADD_RESULTS,
+  ADD_UI_PAGE_NUM,
   UPDATE,
   RESET,
   CHANGE_CARD_NUM,
@@ -44,6 +45,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         totalResults: action.payload,
+      };
+    case ADD_UI_PAGE_NUM:
+      return {
+        ...state,
+        UIpage: action.payload,
       };
     case UPDATE:
       return {
