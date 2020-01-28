@@ -50,7 +50,7 @@ class Main extends React.Component {
     if (prevProps.updateCounter !== updateCounter) {
       this.request.getMovies(
         1,
-        readYear,
+        Number(readYear),
         Number(readRating),
         genres.default.find((genre) => genre.name === readGenre).id,
       ).then((data) => {
