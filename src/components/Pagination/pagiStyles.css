@@ -16,7 +16,13 @@ img:hover {
   cursor: pointer;
 }
 
+input {
+  font-size: 30px;
+  text-align: center;
+  width: 100px;
+}
 input::placeholder {
   font-size: 30px;
   text-align: center;
+  opacity: 1;
 }

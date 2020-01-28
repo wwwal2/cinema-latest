@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
+
 import filtersStyles from '../filtersStyles.css';
 
 import * as actions from '../../../../redux/actions';
+import Utility from '../../../Utility';
 
 function useHook(initialValue) {
   const [value, setValue] = useState(initialValue);
@@ -28,31 +30,30 @@ function YearFilter(props) {
     addYear,
   } = props;
 
-  const validate = (number) => {
-    if (number > maxYear || number < minYear) {
-      clearTimeout(timerId.value);
-      hintPosition.set('show');
-      const timer = setTimeout(() => {
-        hintPosition.set('hide');
-      }, 5000);
-      inputYear.set('');
-      timerId.set(timer);
-    } else {
-      addYear(number);
+  const showNotification = () => {
+    clearTimeout(timerId.value);
+    hintPosition.set('show');
+    const timer = setTimeout(() => {
+      hintPosition.set('hide');
+    }, 5000);
+    timerId.set(timer);
+  };
+
+  const keyCheck = (event) => {
+    const { value } = event.target;
+    if (Utility.onlyNumbers(value)) {
+      inputYear.set(value);
     }
   };
 
   const submitCheck = (event) => {
     if (event.key === 'Enter') {
-      validate(inputYear.value);
+      if (Utility.numberValidation(maxYear, minYear, inputYear.value)) {
+        addYear(inputYear.value);
+      } else {
+        showNotification();
+      }
       inputYear.set('');
-    }
-  };
-
-  const keyCheck = (event) => {
-    const { value } = event.target;
-    if (/^\d+$/.test(value) || value === '') {
-      inputYear.set(value);
     }
   };
 
