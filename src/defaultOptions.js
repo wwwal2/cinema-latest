@@ -4,8 +4,8 @@ export default {
   genre: 'Action',
   rating: '7',
   totalResults: 0,
-  APIpage: 1,
-  innerPage: 1,
+  requestPage: 1,
+  UIpage: 1,
   updateCounter: 0,
   // movie cards payload per page
   main: 8,
