@@ -22,5 +22,7 @@ module.exports = {
     'arrow-body-style': 0,
     'no-underscore-dangle': 0,
     'class-methods-use-this': 0,
+    'consistent-return': 0,
+    'react/no-array-index-key': 0,
   },
 };
