@@ -21,5 +21,6 @@ module.exports = {
     'react/forbid-prop-types': 0,
     'arrow-body-style': 0,
     'no-underscore-dangle': 0,
+    'class-methods-use-this': 0,
   },
 };

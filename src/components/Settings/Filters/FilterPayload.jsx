@@ -2,20 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import * as allGenres from '../../Main/genres.json';
 import TopButtons from './TopButtons';
 import YearFilter from './YearFilter/YearFilter';
 import Select from './Select';
 
 function FilterPayload(props) {
-  const { ratingPoints, currentRating, currentGenre } = props;
+  const {
+    ratingPoints,
+    currentRating,
+    currentGenre,
+    allGenres,
+  } = props;
   return (
     <div>
       <TopButtons />
       <YearFilter />
       <div>
         <div>Genres</div>
-        <Select selected={currentGenre} allGenres={allGenres.default} />
+        <Select selected={currentGenre} allGenres={allGenres} />
       </div>
       <div>
         <div>Rating</div>
@@ -29,6 +33,7 @@ const mapStateToProps = (state) => (
   {
     currentRating: state.rating,
     currentGenre: state.genre,
+    allGenres: state.allGenres,
   }
 );
 
@@ -38,10 +43,12 @@ FilterPayload.propTypes = {
   ratingPoints: PropTypes.array,
   currentRating: PropTypes.string,
   currentGenre: PropTypes.string,
+  allGenres: PropTypes.array,
 };
 
 FilterPayload.defaultProps = {
   ratingPoints: [3, 4, 5, 6, 7, 8, 9],
   currentRating: '',
   currentGenre: '',
+  allGenres: [],
 };
