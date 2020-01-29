@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import TopButtons from './TopButtons';
-import YearFilter from './YearFilter/YearFilter';
+import YearFilter from './YearFilter';
 import Select from './Select';
 
 function FilterPayload(props) {
