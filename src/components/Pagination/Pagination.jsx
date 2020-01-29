@@ -6,12 +6,14 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../../redux/actions';
 import arrowLeft from '../../../images/arr3.png';
 import arrowRight from '../../../images/arr2.png';
-import arrowHome from '../../../images/arr5.png';
-import arrowLast from '../../../images/arr6.png';
+// import arrowHome from '../../../images/arr5.png';
+// import arrowLast from '../../../images/arr6.png';
+import pagination from './pagination.css';
 
 import Utility from '../Utility';
+import PaginationBoard from './PaginationBoard';
+// import Button from './Button';
 
-import pagiStyles from './pagiStyles.css';
 
 function Pagination(props) {
   const { totalPages, addUIPageNum, currentPage } = props;
@@ -24,18 +26,17 @@ function Pagination(props) {
 
   return (
     <div>
-      <div className={pagiStyles.label}>
-        Total pages:
-        {
-          totalPages
-        }
-      </div>
-      <div className={pagiStyles.pagination}>
-        <img alt="arrow" src={arrowHome} onClick={() => changePage(1)} />
+      <div className={pagination.pagination}>
+
         <img alt="arrow" src={arrowLeft} onClick={() => changePage(currentPage - 1)} />
-        <input type="text" placeholder={currentPage} />
+        {/* <img alt="arrow" src={arrowHome} onClick={() => changePage(1)} /> */}
+        {/* <Button page={1} btnClass="button" /> */}
+        <PaginationBoard totalPages={totalPages} currentPage={currentPage} />
+        {/* <Button page={totalPages} btnClass="button" /> */}
+        {/* <img alt="arrow" src={arrowLast} onClick={() => changePage(totalPages)} /> */}
+
         <img alt="arrow" src={arrowRight} onClick={() => changePage(currentPage + 1)} />
-        <img alt="arrow" src={arrowLast} onClick={() => changePage(totalPages)} />
+
       </div>
     </div>
   );

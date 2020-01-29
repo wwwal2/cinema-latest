@@ -8,7 +8,6 @@ import bodyStyles from './bodyStyles.css';
 import Request from './Request';
 import Utility from '../Utility';
 import * as actions from '../../redux/actions';
-import * as genres from './genres.json';
 import { apiResultsNum } from '../../constants';
 
 import Card from './Card';
@@ -21,7 +20,12 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    this.makePayload();
+    const { addAllGenres } = this.props;
+    this.request.getGenres()
+      .then((res) => {
+        addAllGenres(res.genres);
+        this.makePayload();
+      });
   }
 
   componentDidUpdate(prevProps) {
@@ -36,6 +40,7 @@ class Main extends React.Component {
       readYear,
       readRating,
       readGenre,
+      allGenres,
       readTotalResults,
       main,
       addResults,
@@ -49,7 +54,7 @@ class Main extends React.Component {
         layout.page,
         Number(readYear),
         Number(readRating),
-        Utility.codeGenre(readGenre, genres.default),
+        Utility.codeGenre(readGenre, allGenres),
       );
       const cardPayload = data.results.slice(
         data.results.length * layout.startPoint,
@@ -65,14 +70,14 @@ class Main extends React.Component {
         layout.startPage,
         Number(readYear),
         Number(readRating),
-        Utility.codeGenre(readGenre, genres.default),
+        Utility.codeGenre(readGenre, allGenres),
       );
 
       const page2 = await this.request.getMovies(
         layout.endPage,
         Number(readYear),
         Number(readRating),
-        Utility.codeGenre(readGenre, genres.default),
+        Utility.codeGenre(readGenre, allGenres),
       );
       const payload1 = page1.results.slice(
         page1.results.length * layout.startPoint,
@@ -117,6 +122,7 @@ const mapStateToProps = (state) => (
     readYear: state.year,
     readRating: state.rating,
     readGenre: state.genre,
+    allGenres: state.allGenres,
     readTotalResults: state.totalResults,
     updateCounter: state.updateCounter,
     main: state.main,
@@ -125,9 +131,10 @@ const mapStateToProps = (state) => (
 );
 
 const mapDispatchToProps = (dispatch) => {
-  const { addResults } = bindActionCreators(actions, dispatch);
+  const { addResults, addAllGenres } = bindActionCreators(actions, dispatch);
   return {
     addResults: (payload) => addResults(payload),
+    addAllGenres: (payload) => addAllGenres(payload),
   };
 };
 
@@ -140,8 +147,10 @@ Main.propTypes = {
   readTotalResults: PropTypes.number,
   updateCounter: PropTypes.number,
   main: PropTypes.number,
+  addAllGenres: PropTypes.func,
   addResults: PropTypes.func,
   UIpage: PropTypes.number,
+  allGenres: PropTypes.array,
 };
 
 Main.defaultProps = {
@@ -152,5 +161,7 @@ Main.defaultProps = {
   updateCounter: 0,
   main: 0,
   UIpage: 0,
+  allGenres: [],
   addResults: () => { },
+  addAllGenres: () => { },
 };

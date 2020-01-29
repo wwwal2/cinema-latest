@@ -4,6 +4,7 @@ import {
   ADD_RATING,
   ADD_GENRE,
   ADD_YEAR,
+  ADD_ALL_GENRES,
   ADD_RESULTS,
   ADD_UI_PAGE_NUM,
   UPDATE,
@@ -11,16 +12,17 @@ import {
   CHANGE_CARD_NUM,
 } from '../constants';
 
-const test = (payload) => ({ type: TEST, payload });
-const test2 = (payload) => ({ type: TEST_2, payload });
-const addRating = (payload) => ({ type: ADD_RATING, payload });
-const addGenre = (payload) => ({ type: ADD_GENRE, payload });
-const addYear = (payload) => ({ type: ADD_YEAR, payload });
-const addResults = (payload) => ({ type: ADD_RESULTS, payload });
-const addUIPageNum = (payload) => ({ type: ADD_UI_PAGE_NUM, payload });
-const update = () => ({ type: UPDATE });
-const reset = () => ({ type: RESET });
-const changePayloadNum = (payload, target, distance) => (
+export const test = (payload) => ({ type: TEST, payload });
+export const test2 = (payload) => ({ type: TEST_2, payload });
+export const addRating = (payload) => ({ type: ADD_RATING, payload });
+export const addGenre = (payload) => ({ type: ADD_GENRE, payload });
+export const addYear = (payload) => ({ type: ADD_YEAR, payload });
+export const addAllGenres = (payload) => ({ type: ADD_ALL_GENRES, payload });
+export const addResults = (payload) => ({ type: ADD_RESULTS, payload });
+export const addUIPageNum = (payload) => ({ type: ADD_UI_PAGE_NUM, payload });
+export const update = () => ({ type: UPDATE });
+export const reset = () => ({ type: RESET });
+export const changePayloadNum = (payload, target, distance) => (
   {
     type: CHANGE_CARD_NUM,
     payload,
@@ -28,16 +30,3 @@ const changePayloadNum = (payload, target, distance) => (
     distance,
   }
 );
-
-export {
-  test,
-  test2,
-  addRating,
-  addGenre,
-  addYear,
-  addResults,
-  addUIPageNum,
-  update,
-  reset,
-  changePayloadNum,
-};

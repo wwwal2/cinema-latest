@@ -5,6 +5,7 @@ import {
   ADD_RATING,
   ADD_GENRE,
   ADD_YEAR,
+  ADD_ALL_GENRES,
   ADD_RESULTS,
   ADD_UI_PAGE_NUM,
   UPDATE,
@@ -40,6 +41,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         year: action.payload,
+      };
+    case ADD_ALL_GENRES:
+      return {
+        ...state,
+        allGenres: action.payload,
       };
     case ADD_RESULTS:
       return {

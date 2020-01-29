@@ -8,6 +8,26 @@
   text-align: center;
 }
 
+.boardContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.currentPage {
+  border: 3px solid red;
+}
+
+.button {
+  background-color: #bc8f8f;
+}
+.button:hover {
+  cursor: pointer;
+}
+
+.dots {
+  background-color: #bc8f8f;
+}
+
 img {
   height: 100%;
 }

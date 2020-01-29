@@ -1,7 +1,7 @@
 export default {
   storeTest: 'empty',
   year: '2019',
-  genre: 'Action',
+  genre: 'Fantasy',
   rating: '7',
   totalResults: 0,
   requestPage: 1,
@@ -11,7 +11,7 @@ export default {
   main: 8,
   popular: 12,
   favorite: 4,
+  allGenres: [],
 };
 
 // you can see available genres in Header tab: Filters -> Genres
-// or in file: src/components/Main/genres.json

@@ -45,4 +45,30 @@ export default class Utility {
   static codeGenre(genreName, tableOfGenres) {
     return tableOfGenres.find((genre) => genre.name === genreName).id;
   }
+
+  static split(total) {
+    const elements = [];
+    for (let i = 2; i <= total; i += 1) {
+      elements.push(i);
+    }
+    return elements;
+  }
+
+  static paginationShape(total, current, sideLength) {
+    let result = this.split(total - 1);
+    // cut right
+    if (current + sideLength < total) {
+      result = result.slice(0, current + sideLength);
+      result.push('...');
+    }
+    // cut left
+    if (current - sideLength > 1) {
+      result = result.slice(current - sideLength, result.length);
+      result.unshift('...');
+    }
+    // add limits
+    result.unshift(1);
+    result.push(total);
+    return result;
+  }
 }
