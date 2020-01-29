@@ -54,16 +54,19 @@ export default class Utility {
     return elements;
   }
 
-  static paginationShape(total, current, length) {
+  static paginationShape(total, current, sideLength) {
     let result = this.split(total - 1);
-    if (current + length / 2 < total) {
-      result = result.slice(0, current + 2);
+    // cut right
+    if (current + sideLength < total) {
+      result = result.slice(0, current + sideLength);
       result.push('...');
     }
-    if (current - length / 2 > 1) {
-      result = result.slice(current - 3, result.length);
+    // cut left
+    if (current - sideLength > 1) {
+      result = result.slice(current - sideLength, result.length);
       result.unshift('...');
     }
+    // add limits
     result.unshift(1);
     result.push(total);
     return result;

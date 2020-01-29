@@ -10,10 +10,10 @@ import Button from './Button';
 import pagination from './pagination.css';
 
 export default function PaginationBoard(props) {
-  const { totalPages, currentPage, boardLength } = props;
+  const { totalPages, currentPage, boardSideLength } = props;
 
   const assemble = (total, current) => {
-    return Utility.paginationShape(total, current, boardLength).map((elem, index) => {
+    return Utility.paginationShape(total, current, boardSideLength).map((elem, index) => {
       if (elem === current) {
         return <Button page={elem} key={`pug${index}`} btnClass="currentPage" disabled={false} />;
       }
@@ -32,13 +32,13 @@ export default function PaginationBoard(props) {
 }
 
 PaginationBoard.propTypes = {
-  boardLength: PropTypes.number,
+  boardSideLength: PropTypes.number,
   totalPages: PropTypes.number,
   currentPage: PropTypes.number,
 };
 
 PaginationBoard.defaultProps = {
-  boardLength: 6,
+  boardSideLength: 3,
   totalPages: 0,
   currentPage: 0,
 };
