@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { bindActionCreators } from 'redux';
-
-// import * as actions from '../../redux/actions';
 
 import Utility from '../Utility';
 import Button from './Button';

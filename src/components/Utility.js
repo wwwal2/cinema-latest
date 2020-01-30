@@ -7,38 +7,21 @@ export default class Utility {
     return (/^\d+$/.test(key) || key === '');
   }
 
-  static calculateLayout(UIpage, cardLayout, apiResultsNum, totalResults) {
-    const lastPageResult = totalResults % apiResultsNum;
-    const totalApiPages = Math.ceil(totalResults / apiResultsNum);
+  static calculateLayout(UIpage, cardLayout, apiResultsPerPage) {
+    const endResult = UIpage * cardLayout;
+    const startResult = endResult - cardLayout;
 
-    const endPoint = Math.round((((UIpage * cardLayout) / apiResultsNum) % 1) * 10) / 10;
-    const startPoint = Math.round((endPoint - cardLayout / apiResultsNum) * 10) / 10;
-    const endPage = Math.ceil((UIpage * cardLayout) / apiResultsNum);
-    const lastPageStartPoint = (lastPageResult - (lastPageResult % cardLayout)) / apiResultsNum;
-    const fit = apiResultsNum * endPoint - cardLayout;
+    const startPage = Math.floor(startResult / apiResultsPerPage) + 1;
+    const endPage = Math.floor(endResult / apiResultsPerPage) + 1;
 
-
-    if (endPoint === 0) {
-      return {
-        page: totalApiPages,
-        startPoint: lastPageStartPoint,
-        endPoint: 1,
-      };
-    }
-
-    if (fit < 0) {
-      return {
-        startPage: endPage - 1,
-        startPoint: fit / apiResultsNum + 1,
-        endPage,
-        endPoint,
-      };
-    }
+    const startRes = ((startResult / apiResultsPerPage) % 1) * apiResultsPerPage;
+    const endRes = ((endResult / apiResultsPerPage) % 1) * apiResultsPerPage;
 
     return {
-      page: endPage,
-      startPoint,
-      endPoint,
+      startPage,
+      startRes: Math.round(startRes),
+      endPage,
+      endRes: Math.round(endRes),
     };
   }
 
@@ -57,13 +40,13 @@ export default class Utility {
   static paginationShape(total, current, sideLength) {
     let result = this.split(total - 1);
     // cut right
-    if (current + sideLength < total) {
-      result = result.slice(0, current + sideLength);
+    if (current + sideLength < total - 1) {
+      result = result.slice(0, current - 2 + sideLength);
       result.push('...');
     }
     // cut left
-    if (current - sideLength > 1) {
-      result = result.slice(current - sideLength, result.length);
+    if (current - sideLength > 2) {
+      result = result.slice(current - sideLength - 1, result.length);
       result.unshift('...');
     }
     // add limits

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 
-import filtersStyles from './filtersStyles.css';
-import * as actions from '../../../redux/actions';
+import filtersStyles from './Filters/filterPayload.css';
+import * as actions from '../../redux/actions';
 
 function TopButtons(props) {
   const {

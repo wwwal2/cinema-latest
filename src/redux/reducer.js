@@ -8,6 +8,8 @@ import {
   ADD_ALL_GENRES,
   ADD_RESULTS,
   ADD_UI_PAGE_NUM,
+  ADD_FAVORITE,
+  ADD_DETAILS_ID,
   UPDATE,
   RESET,
   CHANGE_CARD_NUM,
@@ -57,6 +59,29 @@ export default function reducer(state = initialState, action) {
         ...state,
         UIpage: action.payload,
       };
+    case ADD_FAVORITE:
+      const favoriteIds = state.favoriteMovies.map((item) => item.id);
+      const { payload } = action;
+
+      if (favoriteIds.includes(payload.id)) {
+        const index = state.favoriteMovies.findIndex((movie) => (movie.id === payload.id));
+
+        return {
+          ...state,
+          favoriteMovies: [
+            ...state.favoriteMovies.slice(0, index), ...state.favoriteMovies.slice(index + 1),
+          ],
+        };
+      }
+      return {
+        ...state,
+        favoriteMovies: [...state.favoriteMovies, action.payload],
+      };
+    case ADD_DETAILS_ID:
+      return {
+        ...state,
+        detailsId: action.payload,
+      };
     case UPDATE:
       return {
         ...state,
@@ -65,6 +90,7 @@ export default function reducer(state = initialState, action) {
     case RESET:
       return {
         ...defaultOptions,
+        allGenres: state.allGenres,
       };
     case CHANGE_CARD_NUM:
       if (action.distance <= 0) {
