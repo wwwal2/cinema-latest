@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { test, test2 } from '../../redux/actions';
-import searchStyles from './searchStyles.css';
+import searchStyles from './searchBlock.css';
 
 function Search(props) {
   const {

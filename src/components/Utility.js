@@ -57,7 +57,6 @@ export default class Utility {
   static paginationShape(total, current, sideLength) {
     let result = this.split(total - 1);
     // cut right
-    // debugger
     if (current + sideLength < total - 1) {
       result = result.slice(0, current - 2 + sideLength);
       result.push('...');

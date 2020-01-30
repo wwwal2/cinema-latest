@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cardDetailsStyles from './cardDetailsStyles.css';
+import cardDetailsStyles from './cardDetails.css';
 
 export default class CardDetails extends React.Component {
   constructor(props) {

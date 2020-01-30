@@ -5,8 +5,6 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../../redux/actions';
 
-// import Utility from '../Utility';
-
 import pagination from './pagination.css';
 
 function Button(props) {
@@ -14,11 +12,13 @@ function Button(props) {
     page,
     btnClass,
     addUIPageNum,
+    update,
     disabled,
   } = props;
 
   const changePage = (value) => {
     addUIPageNum(value);
+    update();
   };
 
   return (
@@ -33,17 +33,11 @@ function Button(props) {
   );
 }
 
-// const mapStateToProps = (state) => (
-//   {
-//     totalPages: Math.ceil(state.totalResults / state.main),
-//     currentPage: state.UIpage,
-//   }
-// );
-
 const mapDispatchToProps = (dispatch) => {
-  const { addUIPageNum } = bindActionCreators(actions, dispatch);
+  const { addUIPageNum, update } = bindActionCreators(actions, dispatch);
   return {
     addUIPageNum: (payload) => addUIPageNum(payload),
+    update: () => update(),
   };
 };
 
@@ -53,13 +47,14 @@ Button.propTypes = {
   page: PropTypes.node,
   btnClass: PropTypes.string,
   addUIPageNum: PropTypes.func,
+  update: PropTypes.func,
   disabled: PropTypes.bool,
-  // currentPage: PropTypes.number,
 };
 
 Button.defaultProps = {
   page: 0,
   btnClass: '',
   addUIPageNum: () => { },
+  update: () => { },
   disabled: false,
 };

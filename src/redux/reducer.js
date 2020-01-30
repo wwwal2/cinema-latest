@@ -65,6 +65,7 @@ export default function reducer(state = initialState, action) {
     case RESET:
       return {
         ...defaultOptions,
+        allGenres: state.allGenres,
       };
     case CHANGE_CARD_NUM:
       if (action.distance <= 0) {
