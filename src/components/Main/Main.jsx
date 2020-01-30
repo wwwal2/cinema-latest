@@ -8,7 +8,7 @@ import bodyStyles from './main.css';
 import Request from './Request';
 import Utility from '../Utility';
 import * as actions from '../../redux/actions';
-import { apiResultsNum } from '../../constants';
+import { apiResultsPerPage } from '../../constants';
 
 import Card from './Card';
 
@@ -47,18 +47,18 @@ class Main extends React.Component {
       UIpage,
     } = this.props;
 
-    const layout = Utility.calculateLayout(UIpage, main, apiResultsNum, readTotalResults);
-
-    if (layout.page) {
+    const layout = Utility.calculateLayout(UIpage, main, apiResultsPerPage);
+    console.log(readTotalResults);
+    if (layout.startPage === layout.endPage) {
       const data = await this.request.getMovies(
-        layout.page,
+        layout.startPage,
         Number(readYear),
         Number(readRating),
         Utility.codeGenre(readGenre, allGenres),
       );
       const cardPayload = data.results.slice(
-        data.results.length * layout.startPoint,
-        data.results.length * layout.endPoint,
+        layout.startRes,
+        layout.endRes,
       );
       this.setState({
         isLoaded: true,
@@ -80,12 +80,12 @@ class Main extends React.Component {
         Utility.codeGenre(readGenre, allGenres),
       );
       const payload1 = page1.results.slice(
-        page1.results.length * layout.startPoint,
+        layout.startRes,
         page1.results.length,
       );
       const payload2 = page2.results.slice(
         0,
-        page2.results.length * layout.endPoint,
+        layout.endRes,
       );
 
       const finalPayload = payload1.concat(payload2);

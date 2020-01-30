@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -22,14 +23,20 @@ function Button(props) {
   };
 
   return (
-    <button
-      type="button"
-      className={pagination[btnClass]}
-      onClick={() => changePage(page)}
-      disabled={disabled}
+    <Link
+      to={`/${page}`}
+      // className={pagination[btnClass]}
+      key={page}
     >
-      {page}
-    </button>
+      <button
+        type="button"
+        className={pagination[btnClass]}
+        onClick={() => changePage(page)}
+        disabled={disabled}
+      >
+        {page}
+      </button>
+    </Link>
   );
 }
 

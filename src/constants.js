@@ -13,4 +13,4 @@ export const CHANGE_CARD_NUM = 'CHANGE_CARD_NUM';
 export const minCardsNum = 4;
 export const maxCardsNum = 20;
 export const changeStep = 4;
-export const apiResultsNum = 20;
+export const apiResultsPerPage = 20;
