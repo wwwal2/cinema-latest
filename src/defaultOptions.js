@@ -6,6 +6,7 @@ export default {
   totalResults: 0,
   requestPage: 1,
   UIpage: 1,
+  detailsId: 0,
   updateCounter: 0,
   // movie cards payload per page
   main: 8,

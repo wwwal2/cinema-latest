@@ -29,10 +29,22 @@ class Main extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { updateCounter } = this.props;
+    const { updateCounter, detailsId } = this.props;
     if (prevProps.updateCounter !== updateCounter) {
       this.makePayload();
     }
+    if (prevProps.detailsId !== detailsId) {
+      this.showDetails(detailsId);
+    }
+  }
+
+  async showDetails(id) {
+    const details = await this.request.getDetails(id);
+    console.log(details);
+    this.setState({
+      isLoaded: true,
+      items: [details],
+    });
   }
 
   async makePayload() {
@@ -122,6 +134,7 @@ const mapStateToProps = (state) => (
     readGenre: state.genre,
     allGenres: state.allGenres,
     readTotalResults: state.totalResults,
+    detailsId: state.detailsId,
     updateCounter: state.updateCounter,
     main: state.main,
     UIpage: state.UIpage,
@@ -144,6 +157,7 @@ Main.propTypes = {
   readGenre: PropTypes.string,
   updateCounter: PropTypes.number,
   main: PropTypes.number,
+  detailsId: PropTypes.number,
   addAllGenres: PropTypes.func,
   addResults: PropTypes.func,
   UIpage: PropTypes.number,
@@ -155,6 +169,7 @@ Main.defaultProps = {
   readRating: '',
   readGenre: '',
   updateCounter: 0,
+  detailsId: 0,
   main: 0,
   UIpage: 0,
   allGenres: [],

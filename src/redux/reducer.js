@@ -9,6 +9,7 @@ import {
   ADD_RESULTS,
   ADD_UI_PAGE_NUM,
   ADD_FAVORITE,
+  ADD_DETAILS_ID,
   UPDATE,
   RESET,
   CHANGE_CARD_NUM,
@@ -75,6 +76,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         favoriteMovies: [...state.favoriteMovies, action.payload],
+      };
+    case ADD_DETAILS_ID:
+      return {
+        ...state,
+        detailsId: action.payload,
       };
     case UPDATE:
       return {

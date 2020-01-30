@@ -8,6 +8,7 @@ import {
   ADD_RESULTS,
   ADD_UI_PAGE_NUM,
   ADD_FAVORITE,
+  ADD_DETAILS_ID,
   UPDATE,
   RESET,
   CHANGE_CARD_NUM,
@@ -22,6 +23,8 @@ export const addAllGenres = (payload) => ({ type: ADD_ALL_GENRES, payload });
 export const addResults = (payload) => ({ type: ADD_RESULTS, payload });
 export const addUIPageNum = (payload) => ({ type: ADD_UI_PAGE_NUM, payload });
 export const addFavorite = (payload) => ({ type: ADD_FAVORITE, payload });
+export const addDetailsId = (payload) => ({ type: ADD_DETAILS_ID, payload });
+
 export const update = () => ({ type: UPDATE });
 export const reset = () => ({ type: RESET });
 export const changePayloadNum = (payload, target, distance) => (
