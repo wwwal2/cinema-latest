@@ -22,9 +22,9 @@ export default class Utility {
 
     return {
       startPage,
-      startRes,
+      startRes: Math.round(startRes),
       endPage,
-      endRes,
+      endRes: Math.round(endRes),
     };
   }
 
