@@ -57,13 +57,14 @@ export default class Utility {
   static paginationShape(total, current, sideLength) {
     let result = this.split(total - 1);
     // cut right
-    if (current + sideLength < total) {
-      result = result.slice(0, current + sideLength);
+    // debugger
+    if (current + sideLength < total - 1) {
+      result = result.slice(0, current - 2 + sideLength);
       result.push('...');
     }
     // cut left
-    if (current - sideLength > 1) {
-      result = result.slice(current - sideLength, result.length);
+    if (current - sideLength > 2) {
+      result = result.slice(current - sideLength - 1, result.length);
       result.unshift('...');
     }
     // add limits
