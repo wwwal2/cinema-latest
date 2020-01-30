@@ -6,6 +6,7 @@ export const ADD_YEAR = 'ADD_YEAR';
 export const ADD_ALL_GENRES = 'ADD_ALL_GENRES';
 export const ADD_RESULTS = 'ADD_RESULTS';
 export const ADD_UI_PAGE_NUM = 'ADD_UI_PAGE_NUM';
+export const ADD_FAVORITE = 'ADD_FAVORITE';
 export const UPDATE = 'UPDATE';
 export const RESET = 'RESET';
 export const CHANGE_CARD_NUM = 'CHANGE_CARD_NUM';

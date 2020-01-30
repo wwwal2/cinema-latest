@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import bodyStyles from './main.css';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import main from './main.css';
 import favoriteOn from '../../../images/starFilled.png';
 import favoriteOff from '../../../images/starEmpty.png';
 
-export default class Card extends React.Component {
+import * as actions from '../../redux/actions';
+
+
+class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +20,8 @@ export default class Card extends React.Component {
 
   toggleFavorite() {
     const { favorite } = this.state;
+    const { addFavorite, item } = this.props;
+    addFavorite(item);
     this.setState({
       favorite: !favorite,
     });
@@ -25,7 +33,7 @@ export default class Card extends React.Component {
     const { favorite } = this.state;
     const textLength = 200;
     return (
-      <div className={bodyStyles.card}>
+      <div className={main.card}>
         <img
           role="button"
           alt="favorite"
@@ -34,9 +42,8 @@ export default class Card extends React.Component {
               ? favoriteOff
               : favoriteOn
           }
-          className={bodyStyles.favorite}
+          className={main.favorite}
           onClick={() => this.toggleFavorite()}
-          onKeyDown={() => this.toggleFavorite()}
         />
         <h3>
           {`${item.title} (${item.release_date.substr(0, 4)})`}
@@ -57,17 +64,30 @@ export default class Card extends React.Component {
             item.vote_average
           }
         </p>
+        <p>
+          {
+            item.id
+          }
+        </p>
       </div>
     );
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  const { addFavorite } = bindActionCreators(actions, dispatch);
+  return {
+    addFavorite: (payload) => addFavorite(payload),
+  };
+};
+export default connect(null, mapDispatchToProps)(Card);
+
 Card.propTypes = {
   item: PropTypes.object,
+  addFavorite: PropTypes.func,
 };
 
 Card.defaultProps = {
-  item: {
-    title: 'empty',
-  },
+  item: { title: 'empty' },
+  addFavorite: () => { },
 };

@@ -41,14 +41,12 @@ class Main extends React.Component {
       readRating,
       readGenre,
       allGenres,
-      readTotalResults,
       main,
       addResults,
       UIpage,
     } = this.props;
 
     const layout = Utility.calculateLayout(UIpage, main, apiResultsPerPage);
-    console.log(readTotalResults);
     if (layout.startPage === layout.endPage) {
       const data = await this.request.getMovies(
         layout.startPage,
@@ -144,7 +142,6 @@ Main.propTypes = {
   readYear: PropTypes.string,
   readRating: PropTypes.string,
   readGenre: PropTypes.string,
-  readTotalResults: PropTypes.number,
   updateCounter: PropTypes.number,
   main: PropTypes.number,
   addAllGenres: PropTypes.func,
@@ -157,7 +154,6 @@ Main.defaultProps = {
   readYear: '',
   readRating: '',
   readGenre: '',
-  readTotalResults: 0,
   updateCounter: 0,
   main: 0,
   UIpage: 0,

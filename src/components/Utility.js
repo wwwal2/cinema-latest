@@ -8,9 +8,6 @@ export default class Utility {
   }
 
   static calculateLayout(UIpage, cardLayout, apiResultsPerPage) {
-    // totalResults
-    // const lastPageCards = totalResults % apiResultsPerPage;
-    // const totalApiPages = Math.ceil(totalResults / apiResultsPerPage);
     const endResult = UIpage * cardLayout;
     const startResult = endResult - cardLayout;
 

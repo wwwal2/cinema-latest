@@ -12,6 +12,7 @@ export default {
   popular: 12,
   favorite: 4,
   allGenres: [],
+  favoriteMovies: [],
 };
 
 // you can see available genres in Header tab: Filters -> Genres
