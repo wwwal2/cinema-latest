@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import main from './main.css';
+import card from './Card.css';
 import favoriteOn from '../../../images/starFilled.png';
 import favoriteOff from '../../../images/starEmpty.png';
 
@@ -35,7 +35,7 @@ function Card(props) {
   };
 
   return (
-    <div className={main.card}>
+    <div className={card.card}>
       <img
         role="button"
         alt="favorite"
@@ -44,7 +44,7 @@ function Card(props) {
             ? favoriteOn
             : favoriteOff
         }
-        className={main.favorite}
+        className={card.favorite}
         onClick={() => toggleFavorite()}
       />
       <h3>

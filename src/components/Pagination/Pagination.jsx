@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../../redux/actions';
 import arrowLeft from '../../../images/arr3.png';
 import arrowRight from '../../../images/arr2.png';
-import pagination from './pagination.css';
+import pagination from './Pagination.css';
 
 import Utility from '../Utility';
 import PaginationBoard from './PaginationBoard';

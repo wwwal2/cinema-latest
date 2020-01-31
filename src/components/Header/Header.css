@@ -16,3 +16,14 @@
 .logo {
   height: 100%;
 }
+
+.menuContainer {
+	background-color: #ffff00;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.tabs {
+	width: 100%;
+	height: 100%;
+}

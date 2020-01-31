@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import headerStyles from '../css_modules/headerStyles.css';
-import logo from '../../images/logo.png';
+import header from './Header.css';
+import logo from '../../../images/logo.png';
 
 import Menu from './Menu';
-import Settings from './Settings';
-import Search from './Search';
+import Settings from '../Settings';
+import Search from '../Search';
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -17,9 +17,9 @@ export default class Header extends React.Component {
   render() {
     const { routes } = this.props;
     return (
-      <div className={headerStyles.display}>
-        <div className={headerStyles.logoContainer}>
-          <img alt="out of logo" src={logo} className={headerStyles.logo} />
+      <div className={header.display}>
+        <div className={header.logoContainer}>
+          <img alt="out of logo" src={logo} className={header.logo} />
         </div>
         <Menu routes={routes} />
         <Settings />
