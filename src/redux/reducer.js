@@ -1,3 +1,4 @@
+import Utility from '../components/Utility';
 import defaultOptions from '../defaultOptions';
 import {
   TEST,
@@ -60,22 +61,25 @@ export default function reducer(state = initialState, action) {
         UIpage: action.payload,
       };
     case ADD_FAVORITE:
-      const favoriteIds = state.favoriteMovies.map((item) => item.id);
       const { payload } = action;
 
-      if (favoriteIds.includes(payload.id)) {
-        const index = state.favoriteMovies.findIndex((movie) => (movie.id === payload.id));
+      if (Utility.checkFavorite(state.favoriteIds, payload.id)) {
+        const index = state.favoriteIds.findIndex((id) => (id === payload.id));
 
         return {
           ...state,
           favoriteMovies: [
             ...state.favoriteMovies.slice(0, index), ...state.favoriteMovies.slice(index + 1),
           ],
+          favoriteIds: [
+            ...state.favoriteIds.slice(0, index), ...state.favoriteIds.slice(index + 1),
+          ],
         };
       }
       return {
         ...state,
         favoriteMovies: [...state.favoriteMovies, action.payload],
+        favoriteIds: [...state.favoriteIds, payload.id],
       };
     case ADD_DETAILS_ID:
       return {

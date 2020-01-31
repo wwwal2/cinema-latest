@@ -11,6 +11,7 @@ import * as actions from '../../redux/actions';
 import { apiResultsPerPage } from '../../constants';
 
 import Card from './Card';
+import Details from '../Details';
 
 class Main extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class Main extends React.Component {
     console.log(details);
     this.setState({
       isDetails: !isDetails,
-      items: [details],
+      details,
     });
   }
 
@@ -111,7 +112,7 @@ class Main extends React.Component {
   }
 
   render() {
-    const { isDetails, items } = this.state;
+    const { isDetails, items, details } = this.state;
     if (!isDetails) {
       return (
         <div className={bodyStyles.pageBody}>
@@ -124,9 +125,7 @@ class Main extends React.Component {
       );
     }
     return (
-      <h1>
-        MAIN
-      </h1>
+      <Details item={details} />
     );
   }
 }

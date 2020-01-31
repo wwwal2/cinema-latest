@@ -54,15 +54,9 @@ function Card(props) {
       </p>
       <p>
         Rate
-        {
-          item.vote_average
-        }
+        {item.vote_average}
       </p>
-      <p>
-        {
-          item.id
-        }
-      </p>
+      <p>{item.id}</p>
     </div>
   );
 }
