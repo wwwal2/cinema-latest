@@ -12,15 +12,19 @@ import Utility from '../Utility';
 
 
 function Details(props) {
-  const [favorite, setFavorite] = useState(false);
+  const {
+    item,
+    favoriteIds,
+    addFavorite,
+    exitDetails,
+  } = props;
+
+  const [favorite, setFavorite] = useState(Utility.checkFavorite(favoriteIds, item.id));
 
   const toggleFavorite = () => {
-    const { addFavorite, item } = props;
     addFavorite(item);
     setFavorite(!favorite);
   };
-
-  const { item, addDetailsId } = props;
 
   return (
     <div className={details.container}>
@@ -40,7 +44,7 @@ function Details(props) {
         <img
           alt="no poster to this movie"
           src={`http://image.tmdb.org/t/p/w185/${item.poster_path}`}
-          onClick={() => addDetailsId(item.id)}
+          onClick={exitDetails}
         />
       </div>
       <h4>
@@ -56,6 +60,12 @@ function Details(props) {
   );
 }
 
+const mapStateToProps = (state) => (
+  {
+    favoriteIds: state.favoriteIds,
+  }
+);
+
 const mapDispatchToProps = (dispatch) => {
   const { addFavorite, addDetailsId } = bindActionCreators(actions, dispatch);
   return {
@@ -63,16 +73,18 @@ const mapDispatchToProps = (dispatch) => {
     addDetailsId: (payload) => addDetailsId(payload),
   };
 };
-export default connect(null, mapDispatchToProps)(Details);
+export default connect(mapStateToProps, mapDispatchToProps)(Details);
 
 Details.propTypes = {
   item: PropTypes.object,
+  favoriteIds: PropTypes.array,
   addFavorite: PropTypes.func,
-  addDetailsId: PropTypes.func,
+  exitDetails: PropTypes.func,
 };
 
 Details.defaultProps = {
   item: { title: 'empty' },
+  favoriteIds: [],
   addFavorite: () => { },
-  addDetailsId: () => { },
+  exitDetails: () => { },
 };

@@ -18,6 +18,7 @@ class Main extends React.Component {
     super(props);
     this.state = {
       items: [],
+      details: {},
       isDetails: false,
     };
     this.request = new Request();
@@ -42,12 +43,18 @@ class Main extends React.Component {
     }
   }
 
-  async showDetails(id) {
+  toggleDetails = () => {
     const { isDetails } = this.state;
+    this.setState({
+      isDetails: !isDetails,
+    });
+  }
+
+  async showDetails(id) {
     const details = await this.request.getDetails(id);
     console.log(details);
     this.setState({
-      isDetails: !isDetails,
+      isDetails: true,
       details,
     });
   }
@@ -76,7 +83,7 @@ class Main extends React.Component {
         layout.endRes,
       );
       this.setState({
-        isDetails: false,
+        // isDetails: false,
         items: cardPayload,
       });
       addResults(data.total_results);
@@ -105,7 +112,7 @@ class Main extends React.Component {
 
       const finalPayload = payload1.concat(payload2);
       this.setState({
-        isDetails: false,
+        // isDetails: false,
         items: finalPayload,
       });
     }
@@ -118,14 +125,14 @@ class Main extends React.Component {
         <div className={bodyStyles.pageBody}>
           {items.map((item) => {
             return (
-              <Card key={item.id} item={item} />
+              <Card key={item.id} item={item} stepInDetails={this.toggleDetails} />
             );
           })}
         </div>
       );
     }
     return (
-      <Details item={details} />
+      <Details item={details} exitDetails={this.toggleDetails} />
     );
   }
 }

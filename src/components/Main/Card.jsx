@@ -8,19 +8,31 @@ import favoriteOn from '../../../images/starFilled.png';
 import favoriteOff from '../../../images/starEmpty.png';
 
 import * as actions from '../../redux/actions';
+import Utility from '../Utility';
 
 
 function Card(props) {
-  const [favorite, setFavorite] = useState(false);
+  const {
+    item,
+    addFavorite,
+    favoriteIds,
+    addDetailsId,
+    // stepInDetails,
+  } = props;
+
+  const textLength = 200;
+
+  const [favorite, setFavorite] = useState(Utility.checkFavorite(favoriteIds, item.id));
 
   const toggleFavorite = () => {
-    const { addFavorite, item } = props;
     addFavorite(item);
     setFavorite(!favorite);
   };
 
-  const { item, addDetailsId } = props;
-  const textLength = 200;
+  const iconClick = (id) => {
+    addDetailsId(id);
+    // stepInDetails();
+  };
 
   return (
     <div className={main.card}>
@@ -28,9 +40,9 @@ function Card(props) {
         role="button"
         alt="favorite"
         src={
-          !favorite
-            ? favoriteOff
-            : favoriteOn
+          favorite
+            ? favoriteOn
+            : favoriteOff
         }
         className={main.favorite}
         onClick={() => toggleFavorite()}
@@ -42,7 +54,7 @@ function Card(props) {
         <img
           alt="no poster to this movie"
           src={`http://image.tmdb.org/t/p/w185/${item.poster_path}`}
-          onClick={() => addDetailsId(item.id)}
+          onClick={() => iconClick(item.id)}
         />
       </div>
       <p>
@@ -61,6 +73,12 @@ function Card(props) {
   );
 }
 
+const mapStateToProps = (state) => (
+  {
+    favoriteIds: state.favoriteIds,
+  }
+);
+
 const mapDispatchToProps = (dispatch) => {
   const { addFavorite, addDetailsId } = bindActionCreators(actions, dispatch);
   return {
@@ -68,16 +86,20 @@ const mapDispatchToProps = (dispatch) => {
     addDetailsId: (payload) => addDetailsId(payload),
   };
 };
-export default connect(null, mapDispatchToProps)(Card);
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
 
 Card.propTypes = {
   item: PropTypes.object,
+  favoriteIds: PropTypes.array,
   addFavorite: PropTypes.func,
   addDetailsId: PropTypes.func,
+  // stepInDetails: PropTypes.func,
 };
 
 Card.defaultProps = {
   item: { title: 'empty' },
+  favoriteIds: [],
   addFavorite: () => { },
   addDetailsId: () => { },
+  // stepInDetails: () => { },
 };
