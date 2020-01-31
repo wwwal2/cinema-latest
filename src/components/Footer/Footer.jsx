@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import footerStyles from '../css_modules/footerStyles.css';
+import footer from './Footer.css';
 
 export default function Footer(props) {
   const { created, email } = props;
   return (
-    <div className={footerStyles.footer}>
-      <div className={footerStyles.content}>{created}</div>
-      <div className={footerStyles.content}>{email}</div>
+    <div className={footer.footer}>
+      <div className={footer.content}>{created}</div>
+      <div className={footer.content}>{email}</div>
     </div>
   );
 }

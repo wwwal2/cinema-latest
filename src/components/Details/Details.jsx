@@ -3,27 +3,31 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import main from './details.css';
+import details from './Details.css';
 import favoriteOn from '../../../images/starFilled.png';
 import favoriteOff from '../../../images/starEmpty.png';
 
 import * as actions from '../../redux/actions';
+import Utility from '../Utility';
 
 
-function Card(props) {
-  const [favorite, setFavorite] = useState(false);
+function Details(props) {
+  const {
+    item,
+    favoriteIds,
+    addFavorite,
+    exitDetails,
+  } = props;
+
+  const [favorite, setFavorite] = useState(Utility.checkFavorite(favoriteIds, item.id));
 
   const toggleFavorite = () => {
-    const { addFavorite, item } = props;
     addFavorite(item);
     setFavorite(!favorite);
   };
 
-  const { item, addDetailsId } = props;
-  const textLength = 200;
-
   return (
-    <div className={main.card}>
+    <div className={details.container}>
       <img
         role="button"
         alt="favorite"
@@ -32,40 +36,35 @@ function Card(props) {
             ? favoriteOff
             : favoriteOn
         }
-        className={main.favorite}
+        className={details.favorite}
         onClick={() => toggleFavorite()}
       />
-      <h3>
-        {`${item.title} (${item.release_date.substr(0, 4)})`}
-      </h3>
+      <h3>{item.title}</h3>
       <div>
         <img
           alt="no poster to this movie"
           src={`http://image.tmdb.org/t/p/w185/${item.poster_path}`}
-          onClick={() => addDetailsId(item.id)}
+          onClick={exitDetails}
         />
       </div>
-      <p>
-        {
-          item.overview.length > textLength
-            ? `${item.overview.substr(0, textLength)}...`
-            : item.overview
-        }
-      </p>
-      <p>
-        Rate
-        {
-          item.vote_average
-        }
-      </p>
-      <p>
-        {
-          item.id
-        }
-      </p>
+      <h4>
+        <span>Countries: </span>
+        {Utility.parsePayloadArray(item.production_countries, 'name')}
+      </h4>
+      <h4>{`Release: ${item.release_date}`}</h4>
+      <h4>{`Budget: ${item.budget}`}</h4>
+      <h4>{`Rating: ${item.vote_average}`}</h4>
+      <h4>{Utility.parsePayloadArray(item.genres, 'name')}</h4>
+      <p>{item.overview}</p>
     </div>
   );
 }
+
+const mapStateToProps = (state) => (
+  {
+    favoriteIds: state.favoriteIds,
+  }
+);
 
 const mapDispatchToProps = (dispatch) => {
   const { addFavorite, addDetailsId } = bindActionCreators(actions, dispatch);
@@ -74,16 +73,18 @@ const mapDispatchToProps = (dispatch) => {
     addDetailsId: (payload) => addDetailsId(payload),
   };
 };
-export default connect(null, mapDispatchToProps)(Card);
+export default connect(mapStateToProps, mapDispatchToProps)(Details);
 
-Card.propTypes = {
+Details.propTypes = {
   item: PropTypes.object,
+  favoriteIds: PropTypes.array,
   addFavorite: PropTypes.func,
-  addDetailsId: PropTypes.func,
+  exitDetails: PropTypes.func,
 };
 
-Card.defaultProps = {
+Details.defaultProps = {
   item: { title: 'empty' },
+  favoriteIds: [],
   addFavorite: () => { },
-  addDetailsId: () => { },
+  exitDetails: () => { },
 };

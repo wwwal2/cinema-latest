@@ -7,7 +7,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Favorite from './components/Favorite';
 import Popular from './components/Popular';
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 
 import Pagination from './components/Pagination';
 

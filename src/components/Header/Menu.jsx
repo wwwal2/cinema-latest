@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import * as actions from '../redux/actions';
-import menuStyle from '../css_modules/menuStyles.css';
+import * as actions from '../../redux/actions';
+import header from './Header.css';
 
 function Menu(props) {
   const {
@@ -24,13 +24,13 @@ function Menu(props) {
     return (
       <Link
         to={routes[tabName.toLowerCase()]}
-        className={menuStyle.tabs}
+        className={header.tabs}
         key={tabName}
       >
         {
           tabName === 'Main'
-            ? <button className={menuStyle.tabs} onClick={() => changePage(1)} type="button">{tabName}</button>
-            : <button className={menuStyle.tabs} type="button">{tabName}</button>
+            ? <button className={header.tabs} onClick={() => changePage(1)} type="button">{tabName}</button>
+            : <button className={header.tabs} type="button">{tabName}</button>
         }
       </Link>
 
@@ -38,7 +38,7 @@ function Menu(props) {
   });
 
   return (
-    <div className={menuStyle.menuContainer}>
+    <div className={header.menuContainer}>
       {tabs}
     </div>
   );

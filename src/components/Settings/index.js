@@ -1,3 +1,3 @@
-import component from './SettingsBlock';
+import component from './Settings';
 
 export default component;

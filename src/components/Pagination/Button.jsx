@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../../redux/actions';
 
-import pagination from './pagination.css';
+import pagination from './Pagination.css';
 
 function Button(props) {
   const {

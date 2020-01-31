@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import cx from 'classnames';
-import settingsStyles from './optionsPayload.css';
+import settingsStyles from './OptionsPayload.css';
 
 import * as actions from '../../../redux/actions';
 import {

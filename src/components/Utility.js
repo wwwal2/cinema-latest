@@ -29,7 +29,7 @@ export default class Utility {
     return tableOfGenres.find((genre) => genre.name === genreName).id;
   }
 
-  static split(total) {
+  static splitNumber(total) {
     const elements = [];
     for (let i = 2; i <= total; i += 1) {
       elements.push(i);
@@ -38,7 +38,7 @@ export default class Utility {
   }
 
   static paginationShape(total, current, sideLength) {
-    let result = this.split(total - 1);
+    let result = this.splitNumber(total - 1);
     // cut right
     if (current + sideLength < total - 1) {
       result = result.slice(0, current - 2 + sideLength);
@@ -53,5 +53,18 @@ export default class Utility {
     result.unshift(1);
     result.push(total);
     return result;
+  }
+
+  static parsePayloadArray(array, value) {
+    return array.map((item, index, arr) => {
+      if (index + 1 === arr.length) {
+        return `${item[value]}.`;
+      }
+      return `${item[value]}, `;
+    });
+  }
+
+  static checkFavorite(favoriteIdArray, favoriteId) {
+    return favoriteIdArray.includes(favoriteId);
   }
 }
