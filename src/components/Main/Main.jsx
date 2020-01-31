@@ -15,7 +15,10 @@ import Card from './Card';
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      items: [],
+      isDetails: false,
+    };
     this.request = new Request();
   }
 
@@ -39,10 +42,11 @@ class Main extends React.Component {
   }
 
   async showDetails(id) {
+    const { isDetails } = this.state;
     const details = await this.request.getDetails(id);
     console.log(details);
     this.setState({
-      isLoaded: true,
+      isDetails: !isDetails,
       items: [details],
     });
   }
@@ -71,7 +75,7 @@ class Main extends React.Component {
         layout.endRes,
       );
       this.setState({
-        isLoaded: true,
+        isDetails: false,
         items: cardPayload,
       });
       addResults(data.total_results);
@@ -100,15 +104,15 @@ class Main extends React.Component {
 
       const finalPayload = payload1.concat(payload2);
       this.setState({
-        isLoaded: true,
+        isDetails: false,
         items: finalPayload,
       });
     }
   }
 
   render() {
-    const { isLoaded, items } = this.state;
-    if (isLoaded) {
+    const { isDetails, items } = this.state;
+    if (!isDetails) {
       return (
         <div className={bodyStyles.pageBody}>
           {items.map((item) => {
