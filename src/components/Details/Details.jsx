@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import main from './main.css';
+import main from './details.css';
 import favoriteOn from '../../../images/starFilled.png';
 import favoriteOff from '../../../images/starEmpty.png';
 

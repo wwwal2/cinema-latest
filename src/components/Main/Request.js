@@ -1,7 +1,9 @@
 export default class Request {
   constructor() {
-    this.discoverUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=80ab1c9954395b4f678edc2f29c0a276&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false';
-    this.genresUrl = 'https://api.themoviedb.org/3/genre/movie/list?api_key=80ab1c9954395b4f678edc2f29c0a276&language=en-US';
+    this.key = '80ab1c9954395b4f678edc2f29c0a276';
+    this.discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${this.key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false`;
+    this.genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${this.key}&language=en-US`;
+    this.detailsUrl = 'https://api.themoviedb.org/3/movie/';
   }
 
   async getData(url) {
@@ -20,5 +22,9 @@ export default class Request {
 
   getGenres() {
     return this.getData(this.genresUrl);
+  }
+
+  getDetails(id) {
+    return this.getData(`${this.detailsUrl}${id}?api_key=${this.key}&language=en-US`);
   }
 }

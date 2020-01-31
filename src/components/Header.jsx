@@ -5,8 +5,8 @@ import headerStyles from '../css_modules/headerStyles.css';
 import logo from '../../images/logo.png';
 
 import Menu from './Menu';
-import Settings from './Settings/SettingsBlock';
-import Search from './Search/SearchBlock';
+import Settings from './Settings';
+import Search from './Search';
 
 export default class Header extends React.Component {
   constructor(props) {

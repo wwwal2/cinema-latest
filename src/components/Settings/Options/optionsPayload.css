@@ -1,29 +1,6 @@
-.container {
-	background-color: lightcoral;
-}
-
 .flex {
 	display: flex;
 }
-
-.falsePosition {
-	display: none;
-}
-
-.truePosition {
-	position: absolute;
-	background-color: teal;
-	height: 400px;
-	width: 36%;
-}
-
-.buttonContainer {
-	position: relative;
-	display: flex;
-	height: 100%;
-	justify-content: space-evenly;
-}
-
 
 .arrow {
 	width: 0;

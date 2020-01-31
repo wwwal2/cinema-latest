@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 
-import filtersStyles from '../filtersStyles.css';
+import filtersStyles from '../filterPayload.css';
 
 import * as actions from '../../../../redux/actions';
 import Utility from '../../../Utility';

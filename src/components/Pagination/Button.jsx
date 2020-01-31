@@ -1,11 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 
 import * as actions from '../../redux/actions';
-
-// import Utility from '../Utility';
 
 import pagination from './pagination.css';
 
@@ -14,36 +13,38 @@ function Button(props) {
     page,
     btnClass,
     addUIPageNum,
+    update,
     disabled,
   } = props;
 
   const changePage = (value) => {
     addUIPageNum(value);
+    update();
   };
 
   return (
-    <button
-      type="button"
-      className={pagination[btnClass]}
-      onClick={() => changePage(page)}
-      disabled={disabled}
+    <Link
+      to={`/${page}`}
+      // className={pagination[btnClass]}
+      key={page}
     >
-      {page}
-    </button>
+      <button
+        type="button"
+        className={pagination[btnClass]}
+        onClick={() => changePage(page)}
+        disabled={disabled}
+      >
+        {page}
+      </button>
+    </Link>
   );
 }
 
-// const mapStateToProps = (state) => (
-//   {
-//     totalPages: Math.ceil(state.totalResults / state.main),
-//     currentPage: state.UIpage,
-//   }
-// );
-
 const mapDispatchToProps = (dispatch) => {
-  const { addUIPageNum } = bindActionCreators(actions, dispatch);
+  const { addUIPageNum, update } = bindActionCreators(actions, dispatch);
   return {
     addUIPageNum: (payload) => addUIPageNum(payload),
+    update: () => update(),
   };
 };
 
@@ -53,13 +54,14 @@ Button.propTypes = {
   page: PropTypes.node,
   btnClass: PropTypes.string,
   addUIPageNum: PropTypes.func,
+  update: PropTypes.func,
   disabled: PropTypes.bool,
-  // currentPage: PropTypes.number,
 };
 
 Button.defaultProps = {
   page: 0,
   btnClass: '',
   addUIPageNum: () => { },
+  update: () => { },
   disabled: false,
 };

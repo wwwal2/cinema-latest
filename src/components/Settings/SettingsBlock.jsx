@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import settingsStyles from './settingsStyles.css';
+import settingsStyles from './settingsBlock.css';
 
-import FilterPayload from './Filters/FilterPayload';
-import OptionsPayload from './Options/OptionsPayload';
+import FilterPayload from './Filters';
+import OptionsPayload from './Options';
 
 export default class Filter extends React.Component {
   constructor(props) {
