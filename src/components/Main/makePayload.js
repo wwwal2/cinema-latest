@@ -6,21 +6,21 @@ const request = new Request();
 
 export default async (args) => {
   const {
-    readYear,
-    readRating,
-    readGenre,
-    allGenres,
     main,
     UIpage,
+    year,
+    rating,
+    genre,
+    allGenres,
   } = args;
 
   const layout = Utility.calculateLayout(UIpage, main, apiResultsPerPage);
   if (layout.startPage === layout.endPage) {
     const data = await request.getMovies(
       layout.startPage,
-      Number(readYear),
-      Number(readRating),
-      Utility.codeGenre(readGenre, allGenres),
+      Number(year),
+      Number(rating),
+      Utility.codeGenre(genre, allGenres),
     );
     return {
       items: data.results.slice(layout.startRes, layout.endRes),
@@ -29,16 +29,16 @@ export default async (args) => {
   }
   const page1 = await request.getMovies(
     layout.startPage,
-    Number(readYear),
-    Number(readRating),
-    Utility.codeGenre(readGenre, allGenres),
+    Number(year),
+    Number(rating),
+    Utility.codeGenre(genre, allGenres),
   );
 
   const page2 = await request.getMovies(
     layout.endPage,
-    Number(readYear),
-    Number(readRating),
-    Utility.codeGenre(readGenre, allGenres),
+    Number(year),
+    Number(rating),
+    Utility.codeGenre(genre, allGenres),
   );
   const payload1 = page1.results.slice(
     layout.startRes,
