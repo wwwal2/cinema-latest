@@ -17,7 +17,7 @@ function Card(props) {
     addFavorite,
     favoriteIds,
     addDetailsId,
-    // stepInDetails,
+    stepInDetails,
   } = props;
 
   const textLength = 200;
@@ -31,7 +31,7 @@ function Card(props) {
 
   const iconClick = (id) => {
     addDetailsId(id);
-    // stepInDetails();
+    stepInDetails();
   };
 
   return (
@@ -93,7 +93,7 @@ Card.propTypes = {
   favoriteIds: PropTypes.array,
   addFavorite: PropTypes.func,
   addDetailsId: PropTypes.func,
-  // stepInDetails: PropTypes.func,
+  stepInDetails: PropTypes.func,
 };
 
 Card.defaultProps = {
@@ -101,5 +101,5 @@ Card.defaultProps = {
   favoriteIds: [],
   addFavorite: () => { },
   addDetailsId: () => { },
-  // stepInDetails: () => { },
+  stepInDetails: () => { },
 };

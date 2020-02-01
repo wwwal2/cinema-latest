@@ -6,10 +6,8 @@ import { bindActionCreators } from 'redux';
 import mainStyles from './Main.css';
 
 import Request from './Request';
-// import Utility from '../Utility';
 import makePayload from './makePayload';
 import * as actions from '../../redux/actions';
-// import { apiResultsPerPage } from '../../constants';
 
 import Card from '../Card';
 import Details from '../Details';
@@ -28,47 +26,43 @@ class Main extends React.Component {
   async componentDidMount() {
     const { addAllGenres, addResults } = this.props;
     const genres = await this.request.getGenres();
-    // .then((res) => {
-    //   addAllGenres(res.genres);
-    //   return makePayload(this.props);
-    // })
-    // .then((payload) => {
-    //   this.setState({
-    //     items: payload.items,
-    //   });
-    //   addResults(payload.totalResults);
-    // });
+    addAllGenres(genres.genres);
+
+    const { requestProps } = this.props;
+    const payload = await makePayload(requestProps);
+    addResults(payload.totalResults);
+    this.updateState('items', payload.items);
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const { updateCounter, detailsId } = this.props;
-  //   if (prevProps.updateCounter !== updateCounter) {
-  //     this.makePayload();
-  //   }
-  //   if (prevProps.detailsId !== detailsId) {
-  //     this.showDetails(detailsId);
-  //   }
-  // }
+  async componentDidUpdate(prevProps) {
+    const { updateCounter, detailsId, requestProps } = this.props;
+    if (prevProps.updateCounter !== updateCounter) {
+      const payload = await makePayload(requestProps);
+      this.updateState('items', payload.items);
+    }
+
+    if (prevProps.detailsId !== detailsId) {
+      const details = await this.request.getDetails(detailsId);
+      this.updateState('details', details);
+      this.updateState('isDetails', true);
+    }
+  }
 
   toggleDetails = () => {
-    const { isDetails } = this.state;
-    this.setState({
-      isDetails: !isDetails,
-    });
+    const { isDetails, details } = this.state;
+    if (details.id) {
+      this.updateState('isDetails', !isDetails);
+    }
   }
 
-  async showDetails(id) {
-    const details = await this.request.getDetails(id);
-    console.log(details);
+  updateState = (stateName, items) => {
     this.setState({
-      isDetails: true,
-      details,
+      [stateName]: items,
     });
   }
 
   render() {
     const { isDetails, items, details } = this.state;
-    console.log(isDetails);
     if (!isDetails) {
       return (
         <div className={mainStyles.pageBody}>
@@ -88,15 +82,17 @@ class Main extends React.Component {
 
 const mapStateToProps = (state) => (
   {
-    readYear: state.year,
-    readRating: state.rating,
-    readGenre: state.genre,
-    allGenres: state.allGenres,
-    readTotalResults: state.totalResults,
+    requestProps: {
+      main: state.main,
+      UIpage: state.UIpage,
+      year: state.year,
+      rating: state.rating,
+      genre: state.genre,
+      allGenres: state.allGenres,
+    },
+
     detailsId: state.detailsId,
     updateCounter: state.updateCounter,
-    main: state.main,
-    UIpage: state.UIpage,
   }
 );
 
@@ -111,27 +107,17 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
-  // readYear: PropTypes.string,
-  // readRating: PropTypes.string,
-  // readGenre: PropTypes.string,
-  // updateCounter: PropTypes.number,
-  // main: PropTypes.number,
-  // detailsId: PropTypes.number,
+  updateCounter: PropTypes.number,
+  detailsId: PropTypes.number,
+  requestProps: PropTypes.object,
   addAllGenres: PropTypes.func,
   addResults: PropTypes.func,
-  // UIpage: PropTypes.number,
-  // allGenres: PropTypes.array,
 };
 
 Main.defaultProps = {
-  // readYear: '',
-  // readRating: '',
-  // readGenre: '',
-  // updateCounter: 0,
-  // detailsId: 0,
-  // main: 0,
-  // UIpage: 0,
-  // allGenres: [],
+  updateCounter: 0,
+  detailsId: 0,
+  requestProps: {},
   addResults: () => { },
   addAllGenres: () => { },
 };
