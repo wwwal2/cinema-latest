@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import * as actions from '../../redux/actions';
+import { sections } from '../../constants';
 import header from './Header.css';
 
 function Menu(props) {
@@ -12,11 +13,13 @@ function Menu(props) {
     tabNames,
     routes,
     addUIPageNum,
+    defineSection,
     update,
   } = props;
 
   const changePage = (value) => {
-    addUIPageNum(value);
+    addUIPageNum(1);
+    defineSection(sections[value.toLowerCase()]);
     update();
   };
 
@@ -27,11 +30,7 @@ function Menu(props) {
         className={header.tabs}
         key={tabName}
       >
-        {
-          tabName === 'Main'
-            ? <button className={header.tabs} onClick={() => changePage(1)} type="button">{tabName}</button>
-            : <button className={header.tabs} type="button">{tabName}</button>
-        }
+        <button className={header.tabs} onClick={() => changePage(tabName)} type="button">{tabName}</button>
       </Link>
 
     );
@@ -45,9 +44,10 @@ function Menu(props) {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const { addUIPageNum, update } = bindActionCreators(actions, dispatch);
+  const { addUIPageNum, update, defineSection } = bindActionCreators(actions, dispatch);
   return {
     addUIPageNum: (payload) => addUIPageNum(payload),
+    defineSection: (payload) => defineSection(payload),
     update: () => update(),
   };
 };
@@ -58,6 +58,7 @@ Menu.propTypes = {
   tabNames: PropTypes.array,
   routes: PropTypes.object,
   addUIPageNum: PropTypes.func,
+  defineSection: PropTypes.func,
   update: PropTypes.func,
 };
 
@@ -71,5 +72,6 @@ Menu.defaultProps = {
     main: '/',
   },
   addUIPageNum: () => { },
+  defineSection: () => { },
   update: () => { },
 };

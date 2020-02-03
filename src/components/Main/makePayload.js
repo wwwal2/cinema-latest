@@ -1,44 +1,30 @@
-import Utility from '../Utility';
+import { calculateLayout } from '../Utils';
 import { apiResultsPerPage } from '../../constants';
 import Request from './Request';
 
 const request = new Request();
 
-export default async (args) => {
-  const {
-    main,
-    UIpage,
-    year,
-    rating,
-    genre,
-    allGenres,
-  } = args;
+export default async (requestName, requestArgs, cardsPerPage, UIpage) => {
+  const layout = calculateLayout(UIpage, cardsPerPage, apiResultsPerPage);
 
-  const layout = Utility.calculateLayout(UIpage, main, apiResultsPerPage);
   if (layout.startPage === layout.endPage) {
-    const data = await request.getMovies(
+    const data = await request[requestName](
       layout.startPage,
-      Number(year),
-      Number(rating),
-      Utility.codeGenre(genre, allGenres),
+      ...requestArgs,
     );
     return {
       items: data.results.slice(layout.startRes, layout.endRes),
       totalResults: data.total_results,
     };
   }
-  const page1 = await request.getMovies(
+  const page1 = await request[requestName](
     layout.startPage,
-    Number(year),
-    Number(rating),
-    Utility.codeGenre(genre, allGenres),
+    ...requestArgs,
   );
 
-  const page2 = await request.getMovies(
+  const page2 = await request[requestName](
     layout.endPage,
-    Number(year),
-    Number(rating),
-    Utility.codeGenre(genre, allGenres),
+    ...requestArgs,
   );
   const payload1 = page1.results.slice(
     layout.startRes,

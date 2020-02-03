@@ -8,7 +8,7 @@ import favoriteOn from '../../../images/starFilled.png';
 import favoriteOff from '../../../images/starEmpty.png';
 
 import * as actions from '../../redux/actions';
-import Utility from '../Utility';
+import { checkFavorite } from '../Utils';
 
 
 function Card(props) {
@@ -22,7 +22,7 @@ function Card(props) {
 
   const textLength = 200;
 
-  const [favorite, setFavorite] = useState(Utility.checkFavorite(favoriteIds, item.id));
+  const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
 
   const toggleFavorite = () => {
     addFavorite(item);

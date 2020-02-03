@@ -4,6 +4,7 @@ export default class Request {
     this.discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${this.key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false`;
     this.genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${this.key}&language=en-US`;
     this.detailsUrl = 'https://api.themoviedb.org/3/movie/';
+    this.popularUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${this.key}&language=en-US&page=`;
   }
 
   async getData(url) {
@@ -18,6 +19,10 @@ export default class Request {
 
   getMovies(page = 1, year = 2019, rate = 8, genre = 'Action') {
     return this.getData(`${this.discoverUrl}&page=${page}&year=${year}&vote_average.gte=${rate}&vote_average.lte=${rate + 1}&with_genres=${genre}`);
+  }
+
+  getPopular(page = 1) {
+    return this.getData(`${this.popularUrl}${page}`);
   }
 
   getGenres() {

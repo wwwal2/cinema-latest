@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Utility from '../Utility';
+import { paginationShape } from '../Utils';
 import Button from './Button';
 
 import pagination from './Pagination.css';
@@ -10,7 +10,7 @@ export default function PaginationBoard(props) {
   const { totalPages, currentPage, boardSideLength } = props;
 
   const assemble = (total, current) => {
-    return Utility.paginationShape(total, current, boardSideLength).map((elem, index) => {
+    return paginationShape(total, current, boardSideLength).map((elem, index) => {
       if (elem === current) {
         return <Button page={elem} key={`pug${index}`} btnClass="currentPage" disabled={false} />;
       }

@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 
 import Header from './components/Header';
 import Main from './components/Main';
-import Favorite from './components/Favorite';
-import Popular from './components/Popular';
 import Footer from './components/Footer/Footer';
 
 import Pagination from './components/Pagination';
@@ -25,8 +23,8 @@ function App(props) {
       <Switch>
         <Route path={`${routes.main}`} exact component={Main} />
         <Route path={`/${currentPage}`} component={Main} />
-        <Route path={`${routes.favorite}`} exact component={Favorite} />
-        <Route path={`${routes.popular}`} exact component={Popular} />
+        <Route path={`${routes.favorite}`} exact component={Main} />
+        <Route path={`${routes.popular}`} exact component={Main} />
       </Switch>
       <Pagination />
       <Footer />
