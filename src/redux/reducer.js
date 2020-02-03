@@ -22,7 +22,9 @@ import {
   DEFINE_SECTION,
 } from '../constants';
 
-const initialState = loadSettings() ? loadSettings() : defaultOptions;
+const initialState = loadSettings()
+  ? { ...defaultOptions, ...loadSettings() }
+  : defaultOptions;
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
