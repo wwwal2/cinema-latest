@@ -5,6 +5,9 @@ import codeGenre from './codeGenre';
 import paginationShape from './paginationShape';
 import parsePayloadArray from './parsePayloadArray';
 import checkFavorite from './checkFavorite';
+import saveSettings from './saveSettings';
+import loadSettings from './loadSettings';
+import getSaveData from './getSaveData';
 
 export {
   numberValidation,
@@ -14,4 +17,7 @@ export {
   paginationShape,
   parsePayloadArray,
   checkFavorite,
+  saveSettings,
+  loadSettings,
+  getSaveData,
 };

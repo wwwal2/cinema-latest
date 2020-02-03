@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 
 import mainStyles from './Main.css';
 
-import { sections } from '../../constants';
-import { codeGenre } from '../Utils';
+import { sections, apiResultsPerPage } from '../../constants';
+import { codeGenre, calculateLayout } from '../Utils';
 import Request from './Request';
 import makePayload from './makePayload';
 import * as actions from '../../redux/actions';
@@ -80,7 +80,15 @@ class Main extends React.Component {
           this.updateState('items', popularPayload.items);
           break;
         case sections.favorite:
-          this.updateState('items', favoriteMovies);
+          addResults(favoriteMovies.length);
+          const layout = calculateLayout(UIpage, cardsNum.favorite, apiResultsPerPage);
+          console.log(layout);
+
+          const favoritePayload = favoriteMovies.slice(
+            layout.startRes,
+            layout.startRes + cardsNum.favorite,
+          );
+          this.updateState('items', favoritePayload);
           break;
         default:
           console.log('request');
@@ -133,6 +141,7 @@ const mapStateToProps = (state) => (
     cardsNum: {
       main: state.main,
       popular: state.popular,
+      favorite: state.favorite,
     },
     allGenres: state.allGenres,
     UIpage: state.UIpage,

@@ -18,22 +18,8 @@ function Menu(props) {
   } = props;
 
   const changePage = (value) => {
-    switch (value) {
-      case 'Main':
-        addUIPageNum(1);
-        defineSection(sections.main);
-        break;
-      case 'Popular':
-        addUIPageNum(1);
-        defineSection(sections.popular);
-        break;
-      case 'Favorite':
-        addUIPageNum(1);
-        defineSection(sections.favorite);
-        break;
-      default:
-        return;
-    }
+    addUIPageNum(1);
+    defineSection(sections[value.toLowerCase()]);
     update();
   };
 

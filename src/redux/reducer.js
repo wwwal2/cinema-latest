@@ -1,4 +1,9 @@
-import { checkFavorite } from '../components/Utils';
+import {
+  checkFavorite,
+  getSaveData,
+  saveSettings,
+  loadSettings,
+} from '../components/Utils';
 import defaultOptions from '../defaultOptions';
 import {
   TEST,
@@ -17,7 +22,7 @@ import {
   DEFINE_SECTION,
 } from '../constants';
 
-const initialState = defaultOptions;
+const initialState = loadSettings() ? loadSettings() : defaultOptions;
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -32,16 +37,19 @@ export default function reducer(state = initialState, action) {
         storeTest: action.payload,
       };
     case ADD_RATING:
+      saveSettings(getSaveData(state), action.payload, 'rating');
       return {
         ...state,
         rating: action.payload,
       };
     case ADD_YEAR:
+      saveSettings(getSaveData(state), action.payload, 'year');
       return {
         ...state,
         year: action.payload,
       };
     case ADD_GENRE:
+      saveSettings(getSaveData(state), action.payload, 'genre');
       return {
         ...state,
         genre: action.payload,
@@ -98,11 +106,14 @@ export default function reducer(state = initialState, action) {
         updateCounter: state.updateCounter + 1,
       };
     case RESET:
+      saveSettings(getSaveData(defaultOptions));
       return {
         ...defaultOptions,
         allGenres: state.allGenres,
       };
     case CHANGE_CARD_NUM:
+      saveSettings(getSaveData(state), state[action.target] + action.payload, action.target);
+
       if (action.distance <= 0) {
         return state;
       }
