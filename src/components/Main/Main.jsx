@@ -55,6 +55,7 @@ class Main extends React.Component {
       UIpage,
       addResults,
       allGenres,
+      favoriteMovies,
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
@@ -77,6 +78,9 @@ class Main extends React.Component {
           console.log(popularPayload);
           addResults(popularPayload.totalResults);
           this.updateState('items', popularPayload.items);
+          break;
+        case sections.favorite:
+          this.updateState('items', favoriteMovies);
           break;
         default:
           console.log('request');
@@ -137,7 +141,7 @@ const mapStateToProps = (state) => (
       rating: state.rating,
       genre: state.genre,
     },
-
+    favoriteMovies: state.favoriteMovies,
     detailsId: state.detailsId,
     updateCounter: state.updateCounter,
   }
@@ -159,6 +163,7 @@ Main.propTypes = {
   cardsNum: PropTypes.object,
   UIpage: PropTypes.number,
   allGenres: PropTypes.array,
+  favoriteMovies: PropTypes.array,
   detailsId: PropTypes.number,
   requestProps: PropTypes.object,
   addAllGenres: PropTypes.func,
@@ -172,6 +177,7 @@ Main.defaultProps = {
   UIpage: 0,
   requestProps: {},
   allGenres: [],
+  favoriteMovies: [],
   currentSection: 'main',
   addResults: () => { },
   addAllGenres: () => { },

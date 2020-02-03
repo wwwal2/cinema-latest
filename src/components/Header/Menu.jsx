@@ -29,6 +29,7 @@ function Menu(props) {
         break;
       case 'Favorite':
         addUIPageNum(1);
+        defineSection(sections.favorite);
         break;
       default:
         return;
