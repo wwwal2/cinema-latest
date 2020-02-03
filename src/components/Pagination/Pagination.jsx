@@ -8,7 +8,6 @@ import arrowLeft from '../../../images/arr3.png';
 import arrowRight from '../../../images/arr2.png';
 import pagination from './Pagination.css';
 
-import { numberValidation } from '../Utils';
 import PaginationBoard from './PaginationBoard';
 
 
@@ -21,10 +20,8 @@ function Pagination(props) {
   } = props;
 
   const changePage = (page) => {
-    if (numberValidation(totalPages, 1, page)) {
-      addUIPageNum(page);
-      update();
-    }
+    addUIPageNum(page);
+    update();
   };
 
   if (totalPages > 1) {
@@ -43,7 +40,7 @@ function Pagination(props) {
 
 const mapStateToProps = (state) => (
   {
-    totalPages: Math.ceil(state.totalResults / state.main),
+    totalPages: Math.ceil(state.totalResults / state[state.section]),
     currentPage: state.UIpage,
   }
 );

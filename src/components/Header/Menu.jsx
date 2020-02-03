@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import * as actions from '../../redux/actions';
+import { sections } from '../../constants';
 import header from './Header.css';
 
 function Menu(props) {
@@ -12,6 +13,7 @@ function Menu(props) {
     tabNames,
     routes,
     addUIPageNum,
+    defineSection,
     update,
   } = props;
 
@@ -19,12 +21,14 @@ function Menu(props) {
     switch (value) {
       case 'Main':
         addUIPageNum(1);
+        defineSection(sections.main);
         break;
       case 'Popular':
-        addUIPageNum(2);
+        addUIPageNum(1);
+        defineSection(sections.popular);
         break;
       case 'Favorite':
-        addUIPageNum(3);
+        addUIPageNum(1);
         break;
       default:
         return;
@@ -53,9 +57,10 @@ function Menu(props) {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const { addUIPageNum, update } = bindActionCreators(actions, dispatch);
+  const { addUIPageNum, update, defineSection } = bindActionCreators(actions, dispatch);
   return {
     addUIPageNum: (payload) => addUIPageNum(payload),
+    defineSection: (payload) => defineSection(payload),
     update: () => update(),
   };
 };
@@ -66,6 +71,7 @@ Menu.propTypes = {
   tabNames: PropTypes.array,
   routes: PropTypes.object,
   addUIPageNum: PropTypes.func,
+  defineSection: PropTypes.func,
   update: PropTypes.func,
 };
 
@@ -79,5 +85,6 @@ Menu.defaultProps = {
     main: '/',
   },
   addUIPageNum: () => { },
+  defineSection: () => { },
   update: () => { },
 };

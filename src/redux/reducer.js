@@ -36,15 +36,15 @@ export default function reducer(state = initialState, action) {
         ...state,
         rating: action.payload,
       };
-    case ADD_GENRE:
-      return {
-        ...state,
-        genre: action.payload,
-      };
     case ADD_YEAR:
       return {
         ...state,
         year: action.payload,
+      };
+    case ADD_GENRE:
+      return {
+        ...state,
+        genre: action.payload,
       };
     case ADD_ALL_GENRES:
       return {

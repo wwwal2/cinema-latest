@@ -26,19 +26,20 @@ class Main extends React.Component {
   }
 
   async componentDidMount() {
-    const { addAllGenres, addResults } = this.props;
+    const { addAllGenres, addResults, UIpage } = this.props;
     const genres = await this.request.getGenres();
     addAllGenres(genres.genres);
 
-    const { requestProps, cardsOnMain } = this.props;
+    const { requestProps, cardsNum, allGenres } = this.props;
     const payload = await makePayload(
       'getMovies',
       [
         requestProps.year,
         requestProps.rating,
-        codeGenre(requestProps.genre, requestProps.allGenres),
+        codeGenre(requestProps.genre, allGenres),
       ],
-      cardsOnMain, requestProps.UIpage,
+      cardsNum.main,
+      UIpage,
     );
     addResults(payload.totalResults);
     this.updateState('items', payload.items);
@@ -49,18 +50,33 @@ class Main extends React.Component {
       updateCounter,
       detailsId,
       requestProps,
-      cardsOnMain,
+      cardsNum,
       currentSection,
+      UIpage,
+      addResults,
+      allGenres,
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
       switch (currentSection) {
         case sections.main:
-          const payload = await makePayload('getMovies', [requestProps.year, requestProps.rating, codeGenre(requestProps.genre, requestProps.allGenres)], cardsOnMain, requestProps.UIpage);
-          this.updateState('items', payload.items);
+          const mainPayload = await makePayload(
+            'getMovies',
+            [
+              requestProps.year,
+              requestProps.rating,
+              codeGenre(requestProps.genre, allGenres),
+            ], cardsNum.main,
+            UIpage,
+          );
+          addResults(mainPayload.totalResults);
+          this.updateState('items', mainPayload.items);
           break;
         case sections.popular:
-          console.log('request');
+          const popularPayload = await makePayload('getPopular', [requestProps.UIpage], cardsNum.popular, UIpage);
+          console.log(popularPayload);
+          addResults(popularPayload.totalResults);
+          this.updateState('items', popularPayload.items);
           break;
         default:
           console.log('request');
@@ -110,13 +126,16 @@ class Main extends React.Component {
 const mapStateToProps = (state) => (
   {
     currentSection: state.section,
-    cardsOnMain: state.main,
+    cardsNum: {
+      main: state.main,
+      popular: state.popular,
+    },
+    allGenres: state.allGenres,
+    UIpage: state.UIpage,
     requestProps: {
-      UIpage: state.UIpage,
       year: state.year,
       rating: state.rating,
       genre: state.genre,
-      allGenres: state.allGenres,
     },
 
     detailsId: state.detailsId,
@@ -137,7 +156,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(Main);
 Main.propTypes = {
   currentSection: PropTypes.string,
   updateCounter: PropTypes.number,
-  cardsOnMain: PropTypes.number,
+  cardsNum: PropTypes.object,
+  UIpage: PropTypes.number,
+  allGenres: PropTypes.array,
   detailsId: PropTypes.number,
   requestProps: PropTypes.object,
   addAllGenres: PropTypes.func,
@@ -146,9 +167,11 @@ Main.propTypes = {
 
 Main.defaultProps = {
   updateCounter: 0,
-  cardsOnMain: 0,
+  cardsNum: {},
   detailsId: 0,
+  UIpage: 0,
   requestProps: {},
+  allGenres: [],
   currentSection: 'main',
   addResults: () => { },
   addAllGenres: () => { },
