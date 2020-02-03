@@ -12,6 +12,7 @@ import {
   UPDATE,
   RESET,
   CHANGE_CARD_NUM,
+  DEFINE_SECTION,
 } from '../constants';
 
 export const test = (payload) => ({ type: TEST, payload });
@@ -24,6 +25,7 @@ export const addResults = (payload) => ({ type: ADD_RESULTS, payload });
 export const addUIPageNum = (payload) => ({ type: ADD_UI_PAGE_NUM, payload });
 export const addFavorite = (payload) => ({ type: ADD_FAVORITE, payload });
 export const addDetailsId = (payload) => ({ type: ADD_DETAILS_ID, payload });
+export const defineSection = (payload) => ({ type: DEFINE_SECTION, payload });
 
 export const update = () => ({ type: UPDATE });
 export const reset = () => ({ type: RESET });

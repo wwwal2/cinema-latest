@@ -8,7 +8,7 @@ import favoriteOn from '../../../images/starFilled.png';
 import favoriteOff from '../../../images/starEmpty.png';
 
 import * as actions from '../../redux/actions';
-import Utility from '../Utility';
+import { checkFavorite, parsePayloadArray } from '../Utils';
 
 
 function Details(props) {
@@ -19,7 +19,7 @@ function Details(props) {
     exitDetails,
   } = props;
 
-  const [favorite, setFavorite] = useState(Utility.checkFavorite(favoriteIds, item.id));
+  const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
 
   const toggleFavorite = () => {
     addFavorite(item);
@@ -49,12 +49,12 @@ function Details(props) {
       </div>
       <h4>
         <span>Countries: </span>
-        {Utility.parsePayloadArray(item.production_countries, 'name')}
+        {parsePayloadArray(item.production_countries, 'name')}
       </h4>
       <h4>{`Release: ${item.release_date}`}</h4>
       <h4>{`Budget: ${item.budget}`}</h4>
       <h4>{`Rating: ${item.vote_average}`}</h4>
-      <h4>{Utility.parsePayloadArray(item.genres, 'name')}</h4>
+      <h4>{parsePayloadArray(item.genres, 'name')}</h4>
       <p>{item.overview}</p>
     </div>
   );

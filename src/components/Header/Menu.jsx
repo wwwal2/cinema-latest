@@ -16,7 +16,19 @@ function Menu(props) {
   } = props;
 
   const changePage = (value) => {
-    addUIPageNum(value);
+    switch (value) {
+      case 'Main':
+        addUIPageNum(1);
+        break;
+      case 'Popular':
+        addUIPageNum(2);
+        break;
+      case 'Favorite':
+        addUIPageNum(3);
+        break;
+      default:
+        return;
+    }
     update();
   };
 
@@ -27,11 +39,7 @@ function Menu(props) {
         className={header.tabs}
         key={tabName}
       >
-        {
-          tabName === 'Main'
-            ? <button className={header.tabs} onClick={() => changePage(1)} type="button">{tabName}</button>
-            : <button className={header.tabs} type="button">{tabName}</button>
-        }
+        <button className={header.tabs} onClick={() => changePage(tabName)} type="button">{tabName}</button>
       </Link>
 
     );

@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 
 import mainStyles from './Main.css';
 
+import { sections } from '../../constants';
+import { codeGenre } from '../Utils';
 import Request from './Request';
 import makePayload from './makePayload';
 import * as actions from '../../redux/actions';
@@ -28,17 +30,41 @@ class Main extends React.Component {
     const genres = await this.request.getGenres();
     addAllGenres(genres.genres);
 
-    const { requestProps } = this.props;
-    const payload = await makePayload(requestProps);
+    const { requestProps, cardsOnMain } = this.props;
+    const payload = await makePayload(
+      'getMovies',
+      [
+        requestProps.year,
+        requestProps.rating,
+        codeGenre(requestProps.genre, requestProps.allGenres),
+      ],
+      cardsOnMain, requestProps.UIpage,
+    );
     addResults(payload.totalResults);
     this.updateState('items', payload.items);
   }
 
   async componentDidUpdate(prevProps) {
-    const { updateCounter, detailsId, requestProps } = this.props;
+    const {
+      updateCounter,
+      detailsId,
+      requestProps,
+      cardsOnMain,
+      currentSection,
+    } = this.props;
+
     if (prevProps.updateCounter !== updateCounter) {
-      const payload = await makePayload(requestProps);
-      this.updateState('items', payload.items);
+      switch (currentSection) {
+        case sections.main:
+          const payload = await makePayload('getMovies', [requestProps.year, requestProps.rating, codeGenre(requestProps.genre, requestProps.allGenres)], cardsOnMain, requestProps.UIpage);
+          this.updateState('items', payload.items);
+          break;
+        case sections.popular:
+          console.log('request');
+          break;
+        default:
+          console.log('request');
+      }
     }
 
     if (prevProps.detailsId !== detailsId) {
@@ -47,6 +73,7 @@ class Main extends React.Component {
       this.updateState('isDetails', true);
     }
   }
+
 
   toggleDetails = () => {
     const { isDetails, details } = this.state;
@@ -63,27 +90,28 @@ class Main extends React.Component {
 
   render() {
     const { isDetails, items, details } = this.state;
-    if (!isDetails) {
+    if (isDetails) {
       return (
-        <div className={mainStyles.pageBody}>
-          {items.map((item) => {
-            return (
-              <Card key={item.id} item={item} stepInDetails={this.toggleDetails} />
-            );
-          })}
-        </div>
+        <Details item={details} exitDetails={this.toggleDetails} />
       );
     }
     return (
-      <Details item={details} exitDetails={this.toggleDetails} />
+      <div className={mainStyles.pageBody}>
+        {items.map((item) => {
+          return (
+            <Card key={item.id} item={item} stepInDetails={this.toggleDetails} />
+          );
+        })}
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state) => (
   {
+    currentSection: state.section,
+    cardsOnMain: state.main,
     requestProps: {
-      main: state.main,
       UIpage: state.UIpage,
       year: state.year,
       rating: state.rating,
@@ -107,7 +135,9 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
+  currentSection: PropTypes.string,
   updateCounter: PropTypes.number,
+  cardsOnMain: PropTypes.number,
   detailsId: PropTypes.number,
   requestProps: PropTypes.object,
   addAllGenres: PropTypes.func,
@@ -116,8 +146,10 @@ Main.propTypes = {
 
 Main.defaultProps = {
   updateCounter: 0,
+  cardsOnMain: 0,
   detailsId: 0,
   requestProps: {},
+  currentSection: 'main',
   addResults: () => { },
   addAllGenres: () => { },
 };

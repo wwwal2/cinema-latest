@@ -1,4 +1,4 @@
-import Utility from '../components/Utility';
+import { checkFavorite } from '../components/Utils';
 import defaultOptions from '../defaultOptions';
 import {
   TEST,
@@ -14,6 +14,7 @@ import {
   UPDATE,
   RESET,
   CHANGE_CARD_NUM,
+  DEFINE_SECTION,
 } from '../constants';
 
 const initialState = defaultOptions;
@@ -60,10 +61,15 @@ export default function reducer(state = initialState, action) {
         ...state,
         UIpage: action.payload,
       };
+    case DEFINE_SECTION:
+      return {
+        ...state,
+        section: action.payload,
+      };
     case ADD_FAVORITE:
       const { payload } = action;
 
-      if (Utility.checkFavorite(state.favoriteIds, payload.id)) {
+      if (checkFavorite(state.favoriteIds, payload.id)) {
         const index = state.favoriteIds.findIndex((id) => (id === payload.id));
 
         return {
