@@ -28,9 +28,9 @@
   background-color: #bc8f8f;
 }
 
-img {
+/* img {
   height: 100%;
-}
+} */
 img:hover {
   background-color: #ff7f50;
   cursor: pointer;

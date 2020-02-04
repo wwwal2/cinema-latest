@@ -1,13 +1,21 @@
 .container {
-  background-color: #5f9ea0;
+  background-color: #3c5253;
+  height: 70vh;
+  display: grid;
+  gap: 2vw;
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #00ffff;
+.poster {
+  height: inherit;
+  justify-self: end;
+}
+
+.informContainer {
+  justify-self: start;
+  color: #f6fafa;
+  font-family: Ubuntu, sans-serif;
+  font-size: 3vh;
 }
 
 .favorite {

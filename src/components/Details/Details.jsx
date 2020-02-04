@@ -29,33 +29,30 @@ function Details(props) {
   return (
     <div className={details.container}>
       <img
-        role="button"
-        alt="favorite"
-        src={
-          !favorite
-            ? favoriteOff
-            : favoriteOn
-        }
-        className={details.favorite}
-        onClick={() => toggleFavorite()}
+        className={details.poster}
+        alt="no poster to this movie"
+        src={`http://image.tmdb.org/t/p/w342/${item.poster_path}`}
+        onClick={exitDetails}
       />
-      <h3>{item.title}</h3>
-      <div>
+
+      <div className={details.informContainer}>
         <img
-          alt="no poster to this movie"
-          src={`http://image.tmdb.org/t/p/w185/${item.poster_path}`}
-          onClick={exitDetails}
+          alt="favorite"
+          src={favorite ? favoriteOn : favoriteOff}
+          className={details.favorite}
+          onClick={() => toggleFavorite()}
         />
+        <h2>{item.title}</h2>
+        <div>{`Release: ${item.release_date}`}</div>
+        <div>
+          <span>Production: </span>
+          {parsePayloadArray(item.production_countries, 'name')}
+        </div>
+        <div>{`Budget: ${item.budget}$`}</div>
+        <div>{`Rating: ${item.vote_average} Votes: ${item.vote_count}`}</div>
+        <div>{parsePayloadArray(item.genres, 'name')}</div>
+        <p>{item.overview}</p>
       </div>
-      <h4>
-        <span>Countries: </span>
-        {parsePayloadArray(item.production_countries, 'name')}
-      </h4>
-      <h4>{`Release: ${item.release_date}`}</h4>
-      <h4>{`Budget: ${item.budget}`}</h4>
-      <h4>{`Rating: ${item.vote_average}`}</h4>
-      <h4>{parsePayloadArray(item.genres, 'name')}</h4>
-      <p>{item.overview}</p>
     </div>
   );
 }
