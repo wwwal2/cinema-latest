@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../../redux/actions';
 import { sections } from '../../constants';
-import searchStyles from './SearchBlock.css';
+import searchStyles from './SearchBlock.scss';
 
 function Search(props) {
   const [query, setQuery] = useState('');

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 
-import filtersStyles from '../FilterPayload.css';
+import filtersStyles from '../FilterPayload.scss';
 
 import * as actions from '../../../../redux/actions';
 import { numberValidation, onlyNumbers } from '../../../Utils';

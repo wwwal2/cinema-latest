@@ -1,0 +1,22 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 15fr 5fr 5fr;
+  gap: 10px;
+  height: 7vh;
+  font-family: Ubuntu, sans-serif;
+
+  .logo {
+    height: inherit;
+  }
+
+  .menuContainer {
+    display: flex;
+    justify-content: space-evenly;
+
+    .tabs {
+      width: 100%;
+      height: 7vh;
+      background-color: yellow;
+    }
+  }
+}

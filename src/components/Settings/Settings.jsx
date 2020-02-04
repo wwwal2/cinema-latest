@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import settingsStyles from './Settings.css';
+import settingsStyles from './Settings.scss';
 
 import FilterPayload from './Filters';
 import OptionsPayload from './Options';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import mainStyles from './Main.css';
+import mainStyles from './Main.scss';
 import makePayload from './makePayload';
 
 import Request from './Request';

@@ -8,7 +8,7 @@ export default {
   totalResults: 0,
   requestPage: 1,
   UIpage: 1,
-  detailsId: 11970,
+  detailsId: 0,
   updateCounter: 0,
   allGenres: [],
   query: '',

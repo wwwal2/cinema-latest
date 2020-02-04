@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import header from './Header.css';
+import header from './Header.scss';
 import logo from '../../../images/logo.png';
 
 import Menu from './Menu';
@@ -17,10 +17,8 @@ export default class Header extends React.Component {
   render() {
     const { routes } = this.props;
     return (
-      <div className={header.display}>
-        <div className={header.logoContainer}>
-          <img alt="out of logo" src={logo} className={header.logo} />
-        </div>
+      <div className={header.container}>
+        <img alt="out of logo" src={logo} className={header.logo} />
         <Menu routes={routes} />
         <Settings />
         <Search />
