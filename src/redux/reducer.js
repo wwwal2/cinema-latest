@@ -6,8 +6,6 @@ import {
 } from '../components/Utils';
 import defaultOptions from '../defaultOptions';
 import {
-  TEST,
-  TEST_2,
   ADD_RATING,
   ADD_GENRE,
   ADD_YEAR,
@@ -20,6 +18,7 @@ import {
   RESET,
   CHANGE_CARD_NUM,
   DEFINE_SECTION,
+  ADD_QUERY,
 } from '../constants';
 
 const initialState = loadSettings()
@@ -28,16 +27,6 @@ const initialState = loadSettings()
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case TEST:
-      return {
-        ...state,
-        storeTest: action.payload,
-      };
-    case TEST_2:
-      return {
-        ...state,
-        storeTest: action.payload,
-      };
     case ADD_RATING:
       saveSettings(getSaveData(state), action.payload, 'rating');
       return {
@@ -75,6 +64,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         section: action.payload,
+      };
+    case ADD_QUERY:
+      return {
+        ...state,
+        query: action.payload,
       };
     case ADD_FAVORITE:
       const { payload } = action;

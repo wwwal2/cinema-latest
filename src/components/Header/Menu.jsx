@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import * as actions from '../../redux/actions';
 import { sections } from '../../constants';
-import header from './Header.css';
+import header from './Header.scss';
 
 function Menu(props) {
   const {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import filterStyles from '../css_modules/filterStyles.css';
+// import filterStyles from '../css_modules/filterStyles.scss';
 
 import OptionController from './OptionController';
 import TopButtons from '../TopButtons';

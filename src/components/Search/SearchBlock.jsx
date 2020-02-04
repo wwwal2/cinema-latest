@@ -1,63 +1,91 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { test, test2 } from '../../redux/actions';
-import searchStyles from './SearchBlock.css';
+import * as actions from '../../redux/actions';
+import { sections } from '../../constants';
+import searchStyles from './SearchBlock.scss';
 
 function Search(props) {
+  const [query, setQuery] = useState('');
   const {
     placeHolder,
     start,
-    readTheStore,
-    testOne,
-    testTwo,
+    addQuery,
+    defineSection,
+    update,
+    addUIPageNum,
   } = props;
+
+
+  const userInput = (event) => {
+    const { value } = event.target;
+    setQuery(value);
+  };
+
+  const submit = (event) => {
+    if (event.key === 'Enter' || event.type === 'click') {
+      addUIPageNum(1);
+      addQuery(encodeURIComponent(query.trim()));
+      defineSection(sections.search);
+      update();
+      setQuery('');
+    }
+  };
+
   return (
     <div className={searchStyles.subgrid}>
       <input
+        value={query}
         type="text"
         placeholder={placeHolder}
         className={searchStyles.search}
+        onKeyPress={submit}
+        onChange={userInput}
       />
       <button
         type="button"
         className={searchStyles.start}
-        onClick={
-          readTheStore !== 'TestOne'
-            ? () => testOne('TestOne')
-            : () => testTwo('TestTwo')
-        }
+        onClick={submit}
       >
-        {`${start} ${readTheStore}`}
+        {start}
       </button>
     </div>
   );
 }
 
-const mapStateToProps = (state) => (
-  { readTheStore: state.storeTest }
-);
+const mapDispatchToProps = (dispatch) => {
+  const {
+    addQuery,
+    defineSection,
+    update,
+    addUIPageNum,
+  } = bindActionCreators(actions, dispatch);
+  return {
+    addQuery: (payload) => addQuery(payload),
+    addUIPageNum: (payload) => addUIPageNum(payload),
+    defineSection: (payload) => defineSection(payload),
+    update: () => update(),
+  };
+};
 
-const mapDispatchToProps = (dispatch) => ({
-  testOne: (payload) => dispatch(test(payload)),
-  testTwo: (payload) => dispatch(test2(payload)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(null, mapDispatchToProps)(Search);
 
 Search.propTypes = {
   placeHolder: PropTypes.string,
   start: PropTypes.string,
-  readTheStore: PropTypes.string,
-  testOne: PropTypes.func,
-  testTwo: PropTypes.func,
+  addQuery: PropTypes.func,
+  defineSection: PropTypes.func,
+  update: PropTypes.func,
+  addUIPageNum: PropTypes.func,
 };
 
 Search.defaultProps = {
   placeHolder: 'Search movies',
   start: 'Start',
-  readTheStore: 'store',
-  testOne: () => 'missing function',
-  testTwo: () => 'missing function',
+  addQuery: () => { },
+  defineSection: () => { },
+  update: () => { },
+  addUIPageNum: () => { },
 };

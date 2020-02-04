@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import mainStyles from './Main.css';
-
-import { sections, apiResultsPerPage } from '../../constants';
-import { codeGenre, calculateLayout } from '../Utils';
-import Request from './Request';
+import mainStyles from './Main.scss';
 import makePayload from './makePayload';
+
+import Request from './Request';
 import * as actions from '../../redux/actions';
 
 import Card from '../Card';
@@ -26,73 +24,29 @@ class Main extends React.Component {
   }
 
   async componentDidMount() {
-    const { addAllGenres, addResults, UIpage } = this.props;
+    const { addAllGenres, addResults } = this.props;
     const genres = await this.request.getGenres();
     addAllGenres(genres.genres);
 
-    const { requestProps, cardsNum, allGenres } = this.props;
-    const payload = await makePayload(
-      'getMovies',
-      [
-        requestProps.year,
-        requestProps.rating,
-        codeGenre(requestProps.genre, allGenres),
-      ],
-      cardsNum.main,
-      UIpage,
-    );
+    const { reduxProps } = this.props;
+    const payload = await makePayload(reduxProps);
+
     addResults(payload.totalResults);
     this.updateState('items', payload.items);
   }
 
   async componentDidUpdate(prevProps) {
     const {
+      reduxProps,
       updateCounter,
       detailsId,
-      requestProps,
-      cardsNum,
-      currentSection,
-      UIpage,
       addResults,
-      allGenres,
-      favoriteMovies,
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
-      switch (currentSection) {
-        case sections.main:
-          const mainPayload = await makePayload(
-            'getMovies',
-            [
-              requestProps.year,
-              requestProps.rating,
-              codeGenre(requestProps.genre, allGenres),
-            ], cardsNum.main,
-            UIpage,
-          );
-          addResults(mainPayload.totalResults);
-          this.updateState('items', mainPayload.items);
-          break;
-        case sections.popular:
-          const popularPayload = await makePayload('getPopular', [requestProps.UIpage], cardsNum.popular, UIpage);
-          console.log(popularPayload);
-          addResults(popularPayload.totalResults);
-          this.updateState('items', popularPayload.items);
-          break;
-        case sections.favorite:
-          addResults(favoriteMovies.length);
-          const layout = calculateLayout(UIpage, cardsNum.favorite, apiResultsPerPage);
-          console.log(layout);
-
-          const favoritePayload = favoriteMovies.slice(
-            layout.startRes,
-            layout.startRes + cardsNum.favorite,
-          );
-          this.updateState('items', favoritePayload);
-          break;
-        default:
-          console.log('request');
-      }
+      const payload = await makePayload(reduxProps);
+      addResults(payload.totalResults);
+      this.updateState('items', payload.items);
     }
 
     if (prevProps.detailsId !== detailsId) {
@@ -137,20 +91,7 @@ class Main extends React.Component {
 
 const mapStateToProps = (state) => (
   {
-    currentSection: state.section,
-    cardsNum: {
-      main: state.main,
-      popular: state.popular,
-      favorite: state.favorite,
-    },
-    allGenres: state.allGenres,
-    UIpage: state.UIpage,
-    requestProps: {
-      year: state.year,
-      rating: state.rating,
-      genre: state.genre,
-    },
-    favoriteMovies: state.favoriteMovies,
+    reduxProps: state,
     detailsId: state.detailsId,
     updateCounter: state.updateCounter,
   }
@@ -167,27 +108,17 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
-  currentSection: PropTypes.string,
+  reduxProps: PropTypes.object,
   updateCounter: PropTypes.number,
-  cardsNum: PropTypes.object,
-  UIpage: PropTypes.number,
-  allGenres: PropTypes.array,
-  favoriteMovies: PropTypes.array,
   detailsId: PropTypes.number,
-  requestProps: PropTypes.object,
   addAllGenres: PropTypes.func,
   addResults: PropTypes.func,
 };
 
 Main.defaultProps = {
+  reduxProps: {},
   updateCounter: 0,
-  cardsNum: {},
   detailsId: 0,
-  UIpage: 0,
-  requestProps: {},
-  allGenres: [],
-  favoriteMovies: [],
-  currentSection: 'main',
   addResults: () => { },
   addAllGenres: () => { },
 };

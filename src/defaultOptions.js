@@ -1,6 +1,5 @@
 export default {
   // default start page request
-  storeTest: 'empty',
   year: '2019',
   genre: 'Fantasy',
   rating: '7',
@@ -12,6 +11,7 @@ export default {
   detailsId: 0,
   updateCounter: 0,
   allGenres: [],
+  query: '',
   // favorite items
   favoriteMovies: [],
   favoriteIds: [],
@@ -19,6 +19,7 @@ export default {
   main: 8,
   popular: 12,
   favorite: 4,
+  search: 20,
 };
 
 // you can see available genres in Header tab: Filters -> Genres

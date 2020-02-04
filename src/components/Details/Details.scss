@@ -1,0 +1,32 @@
+.container {
+  background-color: #3c5253;
+  height: 70vh;
+  display: grid;
+  gap: 2vw;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.poster {
+  height: inherit;
+  justify-self: end;
+}
+.poster:hover {
+  cursor: pointer;
+}
+
+.informContainer {
+  justify-self: start;
+  color: #f6fafa;
+  font-family: Ubuntu, sans-serif;
+  font-size: 3vh;
+}
+
+.favorite {
+  align-self: flex-end;
+  height: 30px;
+  width: 30px;
+  border: none;
+}
+.favorite:hover {
+  cursor: pointer;
+}

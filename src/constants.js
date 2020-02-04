@@ -12,6 +12,7 @@ export const UPDATE = 'UPDATE';
 export const RESET = 'RESET';
 export const CHANGE_CARD_NUM = 'CHANGE_CARD_NUM';
 export const DEFINE_SECTION = 'DEFINE_SECTION';
+export const ADD_QUERY = 'ADD_QUERY';
 
 export const minCardsNum = 4;
 export const maxCardsNum = 20;

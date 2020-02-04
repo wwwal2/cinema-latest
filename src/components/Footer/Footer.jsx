@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import footer from './Footer.css';
+import footer from './Footer.scss';
 
 export default function Footer(props) {
   const { created, email } = props;

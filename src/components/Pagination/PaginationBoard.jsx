@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { paginationShape } from '../Utils';
 import Button from './Button';
 
-import pagination from './Pagination.css';
+import pagination from './Pagination.scss';
 
 export default function PaginationBoard(props) {
   const { totalPages, currentPage, boardSideLength } = props;
