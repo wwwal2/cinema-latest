@@ -12,6 +12,7 @@ export default {
   detailsId: 0,
   updateCounter: 0,
   allGenres: [],
+  query: '',
   // favorite items
   favoriteMovies: [],
   favoriteIds: [],

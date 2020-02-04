@@ -56,6 +56,7 @@ class Main extends React.Component {
       addResults,
       allGenres,
       favoriteMovies,
+      query,
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
@@ -73,16 +74,22 @@ class Main extends React.Component {
           addResults(mainPayload.totalResults);
           this.updateState('items', mainPayload.items);
           break;
+
         case sections.popular:
           const popularPayload = await makePayload('getPopular', [requestProps.UIpage], cardsNum.popular, UIpage);
-          console.log(popularPayload);
           addResults(popularPayload.totalResults);
           this.updateState('items', popularPayload.items);
           break;
+
+        case sections.search:
+          const searchPayload = await makePayload('findMovie', [query, 1], 20, UIpage);
+          this.updateState('items', searchPayload.items);
+          console.log(searchPayload);
+          break;
+
         case sections.favorite:
           addResults(favoriteMovies.length);
           const layout = calculateLayout(UIpage, cardsNum.favorite, apiResultsPerPage);
-          console.log(layout);
 
           const favoritePayload = favoriteMovies.slice(
             layout.startRes,
@@ -90,8 +97,9 @@ class Main extends React.Component {
           );
           this.updateState('items', favoritePayload);
           break;
+
         default:
-          console.log('request');
+          return;
       }
     }
 
@@ -145,6 +153,7 @@ const mapStateToProps = (state) => (
     },
     allGenres: state.allGenres,
     UIpage: state.UIpage,
+    query: state.query,
     requestProps: {
       year: state.year,
       rating: state.rating,
@@ -168,6 +177,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
   currentSection: PropTypes.string,
+  query: PropTypes.string,
   updateCounter: PropTypes.number,
   cardsNum: PropTypes.object,
   UIpage: PropTypes.number,
@@ -181,6 +191,7 @@ Main.propTypes = {
 
 Main.defaultProps = {
   updateCounter: 0,
+  query: '',
   cardsNum: {},
   detailsId: 0,
   UIpage: 0,

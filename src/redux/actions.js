@@ -1,6 +1,4 @@
 import {
-  TEST,
-  TEST_2,
   ADD_RATING,
   ADD_GENRE,
   ADD_YEAR,
@@ -13,10 +11,9 @@ import {
   RESET,
   CHANGE_CARD_NUM,
   DEFINE_SECTION,
+  ADD_QUERY,
 } from '../constants';
 
-export const test = (payload) => ({ type: TEST, payload });
-export const test2 = (payload) => ({ type: TEST_2, payload });
 export const addRating = (payload) => ({ type: ADD_RATING, payload });
 export const addGenre = (payload) => ({ type: ADD_GENRE, payload });
 export const addYear = (payload) => ({ type: ADD_YEAR, payload });
@@ -26,6 +23,7 @@ export const addUIPageNum = (payload) => ({ type: ADD_UI_PAGE_NUM, payload });
 export const addFavorite = (payload) => ({ type: ADD_FAVORITE, payload });
 export const addDetailsId = (payload) => ({ type: ADD_DETAILS_ID, payload });
 export const defineSection = (payload) => ({ type: DEFINE_SECTION, payload });
+export const addQuery = (payload) => ({ type: ADD_QUERY, payload });
 
 export const update = () => ({ type: UPDATE });
 export const reset = () => ({ type: RESET });
