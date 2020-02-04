@@ -1,6 +1,5 @@
 export default {
   // default start page request
-  storeTest: 'empty',
   year: '2019',
   genre: 'Fantasy',
   rating: '7',

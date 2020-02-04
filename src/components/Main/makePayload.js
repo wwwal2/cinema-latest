@@ -1,42 +1,67 @@
-import { calculateRequestProps } from '../Utils';
-import { apiResultsPerPage } from '../../constants';
-import Request from './Request';
+import { sections, apiResultsPerPage } from '../../constants';
+import { codeGenre, calculateRequestProps } from '../Utils';
+import getItems from './getItems';
 
-const request = new Request();
+export default async (props) => {
+  const {
+    year,
+    rating,
+    genre,
+    allGenres,
+    main,
+    popular,
+    favorite,
+    search,
+    UIpage,
+    query,
+    favoriteMovies,
+  } = props;
+  switch (props.section) {
+    case sections.main:
+      const mainPayload = await getItems(
+        'getMovies',
+        [
+          year,
+          rating,
+          codeGenre(genre, allGenres),
+        ],
+        main,
+        UIpage,
+      );
+      return mainPayload;
 
-export default async (requestName, requestArgs, cardsPerPage, UIpage) => {
-  const layout = calculateRequestProps(UIpage, cardsPerPage, apiResultsPerPage);
+    case sections.popular:
+      const popularPayload = await getItems(
+        'getPopular',
+        [],
+        popular,
+        UIpage,
+      );
+      return popularPayload;
 
-  if (layout.startPage === layout.endPage) {
-    const data = await request[requestName](
-      layout.startPage,
-      ...requestArgs,
-    );
-    return {
-      items: data.results.slice(layout.startRes, layout.endRes),
-      totalResults: data.total_results,
-    };
+    case sections.search:
+      const searchPayload = await getItems(
+        'findMovie',
+        [query],
+        search,
+        UIpage,
+      );
+      return searchPayload;
+
+    case sections.favorite:
+      const layout = calculateRequestProps(
+        UIpage,
+        favorite,
+        apiResultsPerPage,
+      );
+      return {
+        items: favoriteMovies.slice(
+          layout.startRes,
+          layout.startRes + favorite,
+        ),
+        totalResults: favoriteMovies.length,
+      };
+    default:
+      return 'no props available';
   }
-  const page1 = await request[requestName](
-    layout.startPage,
-    ...requestArgs,
-  );
-
-  const page2 = await request[requestName](
-    layout.endPage,
-    ...requestArgs,
-  );
-  const payload1 = page1.results.slice(
-    layout.startRes,
-    page1.results.length,
-  );
-  const payload2 = page2.results.slice(
-    0,
-    layout.endRes,
-  );
-
-  return {
-    items: payload1.concat(payload2),
-    totalResults: page1.total_results,
-  };
 };
