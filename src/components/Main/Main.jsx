@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import mainStyles from './Main.css';
 
 import { sections, apiResultsPerPage } from '../../constants';
-import { codeGenre, calculateLayout } from '../Utils';
+import { codeGenre, calculateRequestProps } from '../Utils';
 import Request from './Request';
 import makePayload from './makePayload';
 import * as actions from '../../redux/actions';
@@ -47,6 +47,7 @@ class Main extends React.Component {
 
   async componentDidUpdate(prevProps) {
     const {
+      redux,
       updateCounter,
       detailsId,
       requestProps,
@@ -76,20 +77,21 @@ class Main extends React.Component {
           break;
 
         case sections.popular:
-          const popularPayload = await makePayload('getPopular', [requestProps.UIpage], cardsNum.popular, UIpage);
+          const popularPayload = await makePayload('getPopular', [], cardsNum.popular, UIpage);
           addResults(popularPayload.totalResults);
           this.updateState('items', popularPayload.items);
           break;
 
         case sections.search:
-          const searchPayload = await makePayload('findMovie', [query, 1], 20, UIpage);
+          const searchPayload = await makePayload('findMovie', [query], cardsNum.search, UIpage);
+          addResults(searchPayload.totalResults);
           this.updateState('items', searchPayload.items);
-          console.log(searchPayload);
+          console.log(redux);
           break;
 
         case sections.favorite:
           addResults(favoriteMovies.length);
-          const layout = calculateLayout(UIpage, cardsNum.favorite, apiResultsPerPage);
+          const layout = calculateRequestProps(UIpage, cardsNum.favorite, apiResultsPerPage);
 
           const favoritePayload = favoriteMovies.slice(
             layout.startRes,
@@ -145,11 +147,13 @@ class Main extends React.Component {
 
 const mapStateToProps = (state) => (
   {
+    redux: state,
     currentSection: state.section,
     cardsNum: {
       main: state.main,
       popular: state.popular,
       favorite: state.favorite,
+      search: state.search,
     },
     allGenres: state.allGenres,
     UIpage: state.UIpage,
@@ -187,6 +191,7 @@ Main.propTypes = {
   requestProps: PropTypes.object,
   addAllGenres: PropTypes.func,
   addResults: PropTypes.func,
+  redux: PropTypes.object,
 };
 
 Main.defaultProps = {
@@ -196,6 +201,7 @@ Main.defaultProps = {
   detailsId: 0,
   UIpage: 0,
   requestProps: {},
+  redux: {},
   allGenres: [],
   favoriteMovies: [],
   currentSection: 'main',

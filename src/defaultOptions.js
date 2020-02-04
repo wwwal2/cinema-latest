@@ -20,6 +20,7 @@ export default {
   main: 8,
   popular: 12,
   favorite: 4,
+  search: 20,
 };
 
 // you can see available genres in Header tab: Filters -> Genres

@@ -12,10 +12,10 @@ function Search(props) {
   const {
     placeHolder,
     start,
-    readTheStore,
     addQuery,
     defineSection,
     update,
+    addUIPageNum,
   } = props;
 
 
@@ -25,7 +25,8 @@ function Search(props) {
   };
 
   const submit = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.type === 'click') {
+      addUIPageNum(1);
       addQuery(encodeURIComponent(query.trim()));
       defineSection(sections.search);
       update();
@@ -48,41 +49,43 @@ function Search(props) {
         className={searchStyles.start}
         onClick={submit}
       >
-        {`${start} ${readTheStore}`}
+        {start}
       </button>
     </div>
   );
 }
 
-const mapStateToProps = (state) => (
-  { readTheStore: state.storeTest }
-);
-
 const mapDispatchToProps = (dispatch) => {
-  const { addQuery, defineSection, update } = bindActionCreators(actions, dispatch);
+  const {
+    addQuery,
+    defineSection,
+    update,
+    addUIPageNum,
+  } = bindActionCreators(actions, dispatch);
   return {
     addQuery: (payload) => addQuery(payload),
+    addUIPageNum: (payload) => addUIPageNum(payload),
     defineSection: (payload) => defineSection(payload),
     update: () => update(),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(null, mapDispatchToProps)(Search);
 
 Search.propTypes = {
   placeHolder: PropTypes.string,
   start: PropTypes.string,
-  readTheStore: PropTypes.string,
   addQuery: PropTypes.func,
   defineSection: PropTypes.func,
   update: PropTypes.func,
+  addUIPageNum: PropTypes.func,
 };
 
 Search.defaultProps = {
   placeHolder: 'Search movies',
   start: 'Start',
-  readTheStore: 'store',
   addQuery: () => { },
   defineSection: () => { },
   update: () => { },
+  addUIPageNum: () => { },
 };

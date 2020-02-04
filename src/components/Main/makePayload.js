@@ -1,11 +1,11 @@
-import { calculateLayout } from '../Utils';
+import { calculateRequestProps } from '../Utils';
 import { apiResultsPerPage } from '../../constants';
 import Request from './Request';
 
 const request = new Request();
 
 export default async (requestName, requestArgs, cardsPerPage, UIpage) => {
-  const layout = calculateLayout(UIpage, cardsPerPage, apiResultsPerPage);
+  const layout = calculateRequestProps(UIpage, cardsPerPage, apiResultsPerPage);
 
   if (layout.startPage === layout.endPage) {
     const data = await request[requestName](
