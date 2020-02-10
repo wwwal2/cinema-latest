@@ -22,6 +22,10 @@
   border: 0;
   padding: 0;
 }
+.filterInput::placeholder {
+  text-align: center;
+  opacity: 1;
+}
 
 .select {
   grid-column: 1 / 4;
