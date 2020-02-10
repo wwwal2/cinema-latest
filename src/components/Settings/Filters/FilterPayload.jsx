@@ -15,7 +15,6 @@ function FilterPayload(props) {
   } = props;
   return (
     <div>
-      <TopButtons />
       <YearFilter />
       <div>
         <div>Genres</div>
@@ -25,6 +24,7 @@ function FilterPayload(props) {
         <div>Rating</div>
         <Select selected={currentRating} ratingPoints={ratingPoints} />
       </div>
+      <TopButtons />
     </div>
   );
 }

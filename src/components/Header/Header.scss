@@ -18,6 +18,17 @@
       width: 100%;
       height: inherit;
       cursor: pointer;
+      font-size: 2.5vh;
+      color: #fff;
+      text-transform: uppercase;
+      background: #ed3330;
+      border: none;
+      transition: all 0.4s ease 0s;
+      &:hover {
+        background: #434343;
+        letter-spacing: 1px;
+        transition: all 0.4s ease 0s;
+      }
     }
   }
 }

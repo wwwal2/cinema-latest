@@ -10,35 +10,33 @@ import header from './Header.scss';
 
 function Tab(props) {
   const {
-    tabNames,
-    routes,
+    tabName,
+    route,
     addUIPageNum,
     defineSection,
     update,
   } = props;
 
-  const changePage = (value) => {
+  const changeTab = (value) => {
     addUIPageNum(1);
     defineSection(sections[value.toLowerCase()]);
     update();
   };
 
-  const tabs = tabNames.map((tabName) => {
-    return (
-      <Link
-        to={routes[tabName.toLowerCase()]}
-        className={header.tabs}
-        key={tabName}
-      >
-        <button className={header.tabs} onClick={() => changePage(tabName)} type="button">{tabName}</button>
-      </Link>
-    );
-  });
-
   return (
-    <div className={header.menuContainer}>
-      {tabs}
-    </div>
+    <Link
+      to={route}
+      className={header.tabs}
+      key={tabName}
+    >
+      <button
+        className={header.tabs}
+        onClick={() => changeTab(tabName)}
+        type="button"
+      >
+        {tabName}
+      </button>
+    </Link>
   );
 }
 
@@ -54,22 +52,16 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(Tab);
 
 Tab.propTypes = {
-  tabNames: PropTypes.array,
-  routes: PropTypes.object,
+  tabName: PropTypes.string,
+  route: PropTypes.string,
   addUIPageNum: PropTypes.func,
   defineSection: PropTypes.func,
   update: PropTypes.func,
 };
 
 Tab.defaultProps = {
-  tabNames: [
-    'Main',
-    'Popular',
-    'Favorite',
-  ],
-  routes: {
-    main: '/',
-  },
+  tabName: '',
+  route: '',
   addUIPageNum: () => { },
   defineSection: () => { },
   update: () => { },
