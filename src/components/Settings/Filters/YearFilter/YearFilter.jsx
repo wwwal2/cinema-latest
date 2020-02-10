@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 
-import filtersStyles from '../FilterPayload.scss';
+import filters from '../FilterPayload.scss';
 
 import * as actions from '../../../../redux/actions';
 import { numberValidation, onlyNumbers } from '../../../Utils';
@@ -59,15 +59,26 @@ function YearFilter(props) {
 
   return (
     <div>
-      <div className={filtersStyles.inputContainer}>
-        <input
-          value={inputYear.value}
-          type="text"
-          placeholder={storeYear}
-          onKeyPress={submitCheck}
-          onChange={keyCheck}
-        />
-        <div className={filtersStyles[hintPosition.value]}>
+      <div className={filters.inputContainer}>
+        <div className={filters.gridContainer}>
+          <input
+            id="filterInput"
+            className={filters.filterInput}
+            value={inputYear.value}
+            type="text"
+            placeholder={storeYear}
+            onKeyPress={submitCheck}
+            onChange={keyCheck}
+          />
+          <label
+            htmlFor="filterInput"
+            className={filters.label}
+          >
+            input year
+          </label>
+        </div>
+
+        <div className={filters[hintPosition.value]}>
           {notification}
         </div>
       </div>

@@ -8,10 +8,10 @@ import TopButtons from '../TopButtons';
 export default function OptionsPayload() {
   return (
     <div>
-      <TopButtons />
       <OptionController label="Main page card limit" target="main" />
       <OptionController label="Popular page card limit" target="popular" />
       <OptionController label="Favorite page card limit" target="favorite" />
+      <TopButtons />
     </div>
   );
 }

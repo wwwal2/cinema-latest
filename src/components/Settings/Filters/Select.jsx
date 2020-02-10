@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../redux/actions';
 
+import filters from './FilterPayload.scss';
+
 function Select(props) {
   const {
     selected,
@@ -13,30 +15,40 @@ function Select(props) {
     addGenre,
   } = props;
 
-  function generateSelect(options, current, reduxAction) {
+  function generateSelect(options, current, reduxAction, id) {
     return (
-      <select
-        onChange={(event) => reduxAction(event.target.value)}
-        value={current}
-      >
-        {options.map((option) => {
-          return (
-            <option
-              value={option}
-              key={option}
-            >
-              {option}
-            </option>
-          );
-        })}
-      </select>
+      <div className={filters.gridContainer}>
+        <select
+          onChange={(event) => reduxAction(event.target.value)}
+          value={current}
+          id={id}
+          className={filters.select}
+        >
+          {options.map((option) => {
+            return (
+              <option
+                value={option}
+                key={option}
+              >
+                {option}
+              </option>
+            );
+          })}
+        </select>
+        <label
+          htmlFor={id}
+          className={filters.label}
+        >
+          {`select ${id}`}
+        </label>
+      </div>
     );
   }
 
   return (
     ratingPoints[0]
-      ? generateSelect(ratingPoints, selected, addRating)
-      : generateSelect(allGenres.map((genre) => genre.name), selected, addGenre)
+      ? generateSelect(ratingPoints, selected, addRating, 'rating')
+      : generateSelect(allGenres.map((genre) => genre.name), selected, addGenre, 'genre')
   );
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { filters, options } from '../../constants';
 import settingsStyles from './Settings.scss';
 
 import FilterPayload from './Filters';
@@ -10,15 +10,15 @@ export default class Filter extends React.Component {
     super(props);
     this.state = {
       settings: 'Filters',
-      dropdown: false,
+      hide: true,
     };
   }
 
   toggle(info) {
-    const { settings, dropdown } = this.state;
-    if (info === settings || dropdown === false) {
+    const { settings, hide } = this.state;
+    if (info === settings || hide === true) {
       this.setState({
-        dropdown: !dropdown,
+        hide: !hide,
       });
     }
     this.setState({
@@ -27,26 +27,25 @@ export default class Filter extends React.Component {
   }
 
   render() {
-    const { filters, options } = this.props;
-    const { settings, dropdown } = this.state;
+    const { settings, hide } = this.state;
 
     return (
       <div className={settingsStyles.container}>
-        <div className={settingsStyles.buttonContainer}>
-          <button
-            type="button"
-            onClick={() => this.toggle(filters)}
-          >
-            {filters}
-          </button>
-          <button
-            type="button"
-            onClick={() => this.toggle(options)}
-          >
-            {options}
-          </button>
-        </div>
-        <div className={settingsStyles[`${dropdown}Position`]}>
+        <button
+          type="button"
+          className={settingsStyles.mainButton}
+          onClick={() => this.toggle(filters)}
+        >
+          {filters}
+        </button>
+        <button
+          type="button"
+          className={settingsStyles.mainButton}
+          onClick={() => this.toggle(options)}
+        >
+          {options}
+        </button>
+        <div className={settingsStyles[`hide-${hide}`]}>
           {
             settings === filters
               ? <FilterPayload />
@@ -57,13 +56,3 @@ export default class Filter extends React.Component {
     );
   }
 }
-
-Filter.propTypes = {
-  filters: PropTypes.string,
-  options: PropTypes.string,
-};
-
-Filter.defaultProps = {
-  filters: 'Filters',
-  options: 'Options',
-};

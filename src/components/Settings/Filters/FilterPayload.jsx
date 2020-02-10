@@ -15,16 +15,10 @@ function FilterPayload(props) {
   } = props;
   return (
     <div>
-      <TopButtons />
       <YearFilter />
-      <div>
-        <div>Genres</div>
-        <Select selected={currentGenre} allGenres={allGenres} />
-      </div>
-      <div>
-        <div>Rating</div>
-        <Select selected={currentRating} ratingPoints={ratingPoints} />
-      </div>
+      <Select selected={currentGenre} allGenres={allGenres} />
+      <Select selected={currentRating} ratingPoints={ratingPoints} />
+      <TopButtons />
     </div>
   );
 }

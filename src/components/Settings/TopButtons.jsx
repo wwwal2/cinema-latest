@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 
-import filtersStyles from './Filters/FilterPayload.scss';
+import settings from './Settings.scss';
 import * as actions from '../../redux/actions';
 
 function TopButtons(props) {
@@ -14,11 +14,19 @@ function TopButtons(props) {
 
   return (
     <div>
-      <div className={filtersStyles.applyReset}>
-        <button type="button" onClick={() => update()}>
+      <div className={settings.actionBtnContainer}>
+        <button
+          type="button"
+          onClick={() => update()}
+          className={`${settings.actionBtn} ${settings.apply}`}
+        >
           Apply
         </button>
-        <button type="button" onClick={() => reset()}>
+        <button
+          type="button"
+          onClick={() => reset()}
+          className={`${settings.actionBtn} ${settings.reset}`}
+        >
           Reset
         </button>
       </div>
