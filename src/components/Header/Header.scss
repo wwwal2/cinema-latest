@@ -12,11 +12,12 @@
   .menuContainer {
     display: flex;
     justify-content: space-evenly;
+    height: inherit;
 
     .tabs {
       width: 100%;
-      height: 7vh;
-      background-color: yellow;
+      height: inherit;
+      cursor: pointer;
     }
   }
 }

@@ -8,7 +8,7 @@ import * as actions from '../../redux/actions';
 import { sections } from '../../constants';
 import header from './Header.scss';
 
-function Menu(props) {
+function Tab(props) {
   const {
     tabNames,
     routes,
@@ -23,21 +23,21 @@ function Menu(props) {
     update();
   };
 
+  const tabs = tabNames.map((tabName) => {
+    return (
+      <Link
+        to={routes[tabName.toLowerCase()]}
+        className={header.tabs}
+        key={tabName}
+      >
+        <button className={header.tabs} onClick={() => changePage(tabName)} type="button">{tabName}</button>
+      </Link>
+    );
+  });
+
   return (
     <div className={header.menuContainer}>
-      {
-        tabNames.map((tabName) => {
-          return (
-            <Link
-              to={routes[tabName.toLowerCase()]}
-              className={header.tabs}
-              key={tabName}
-            >
-              <button className={header.tabs} onClick={() => changePage(tabName)} type="button">{tabName}</button>
-            </Link>
-          );
-        })
-      }
+      {tabs}
     </div>
   );
 }
@@ -51,9 +51,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Menu);
+export default connect(null, mapDispatchToProps)(Tab);
 
-Menu.propTypes = {
+Tab.propTypes = {
   tabNames: PropTypes.array,
   routes: PropTypes.object,
   addUIPageNum: PropTypes.func,
@@ -61,7 +61,7 @@ Menu.propTypes = {
   update: PropTypes.func,
 };
 
-Menu.defaultProps = {
+Tab.defaultProps = {
   tabNames: [
     'Main',
     'Popular',
