@@ -7,7 +7,8 @@ export default (UIpage, cardsPerPage, apiResultsPerPage) => {
 
   const startRes = ((startResult / apiResultsPerPage) % 1) * apiResultsPerPage;
   const endRes = ((endResult / apiResultsPerPage) % 1) * apiResultsPerPage;
-
+  // console.log('startPage:', startPage, Math.round(startRes));
+  // console.log('endPage:', endPage, Math.round(endRes));
   return {
     startPage,
     startRes: Math.round(startRes),
