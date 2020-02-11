@@ -1,5 +1,19 @@
-.flex {
+.container {
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	color: #ffffff;
+	text-transform: lowercase;
+	font-size: 2.5vh;
+}
+
+.label {
+  grid-column: 1 / 7;
+}
+
+.blockContainer {
+	grid-column: 7 / 9;
 	display: flex;
+	justify-content: space-evenly;
 }
 
 .arrow {
@@ -10,19 +24,28 @@
 }
 
 .arrow.left {
-	border-top-width: 1vw;
-	border-bottom-width: 1vw;
-	border-right: 1vw solid rgb(248, 248, 248);
+	border-top-width: 1.5vh;
+	border-bottom-width: 1.5vh;
+	border-right: 2vh solid #f8f8f8;
 }
 .arrow.left:hover {
-	border-right: 1vw solid rgb(255, 0, 0);
+	border-right: 2vh solid #ff0000;
 }
 
 .arrow.right {
-	border-top-width: 1vw;
-	border-bottom-width: 1vw;
-	border-left: 1vw solid rgb(248, 248, 248);
+	border-top-width: 1.5vh;
+	border-bottom-width: 1.5vh;
+	border-left: 2vh solid #f8f8f8;
 }
 .arrow.right:hover {
-	border-left: 1vw solid rgb(255, 0, 0);
+	border-left: 2vh solid #ff0000;
+}
+
+.value {
+	width: 20px;
+	text-align: center;
+}
+
+@media all and (min-height: 1000px) {
+ 
 }

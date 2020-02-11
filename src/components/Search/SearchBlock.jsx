@@ -5,17 +5,17 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../../redux/actions';
 import { sections } from '../../constants';
-import searchStyles from './SearchBlock.scss';
+import search from './SearchBlock.scss';
 
 function Search(props) {
   const [query, setQuery] = useState('');
   const {
     placeHolder,
-    start,
     addQuery,
     defineSection,
     update,
     addUIPageNum,
+    showDetails,
   } = props;
 
 
@@ -29,27 +29,28 @@ function Search(props) {
       addUIPageNum(1);
       addQuery(encodeURIComponent(query.trim()));
       defineSection(sections.search);
+      showDetails(false);
       update();
       setQuery('');
     }
   };
 
   return (
-    <div className={searchStyles.subgrid}>
+    <div className={search.container}>
       <input
         value={query}
         type="text"
         placeholder={placeHolder}
-        className={searchStyles.search}
+        className={search.input}
         onKeyPress={submit}
         onChange={userInput}
       />
       <button
         type="button"
-        className={searchStyles.start}
+        className={search.start}
         onClick={submit}
       >
-        {start}
+        Start
       </button>
     </div>
   );
@@ -61,11 +62,13 @@ const mapDispatchToProps = (dispatch) => {
     defineSection,
     update,
     addUIPageNum,
+    showDetails,
   } = bindActionCreators(actions, dispatch);
   return {
     addQuery: (payload) => addQuery(payload),
     addUIPageNum: (payload) => addUIPageNum(payload),
     defineSection: (payload) => defineSection(payload),
+    showDetails: (payload) => showDetails(payload),
     update: () => update(),
   };
 };
@@ -74,18 +77,18 @@ export default connect(null, mapDispatchToProps)(Search);
 
 Search.propTypes = {
   placeHolder: PropTypes.string,
-  start: PropTypes.string,
   addQuery: PropTypes.func,
   defineSection: PropTypes.func,
+  showDetails: PropTypes.func,
   update: PropTypes.func,
   addUIPageNum: PropTypes.func,
 };
 
 Search.defaultProps = {
   placeHolder: 'Search movies',
-  start: 'Start',
   addQuery: () => { },
   defineSection: () => { },
   update: () => { },
   addUIPageNum: () => { },
+  showDetails: () => { },
 };

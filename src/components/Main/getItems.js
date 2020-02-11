@@ -7,13 +7,13 @@ const request = new Request();
 export default async (requestName, requestArgs, cardsPerPage, UIpage) => {
   const layout = calculateRequestProps(UIpage, cardsPerPage, apiResultsPerPage);
 
-  if (layout.startPage === layout.endPage) {
+  if (layout.startPage === layout.endPage || layout.endRes === 0) {
     const data = await request[requestName](
       layout.startPage,
       ...requestArgs,
     );
     return {
-      items: data.results.slice(layout.startRes, layout.endRes),
+      items: data.results.slice(layout.startRes, layout.startRes + cardsPerPage),
       totalResults: data.total_results,
     };
   }

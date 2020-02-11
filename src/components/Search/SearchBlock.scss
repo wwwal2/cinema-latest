@@ -1,17 +1,44 @@
-.subgrid {
-	display: grid;
-	grid-template-columns: 5fr 1fr;
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 
-.search {
-	grid-row: 1;
-	grid-column: 1;
-	width: 100%;
+.input {
+  grid-column: 1 / 5;
+  width: 100%;
+  border: solid #404040;
+	border-width: 0 0 4px 0;
+	font-size: 2.5vh;
+}
+
+.input::placeholder {
+	font-size: 2.5vh;
+	text-align: center;
 }
 
 .start {
-	grid-row: 1;
-	grid-column: 2;
-	width: 100%;
+  grid-column: 5 / 5;
+  width: 100%;
+  border: none;
+  background: #404040;
+  color: #ffffff;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  &:hover {
+    color: #404040;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: none;
+    transition: all 0.3s ease 0s;
+  }
 }
 
+@media all and (min-height: 1000px) {
+	.input {
+		font-size: 25px;
+	}
+	.input::placeholder {
+		font-size: 25px;
+	}
+}

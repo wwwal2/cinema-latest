@@ -17,7 +17,7 @@ function Card(props) {
     addFavorite,
     favoriteIds,
     addDetailsId,
-    stepInDetails,
+    showDetails,
   } = props;
 
   const textLength = 200;
@@ -31,7 +31,7 @@ function Card(props) {
 
   const iconClick = (id) => {
     addDetailsId(id);
-    stepInDetails();
+    showDetails(true);
   };
 
   return (
@@ -80,10 +80,11 @@ const mapStateToProps = (state) => (
 );
 
 const mapDispatchToProps = (dispatch) => {
-  const { addFavorite, addDetailsId } = bindActionCreators(actions, dispatch);
+  const { addFavorite, addDetailsId, showDetails } = bindActionCreators(actions, dispatch);
   return {
     addFavorite: (payload) => addFavorite(payload),
     addDetailsId: (payload) => addDetailsId(payload),
+    showDetails: (payload) => showDetails(payload),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Card);
@@ -93,7 +94,7 @@ Card.propTypes = {
   favoriteIds: PropTypes.array,
   addFavorite: PropTypes.func,
   addDetailsId: PropTypes.func,
-  stepInDetails: PropTypes.func,
+  showDetails: PropTypes.func,
 };
 
 Card.defaultProps = {
@@ -101,5 +102,5 @@ Card.defaultProps = {
   favoriteIds: [],
   addFavorite: () => { },
   addDetailsId: () => { },
-  stepInDetails: () => { },
+  showDetails: () => { },
 };

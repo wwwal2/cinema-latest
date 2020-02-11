@@ -16,7 +16,7 @@ function Details(props) {
     item,
     favoriteIds,
     addFavorite,
-    exitDetails,
+    showDetails,
   } = props;
 
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
@@ -32,7 +32,7 @@ function Details(props) {
         className={details.poster}
         alt="no poster to this movie"
         src={`http://image.tmdb.org/t/p/w342/${item.poster_path}`}
-        onClick={exitDetails}
+        onClick={() => showDetails(false)}
       />
 
       <div className={details.informContainer}>
@@ -64,10 +64,11 @@ const mapStateToProps = (state) => (
 );
 
 const mapDispatchToProps = (dispatch) => {
-  const { addFavorite, addDetailsId } = bindActionCreators(actions, dispatch);
+  const { addFavorite, addDetailsId, showDetails } = bindActionCreators(actions, dispatch);
   return {
     addFavorite: (payload) => addFavorite(payload),
     addDetailsId: (payload) => addDetailsId(payload),
+    showDetails: (payload) => showDetails(payload),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Details);
@@ -76,12 +77,12 @@ Details.propTypes = {
   item: PropTypes.object,
   favoriteIds: PropTypes.array,
   addFavorite: PropTypes.func,
-  exitDetails: PropTypes.func,
+  showDetails: PropTypes.func,
 };
 
 Details.defaultProps = {
   item: { title: 'empty' },
   favoriteIds: [],
   addFavorite: () => { },
-  exitDetails: () => { },
+  showDetails: () => { },
 };

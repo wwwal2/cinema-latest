@@ -1,10 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../redux/actions';
 
-import filters from './FilterPayload.scss';
+import generateSelect from './generateSelect';
 
 function Select(props) {
   const {
@@ -14,36 +13,6 @@ function Select(props) {
     addRating,
     addGenre,
   } = props;
-
-  function generateSelect(options, current, reduxAction, id) {
-    return (
-      <div className={filters.gridContainer}>
-        <select
-          onChange={(event) => reduxAction(event.target.value)}
-          value={current}
-          id={id}
-          className={filters.select}
-        >
-          {options.map((option) => {
-            return (
-              <option
-                value={option}
-                key={option}
-              >
-                {option}
-              </option>
-            );
-          })}
-        </select>
-        <label
-          htmlFor={id}
-          className={filters.label}
-        >
-          {`select ${id}`}
-        </label>
-      </div>
-    );
-  }
 
   return (
     ratingPoints[0]

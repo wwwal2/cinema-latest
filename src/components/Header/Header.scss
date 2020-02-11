@@ -32,3 +32,14 @@
     }
   }
 }
+
+@media all and (min-height: 1000px) {
+  .container {
+    height: 70px;
+    .menuContainer {
+      .tabs {
+        font-size: 25px;
+      }
+    }
+  }
+}

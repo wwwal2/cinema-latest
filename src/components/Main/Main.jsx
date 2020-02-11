@@ -18,7 +18,6 @@ class Main extends React.Component {
     this.state = {
       items: [],
       details: {},
-      isDetails: false,
     };
     this.request = new Request();
   }
@@ -52,7 +51,6 @@ class Main extends React.Component {
     if (prevProps.detailsId !== detailsId) {
       const details = await this.request.getDetails(detailsId);
       this.updateState('details', details);
-      this.updateState('isDetails', true);
     }
   }
 
@@ -71,17 +69,18 @@ class Main extends React.Component {
   }
 
   render() {
-    const { isDetails, items, details } = this.state;
-    if (isDetails) {
+    const { detailsTab } = this.props;
+    const { items, details } = this.state;
+    if (details.id && detailsTab) {
       return (
-        <Details item={details} exitDetails={this.toggleDetails} />
+        <Details item={details} />
       );
     }
     return (
       <div className={mainStyles.pageBody}>
         {items.map((item) => {
           return (
-            <Card key={item.id} item={item} stepInDetails={this.toggleDetails} />
+            <Card key={item.id} item={item} />
           );
         })}
       </div>
@@ -92,6 +91,7 @@ class Main extends React.Component {
 const mapStateToProps = (state) => (
   {
     reduxProps: state,
+    detailsTab: state.detailsTab,
     detailsId: state.detailsId,
     updateCounter: state.updateCounter,
   }
@@ -113,9 +113,11 @@ Main.propTypes = {
   detailsId: PropTypes.number,
   addAllGenres: PropTypes.func,
   addResults: PropTypes.func,
+  detailsTab: PropTypes.bool,
 };
 
 Main.defaultProps = {
+  detailsTab: false,
   reduxProps: {},
   updateCounter: 0,
   detailsId: 0,

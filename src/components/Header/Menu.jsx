@@ -12,7 +12,17 @@ export default function Menu(props) {
   return (
     <div className={header.menuContainer}>
       {
-        tabNames.map((tabName) => <Tab tabName={tabName} route={routes[tabName.toLowerCase()]} />)
+        tabNames.map(
+          (tabName) => {
+            return (
+              <Tab
+                tabName={tabName}
+                route={routes[tabName.toLowerCase()]}
+                key={tabName}
+              />
+            );
+          },
+        )
       }
     </div>
   );
