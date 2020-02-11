@@ -13,10 +13,11 @@ function FilterPayload(props) {
     currentGenre,
     allGenres,
   } = props;
+  const genres = [{ id: ' ', name: ' ' }];
   return (
     <div>
       <YearFilter />
-      <Select selected={currentGenre} allGenres={allGenres} />
+      <Select selected={currentGenre} allGenres={genres.concat(allGenres)} />
       <Select selected={currentRating} ratingPoints={ratingPoints} />
       <TopButtons />
     </div>
@@ -41,7 +42,7 @@ FilterPayload.propTypes = {
 };
 
 FilterPayload.defaultProps = {
-  ratingPoints: [3, 4, 5, 6, 7, 8, 9],
+  ratingPoints: [' ', 3, 4, 5, 6, 7, 8, 9],
   currentRating: '',
   currentGenre: '',
   allGenres: [],
