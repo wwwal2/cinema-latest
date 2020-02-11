@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import cx from 'classnames';
-import settingsStyles from './OptionsPayload.scss';
+import options from './OptionsPayload.scss';
 
 import * as actions from '../../../redux/actions';
 import {
@@ -22,23 +22,25 @@ function OptionsController(props) {
   } = props;
 
   return (
-    <div className={settingsStyles.flex}>
-      <div className="label">{label}</div>
-      <i
-        className={cx(settingsStyles.arrow, settingsStyles.left)}
-        onClick={
-          () => changePayloadNum(-changeStep, target, allControllers[target] - minCardsNum)
-        }
-      />
-      <div className="value">
-        {allControllers[target]}
+    <div className={options.container}>
+      <div className={options.label}>{label}</div>
+      <div className={options.blockContainer}>
+        <i
+          className={cx(options.arrow, options.left)}
+          onClick={
+            () => changePayloadNum(-changeStep, target, allControllers[target] - minCardsNum)
+          }
+        />
+        <div className={options.value}>
+          {allControllers[target]}
+        </div>
+        <i
+          className={cx(options.arrow, options.right)}
+          onClick={
+            () => changePayloadNum(changeStep, target, maxCardsNum - allControllers[target])
+          }
+        />
       </div>
-      <i
-        className={cx(settingsStyles.arrow, settingsStyles.right)}
-        onClick={
-          () => changePayloadNum(changeStep, target, maxCardsNum - allControllers[target])
-        }
-      />
     </div>
   );
 }
