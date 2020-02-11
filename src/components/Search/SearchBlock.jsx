@@ -5,13 +5,12 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../../redux/actions';
 import { sections } from '../../constants';
-import searchStyles from './SearchBlock.scss';
+import search from './SearchBlock.scss';
 
 function Search(props) {
   const [query, setQuery] = useState('');
   const {
     placeHolder,
-    start,
     addQuery,
     defineSection,
     update,
@@ -35,21 +34,21 @@ function Search(props) {
   };
 
   return (
-    <div className={searchStyles.subgrid}>
+    <div className={search.container}>
       <input
         value={query}
         type="text"
         placeholder={placeHolder}
-        className={searchStyles.search}
+        className={search.input}
         onKeyPress={submit}
         onChange={userInput}
       />
       <button
         type="button"
-        className={searchStyles.start}
+        className={search.start}
         onClick={submit}
       >
-        {start}
+        Start
       </button>
     </div>
   );
@@ -74,7 +73,6 @@ export default connect(null, mapDispatchToProps)(Search);
 
 Search.propTypes = {
   placeHolder: PropTypes.string,
-  start: PropTypes.string,
   addQuery: PropTypes.func,
   defineSection: PropTypes.func,
   update: PropTypes.func,
@@ -83,7 +81,6 @@ Search.propTypes = {
 
 Search.defaultProps = {
   placeHolder: 'Search movies',
-  start: 'Start',
   addQuery: () => { },
   defineSection: () => { },
   update: () => { },
