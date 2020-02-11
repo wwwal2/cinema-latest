@@ -13,6 +13,7 @@ import {
   ADD_RESULTS,
   ADD_UI_PAGE_NUM,
   ADD_FAVORITE,
+  SHOW_DETAILS,
   ADD_DETAILS_ID,
   UPDATE,
   RESET,
@@ -90,6 +91,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         favoriteMovies: [...state.favoriteMovies, action.payload],
         favoriteIds: [...state.favoriteIds, payload.id],
+      };
+    case SHOW_DETAILS:
+      return {
+        ...state,
+        detailsTab: action.payload,
       };
     case ADD_DETAILS_ID:
       return {

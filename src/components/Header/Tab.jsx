@@ -15,11 +15,13 @@ function Tab(props) {
     addUIPageNum,
     defineSection,
     update,
+    showDetails,
   } = props;
 
   const changeTab = (value) => {
     addUIPageNum(1);
     defineSection(sections[value.toLowerCase()]);
+    showDetails(false);
     update();
   };
 
@@ -41,10 +43,16 @@ function Tab(props) {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const { addUIPageNum, update, defineSection } = bindActionCreators(actions, dispatch);
+  const {
+    addUIPageNum,
+    update,
+    defineSection,
+    showDetails,
+  } = bindActionCreators(actions, dispatch);
   return {
     addUIPageNum: (payload) => addUIPageNum(payload),
     defineSection: (payload) => defineSection(payload),
+    showDetails: (payload) => showDetails(payload),
     update: () => update(),
   };
 };
@@ -56,6 +64,7 @@ Tab.propTypes = {
   route: PropTypes.string,
   addUIPageNum: PropTypes.func,
   defineSection: PropTypes.func,
+  showDetails: PropTypes.func,
   update: PropTypes.func,
 };
 
@@ -64,5 +73,6 @@ Tab.defaultProps = {
   route: '',
   addUIPageNum: () => { },
   defineSection: () => { },
+  showDetails: () => { },
   update: () => { },
 };

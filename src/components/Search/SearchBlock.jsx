@@ -15,6 +15,7 @@ function Search(props) {
     defineSection,
     update,
     addUIPageNum,
+    showDetails,
   } = props;
 
 
@@ -28,6 +29,7 @@ function Search(props) {
       addUIPageNum(1);
       addQuery(encodeURIComponent(query.trim()));
       defineSection(sections.search);
+      showDetails(false);
       update();
       setQuery('');
     }
@@ -60,11 +62,13 @@ const mapDispatchToProps = (dispatch) => {
     defineSection,
     update,
     addUIPageNum,
+    showDetails,
   } = bindActionCreators(actions, dispatch);
   return {
     addQuery: (payload) => addQuery(payload),
     addUIPageNum: (payload) => addUIPageNum(payload),
     defineSection: (payload) => defineSection(payload),
+    showDetails: (payload) => showDetails(payload),
     update: () => update(),
   };
 };
@@ -75,6 +79,7 @@ Search.propTypes = {
   placeHolder: PropTypes.string,
   addQuery: PropTypes.func,
   defineSection: PropTypes.func,
+  showDetails: PropTypes.func,
   update: PropTypes.func,
   addUIPageNum: PropTypes.func,
 };
@@ -85,4 +90,5 @@ Search.defaultProps = {
   defineSection: () => { },
   update: () => { },
   addUIPageNum: () => { },
+  showDetails: () => { },
 };

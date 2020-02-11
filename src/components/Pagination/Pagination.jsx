@@ -17,6 +17,7 @@ function Pagination(props) {
     addUIPageNum,
     currentPage,
     update,
+    detailsTab,
   } = props;
 
   const changePage = (page) => {
@@ -24,7 +25,7 @@ function Pagination(props) {
     update();
   };
 
-  if (totalPages > 1) {
+  if (totalPages > 1 && !detailsTab) {
     return (
       <div>
         <div className={pagination.pagination}>
@@ -41,6 +42,7 @@ function Pagination(props) {
 const mapStateToProps = (state) => (
   {
     totalPages: Math.ceil(state.totalResults / state[state.section]),
+    detailsTab: state.detailsTab,
     currentPage: state.UIpage,
   }
 );
@@ -56,13 +58,15 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
 
 Pagination.propTypes = {
-  totalPages: PropTypes.number,
   addUIPageNum: PropTypes.func,
+  totalPages: PropTypes.number,
+  detailsTab: PropTypes.bool,
   update: PropTypes.func,
   currentPage: PropTypes.number,
 };
 
 Pagination.defaultProps = {
+  detailsTab: false,
   totalPages: 1,
   currentPage: 1,
   addUIPageNum: () => { },

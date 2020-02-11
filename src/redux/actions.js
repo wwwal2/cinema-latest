@@ -6,12 +6,14 @@ import {
   ADD_RESULTS,
   ADD_UI_PAGE_NUM,
   ADD_FAVORITE,
+  SHOW_DETAILS,
   ADD_DETAILS_ID,
   UPDATE,
   RESET,
   CHANGE_CARD_NUM,
   DEFINE_SECTION,
   ADD_QUERY,
+
 } from '../constants';
 
 export const addRating = (payload) => ({ type: ADD_RATING, payload });
@@ -22,6 +24,7 @@ export const addResults = (payload) => ({ type: ADD_RESULTS, payload });
 export const addUIPageNum = (payload) => ({ type: ADD_UI_PAGE_NUM, payload });
 export const addFavorite = (payload) => ({ type: ADD_FAVORITE, payload });
 export const addDetailsId = (payload) => ({ type: ADD_DETAILS_ID, payload });
+export const showDetails = (payload) => ({ type: SHOW_DETAILS, payload });
 export const defineSection = (payload) => ({ type: DEFINE_SECTION, payload });
 export const addQuery = (payload) => ({ type: ADD_QUERY, payload });
 

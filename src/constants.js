@@ -7,6 +7,7 @@ export const ADD_ALL_GENRES = 'ADD_ALL_GENRES';
 export const ADD_RESULTS = 'ADD_RESULTS';
 export const ADD_UI_PAGE_NUM = 'ADD_UI_PAGE_NUM';
 export const ADD_FAVORITE = 'ADD_FAVORITE';
+export const SHOW_DETAILS = 'SHOW_DETAILS';
 export const ADD_DETAILS_ID = 'ADD_DETAILS_ID';
 export const UPDATE = 'UPDATE';
 export const RESET = 'RESET';
