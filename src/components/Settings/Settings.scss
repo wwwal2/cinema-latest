@@ -72,3 +72,12 @@
   padding: 5%;
   top: 7vh;
 }
+
+@media all and (min-height: 1000px) {
+  .container {
+    font-size: 25px;
+  }
+  .mainButton {
+    font-size: 25px;
+  }
+}
