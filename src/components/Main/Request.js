@@ -7,6 +7,12 @@ export default class Request {
     this.detailsUrl = `${this.basicUrl}movie/`;
     this.popularUrl = `${this.basicUrl}movie/popular?api_key=${this.key}&language=en-US&page=`;
     this.findUrl = `${this.basicUrl}search/movie?api_key=${this.key}&language=en-US`;
+    this.keyNames = [
+      '&page=',
+      '&year=',
+      '&vote_average.gte=',
+      '&with_genres=',
+    ];
   }
 
   async getData(url) {
@@ -19,7 +25,7 @@ export default class Request {
     return response;
   }
 
-  getMovies(page = 1, year = 2019, rate = 8, genre = 'Action') {
+  getMovies(page, year, rate, genre) {
     return this.getData(`${this.discoverUrl}&page=${page}&year=${year}&vote_average.gte=${rate}&vote_average.lte=${rate + 1}&with_genres=${genre}`);
   }
 
