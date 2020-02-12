@@ -10,8 +10,8 @@ export default class Request {
     this.keyNames = [
       '&page=',
       '&year=',
-      '&vote_average.gte=',
       '&with_genres=',
+      '&vote_average.gte=',
       '&vote_average.lte=',
     ];
   }
@@ -30,7 +30,7 @@ export default class Request {
     const req = args.reduce((acc, curr, index) => {
       if (curr !== ' ') {
         acc = acc + this.keyNames[index] + curr;
-        if (index === 2) {
+        if (index === 3) {
           acc = acc + this.keyNames[4] + (Number(curr) + 1);
         }
         return acc;
