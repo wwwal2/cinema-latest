@@ -46,3 +46,15 @@
   background-color: #fffacd;
   display: none;
 }
+
+@media all and (min-height: 1000px) {
+  .label {
+    font-size: 25px;
+  }
+  .filterInput {
+    font-size: 20px;
+  }
+  .select {
+    font-size: 20px;
+  }
+}
