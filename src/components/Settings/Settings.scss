@@ -34,15 +34,23 @@
   height: 4vh;
 }
 
-.apply {
+.applyLink {
+  height:inherit;
   grid-column: 1 / 2;
+}
+
+.apply {
   &:hover {
     background: #78ec6d;
   }
 }
 
-.reset {
+.resetLink {
+  height:inherit;
   grid-column: 8 / 8;
+}
+
+.reset {
   &:hover {
     background: #fc1f1f;
   }

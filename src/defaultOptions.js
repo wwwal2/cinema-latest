@@ -1,8 +1,8 @@
 export default {
   // default start page request
-  year: '2019',
-  genre: 'Fantasy',
-  rating: '7',
+  year: ' ',
+  genre: ' ',
+  rating: ' ',
   section: 'main',
 
   totalResults: 0,

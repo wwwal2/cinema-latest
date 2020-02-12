@@ -2,7 +2,7 @@ export default class Request {
   constructor() {
     this.key = '80ab1c9954395b4f678edc2f29c0a276';
     this.basicUrl = 'https://api.themoviedb.org/3/';
-    this.discoverUrl = `${this.basicUrl}discover/movie?api_key=${this.key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false`;
+    this.discoverUrl = `${this.basicUrl}discover/movie?api_key=${this.key}&language=en-US&sort_by=revenue.desc&include_adult=false&include_video=false`;
     this.genresUrl = `${this.basicUrl}genre/movie/list?api_key=${this.key}&language=en-US`;
     this.detailsUrl = `${this.basicUrl}movie/`;
     this.popularUrl = `${this.basicUrl}movie/popular?api_key=${this.key}&language=en-US&page=`;
@@ -12,6 +12,7 @@ export default class Request {
       '&year=',
       '&vote_average.gte=',
       '&with_genres=',
+      '&vote_average.lte=',
     ];
   }
 
@@ -25,8 +26,18 @@ export default class Request {
     return response;
   }
 
-  getMovies(page, year, rate, genre) {
-    return this.getData(`${this.discoverUrl}&page=${page}&year=${year}&vote_average.gte=${rate}&vote_average.lte=${rate + 1}&with_genres=${genre}`);
+  getMovies(...args) {
+    const req = args.reduce((acc, curr, index) => {
+      if (curr !== ' ') {
+        acc = acc + this.keyNames[index] + curr;
+        if (index === 2) {
+          acc = acc + this.keyNames[4] + (Number(curr) + 1);
+        }
+        return acc;
+      } return acc;
+    }, this.discoverUrl);
+
+    return this.getData(req);
   }
 
   getPopular(page = 1) {
