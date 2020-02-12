@@ -57,7 +57,7 @@ function Card(props) {
           onClick={() => iconClick(item.id)}
         />
       </div>
-      <p>
+      <p className={card.text}>
         {
           item.overview.length > textLength
             ? `${item.overview.substr(0, textLength)}...`
@@ -65,18 +65,14 @@ function Card(props) {
         }
       </p>
       <p>
-        Rate
-        {item.vote_average}
+        {`Rate ${item.vote_average}`}
       </p>
-      <p>{item.id}</p>
     </div>
   );
 }
 
 const mapStateToProps = (state) => (
-  {
-    favoriteIds: state.favoriteIds,
-  }
+  { favoriteIds: state.favoriteIds }
 );
 
 const mapDispatchToProps = (dispatch) => {

@@ -13,11 +13,11 @@ function FilterPayload(props) {
     currentGenre,
     allGenres,
   } = props;
-  const genres = [{ id: ' ', name: ' ' }];
+  const blancGenre = [{ id: ' ', name: ' ' }];
   return (
     <div>
       <YearFilter />
-      <Select selected={currentGenre} allGenres={genres.concat(allGenres)} />
+      <Select selected={currentGenre} allGenres={blancGenre.concat(allGenres)} />
       <Select selected={currentRating} ratingPoints={ratingPoints} />
       <TopButtons />
     </div>
