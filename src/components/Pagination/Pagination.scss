@@ -1,7 +1,14 @@
-.pagination {
+.container {
   display: flex;
+  margin: 1vw auto;
   justify-content: center;
-  height: 60px;
+  height: 30px;
+  width: 200px;
+  align-items: center;
+}
+
+.arrow {
+  height: inherit;
 }
 
 .label {
@@ -14,16 +21,40 @@
 }
 
 .currentPage {
-  border: 3px solid red;
+  border: 0;
+  border-bottom: 3px solid black;
+  background: none;
+  font-weight: 900;
+  background: transparent;
+  font-size: 2.5vh;
 }
 
 .button {
-  background-color: #bc8f8f;
+  font-weight: 900;
+  border: 0;
+  background: transparent;
+  font-size: 2.5vh;
 }
 .button:hover {
   cursor: pointer;
 }
 
 .dots {
-  background-color: #bc8f8f;
+  font-weight: 900;
+  font-size: 2.5vh;
+  border: 0;
+  cursor: default;
+  background: transparent;
+}
+
+@media all and (min-height: 1000px) {
+  .button {
+    font-size: 25px;
+  }
+  .currentPage {
+    font-size: 25px;
+  }
+  .dots {
+    font-size: 25px;
+  }
 }

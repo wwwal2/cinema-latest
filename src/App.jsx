@@ -20,6 +20,7 @@ function App(props) {
   return (
     <Router>
       <Header routes={routes} />
+      <Pagination />
       <Switch>
         <Route path={`${routes.main}`} exact component={Main} />
         <Route path={`/${currentPage}`} component={Main} />
