@@ -1,25 +1,8 @@
 .pageBody {
+  margin: 1vw 0px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 50px;
+  gap: 1vw;
   justify-content: center;
   align-items: first baseline;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #00ffff;
-}
-
-.favorite {
-  align-self: flex-end;
-  height: 30px;
-  width: 30px;
-  border: none;
-}
-.favorite:hover {
-  cursor: pointer;
 }

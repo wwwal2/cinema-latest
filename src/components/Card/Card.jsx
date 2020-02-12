@@ -13,11 +13,13 @@ import { checkFavorite } from '../Utils';
 
 function Card(props) {
   const {
+    section,
     item,
     addFavorite,
     favoriteIds,
     addDetailsId,
     showDetails,
+    update,
   } = props;
 
   const textLength = 200;
@@ -27,6 +29,9 @@ function Card(props) {
   const toggleFavorite = () => {
     addFavorite(item);
     setFavorite(!favorite);
+    if (section === 'favorite') {
+      update();
+    }
   };
 
   const iconClick = (id) => {
@@ -57,7 +62,7 @@ function Card(props) {
           onClick={() => iconClick(item.id)}
         />
       </div>
-      <p>
+      <p className={card.text}>
         {
           item.overview.length > textLength
             ? `${item.overview.substr(0, textLength)}...`
@@ -65,10 +70,8 @@ function Card(props) {
         }
       </p>
       <p>
-        Rate
-        {item.vote_average}
+        {`Rate ${item.vote_average}`}
       </p>
-      <p>{item.id}</p>
     </div>
   );
 }
@@ -76,31 +79,42 @@ function Card(props) {
 const mapStateToProps = (state) => (
   {
     favoriteIds: state.favoriteIds,
+    section: state.section,
   }
 );
 
 const mapDispatchToProps = (dispatch) => {
-  const { addFavorite, addDetailsId, showDetails } = bindActionCreators(actions, dispatch);
+  const {
+    addFavorite,
+    addDetailsId,
+    showDetails,
+    update,
+  } = bindActionCreators(actions, dispatch);
   return {
     addFavorite: (payload) => addFavorite(payload),
     addDetailsId: (payload) => addDetailsId(payload),
     showDetails: (payload) => showDetails(payload),
+    update: () => update(),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Card);
 
 Card.propTypes = {
+  section: PropTypes.string,
   item: PropTypes.object,
   favoriteIds: PropTypes.array,
   addFavorite: PropTypes.func,
   addDetailsId: PropTypes.func,
   showDetails: PropTypes.func,
+  update: PropTypes.func,
 };
 
 Card.defaultProps = {
+  section: '',
   item: { title: 'empty' },
   favoriteIds: [],
   addFavorite: () => { },
   addDetailsId: () => { },
   showDetails: () => { },
+  update: () => { },
 };

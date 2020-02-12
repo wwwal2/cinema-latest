@@ -22,8 +22,8 @@ export default async (props) => {
         'getMovies',
         [
           year,
-          rating,
           codeGenre(genre, allGenres),
+          rating,
         ],
         main,
         UIpage,

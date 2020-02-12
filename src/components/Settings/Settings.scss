@@ -34,15 +34,23 @@
   height: 4vh;
 }
 
-.apply {
+.applyLink {
+  height:inherit;
   grid-column: 1 / 2;
+}
+
+.apply {
   &:hover {
     background: #78ec6d;
   }
 }
 
-.reset {
+.resetLink {
+  height:inherit;
   grid-column: 8 / 8;
+}
+
+.reset {
   &:hover {
     background: #fc1f1f;
   }
@@ -71,6 +79,7 @@
   width: 150%;
   padding: 5%;
   top: 7vh;
+  z-index: 1;
 }
 
 @media all and (min-height: 1000px) {
@@ -79,5 +88,12 @@
   }
   .mainButton {
     font-size: 25px;
+  }
+  .actionBtnContainer {
+    height: 40px;
+  }
+  .hide-false {
+    top: 70px;
+    height: 150px;
   }
 }

@@ -1,24 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 import * as actions from '../../redux/actions';
-
 import pagination from './Pagination.scss';
 
-function Button(props) {
+
+function Arrow(props) {
   const {
-    page,
-    btnClass,
     addUIPageNum,
     update,
-    disabled,
+    image,
+    page,
   } = props;
 
-  const changePage = (value) => {
-    addUIPageNum(value);
+  const changePage = (myPage) => {
+    addUIPageNum(myPage);
     update();
   };
 
@@ -26,15 +25,9 @@ function Button(props) {
     <Link
       to={`/${page}`}
       key={page}
+      className={pagination.arrow}
     >
-      <button
-        type="button"
-        className={pagination[btnClass]}
-        onClick={() => changePage(page)}
-        disabled={disabled}
-      >
-        {page}
-      </button>
+      <img alt="arrow" src={image} onClick={() => changePage(page)} className={pagination.arrow} />
     </Link>
   );
 }
@@ -47,20 +40,18 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Button);
+export default connect(null, mapDispatchToProps)(Arrow);
 
-Button.propTypes = {
-  page: PropTypes.node,
-  btnClass: PropTypes.string,
+Arrow.propTypes = {
+  page: PropTypes.number,
+  image: PropTypes.string,
   addUIPageNum: PropTypes.func,
   update: PropTypes.func,
-  disabled: PropTypes.bool,
 };
 
-Button.defaultProps = {
+Arrow.defaultProps = {
   page: 0,
-  btnClass: '',
+  image: '',
   addUIPageNum: () => { },
   update: () => { },
-  disabled: false,
 };
