@@ -33,14 +33,22 @@ export default class Filter extends React.Component {
       <div className={settingsStyles.container}>
         <button
           type="button"
-          className={settingsStyles.mainButton}
+          className={
+            settings === filters && !hide
+              ? settingsStyles.activeButton
+              : settingsStyles.mainButton
+          }
           onClick={() => this.toggle(filters)}
         >
           {filters}
         </button>
         <button
           type="button"
-          className={settingsStyles.mainButton}
+          className={
+            settings === options && !hide
+              ? settingsStyles.activeButton
+              : settingsStyles.mainButton
+          }
           onClick={() => this.toggle(options)}
         >
           {options}
