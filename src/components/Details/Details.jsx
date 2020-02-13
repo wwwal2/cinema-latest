@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import details from './Details.scss';
 import favoriteOn from '../../../images/starFilled.png';
 import favoriteOff from '../../../images/starEmpty.png';
+import noPoster from '../../../images/noPoster.png';
 
 import * as actions from '../../redux/actions';
 import { checkFavorite, parsePayloadArray } from '../Utils';
@@ -20,6 +21,7 @@ function Details(props) {
   } = props;
 
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
+  const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w185/${item.poster_path}`);
 
   const toggleFavorite = () => {
     addFavorite(item);
@@ -31,8 +33,9 @@ function Details(props) {
       <img
         className={details.poster}
         alt="no poster to this movie"
-        src={`http://image.tmdb.org/t/p/w342/${item.poster_path}`}
+        src={imagePath}
         onClick={() => showDetails(false)}
+        onError={() => setImagePath(noPoster)}
       />
 
       <div className={details.informContainer}>
