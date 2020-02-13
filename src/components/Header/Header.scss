@@ -34,8 +34,11 @@
 
 @media all and (min-height: 1000px) {
   .container {
-    height: 70px;
+    .logo {
+      height: 70px;
+    }
     .menuContainer {
+      height: 70px;
       .tabs {
         font-size: 25px;
       }
