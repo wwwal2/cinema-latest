@@ -2,17 +2,16 @@
   display: grid;
   grid-template-columns: 1fr 15fr 5fr 5fr;
   gap: 10px;
-  height: 7vh;
   font-family: Ubuntu, sans-serif;
 
   .logo {
-    height: inherit;
+    height: 7vh;
   }
 
   .menuContainer {
     display: flex;
     justify-content: space-evenly;
-    height: inherit;
+    height: 7vh;
 
     .tabs {
       width: 100%;
@@ -40,6 +39,20 @@
       .tabs {
         font-size: 25px;
       }
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
+  .container {
+    grid-template-columns: repeat(20, 1fr);
+    .logo {
+      grid-column: 1 / 2;
+      margin: auto;
+      height: 7vh;
+    }
+    .menuContainer {
+      grid-column: 2 / 21;
     }
   }
 }

@@ -42,3 +42,10 @@
 		font-size: 25px;
 	}
 }
+
+@media all and (max-width: 800px) {
+  .container {
+    grid-row: 2;
+    grid-column: 11 / 21;
+  }
+}
