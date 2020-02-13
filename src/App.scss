@@ -1,3 +1,25 @@
+html body {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
 .wrapper {
-	min-height: 92vh;
+	// min-height: 100vh;
+	// margin-bottom: -50px;
+	display: flex;
+	flex-direction:column;
+}
+
+.buffer {
+	height: 50px;
+}
+
+.pusher {
+	display: flex;
+	flex-direction: column;
+}
+.pusherChild {
+	flex-grow: 1;
+	flex-basis: 2em;
+	background-color: red;
 }

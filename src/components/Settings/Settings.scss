@@ -1,12 +1,12 @@
 .container {
-  height: inherit;
+  height: 7vh;
   position: relative;
   display: flex;
   justify-content: space-evenly;
   font-size: 2.5vh;
 }
 
-.mainButton {
+.settingsBtn {
   width: 100%;
   height: inherit;
   cursor: pointer;
@@ -23,6 +23,19 @@
     border-color: #008080;
     transition: all 0.4s ease 0s;
   }
+}
+
+.activeButton {
+  width: 100%;
+  height: inherit;
+  cursor: pointer;
+  font-size: 2.5vh;
+  color: #ffffff;
+  text-transform: uppercase;
+  background: #008080;
+  border: solid #008080;
+  border-width: 4px 0px;
+  transition: all 0.4s ease 0s;
 }
 
 .actionBtnContainer {
@@ -85,6 +98,7 @@
 @media all and (min-height: 1000px) {
   .container {
     font-size: 25px;
+    height: 70px;
   }
   .mainButton {
     font-size: 25px;
@@ -95,5 +109,15 @@
   .hide-false {
     top: 70px;
     height: 150px;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .container {
+    grid-row: 2;
+    grid-column: 2 / 11;
+  }
+  .hide-false {
+    width: 130%;
   }
 }

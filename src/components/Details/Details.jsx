@@ -31,7 +31,7 @@ function Details(props) {
       <img
         className={details.poster}
         alt="no poster to this movie"
-        src={`http://image.tmdb.org/t/p/w342/${item.poster_path}`}
+        src={`http://image.tmdb.org/t/p/w500/${item.poster_path}`}
         onClick={() => showDetails(false)}
       />
 
