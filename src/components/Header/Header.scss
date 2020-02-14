@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 15fr 5fr 5fr;
   gap: 10px;
   font-family: Ubuntu, sans-serif;
+  flex-grow: 1;
 
   .logo {
     height: 7vh;

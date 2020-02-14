@@ -5,11 +5,17 @@ html body {
 }
 .wrapper {
 	min-height: 100vh;
-	margin-bottom: -50px;
+	// margin-bottom: -50px;
 	display: flex;
 	flex-wrap: wrap;
+	align-content: start;
 }
 
-.buffer {
-	height: 50px;
+.bufferOn {
+height: 50px;
+margin-top:50px;
+}
+
+.bufferOff {
+	display: none;
 }
