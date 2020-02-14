@@ -1,25 +1,22 @@
 .container {
   background-color: #3c5253;
-  height: 70vh;
-  display: grid;
-  gap: 2vw;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   align-items: center;
+  gap: 2vh;
 }
 
 .poster {
-  height: inherit;
-  justify-self: end;
 }
 .poster:hover {
   cursor: pointer;
 }
 
 .informContainer {
-  justify-self: start;
   color: #f6fafa;
   font-family: Ubuntu, sans-serif;
-  font-size: 3vh;
+  font-size: 2.5vh;
+  width: 50%;
+  flex-shrink: 1;
 }
 
 .favorite {
@@ -36,7 +33,16 @@
   .informContainer {
     font-size: 30px;
   }
+
   .poster {
     height: 1000px;
   }
+}
+
+@media all and (max-width: 800px) {
+  
+}
+
+@media all and (max-width: 500px) {
+  
 }

@@ -4,22 +4,22 @@ html body {
 	border: 0;
 }
 .wrapper {
-	// min-height: 100vh;
+	min-height: 100vh;
 	// margin-bottom: -50px;
 	display: flex;
-	flex-direction:column;
+	flex-wrap: wrap;
+	align-content: start;
 }
 
-.buffer {
-	height: 50px;
+.background {
+	background-color: #3c5253;
 }
 
-.pusher {
-	display: flex;
-	flex-direction: column;
+.bufferOn {
+height: 50px;
+margin-top:50px;
 }
-.pusherChild {
-	flex-grow: 1;
-	flex-basis: 2em;
-	background-color: red;
+
+.bufferOff {
+	display: none;
 }

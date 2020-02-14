@@ -8,13 +8,13 @@
   grid-column: 1 / 5;
   width: 100%;
   border: solid #404040;
-	border-width: 0 0 4px 0;
-	font-size: 2.5vh;
+  border-width: 0 0 4px 0;
+  font-size: 2.5vh;
 }
 
 .input::placeholder {
-	font-size: 2.5vh;
-	text-align: center;
+  font-size: 2.5vh;
+  text-align: center;
 }
 
 .start {
@@ -36,17 +36,31 @@
 }
 
 @media all and (min-height: 1000px) {
-	.input {
-		font-size: 25px;
-	}
-	.input::placeholder {
-		font-size: 25px;
-	}
+  .container {
+    height: 70px;
+  }
+  .input {
+    font-size: 25px;
+  }
+  .input::placeholder {
+    font-size: 25px;
+  }
 }
 
 @media all and (max-width: 800px) {
   .container {
     grid-row: 2;
     grid-column: 11 / 21;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .container {
+    grid-row: 1;
+    grid-column: 1 / 21;
+  }
+
+  .input {
+    text-align: center;
   }
 }
