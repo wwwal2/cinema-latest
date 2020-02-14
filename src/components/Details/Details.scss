@@ -1,6 +1,6 @@
 .container {
   background-color: #3c5253;
-  height: 70vh;
+  height: 85vh;
   display: grid;
   gap: 2vw;
   grid-template-columns: repeat(2, 1fr);
@@ -36,7 +36,16 @@
   .informContainer {
     font-size: 30px;
   }
+
   .poster {
     height: 1000px;
   }
+}
+
+@media all and (max-width: 800px) {
+  
+}
+
+@media all and (max-width: 500px) {
+  
 }

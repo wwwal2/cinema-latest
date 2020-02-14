@@ -48,7 +48,7 @@
 }
 
 .applyLink {
-  height:inherit;
+  height: inherit;
   grid-column: 1 / 2;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .resetLink {
-  height:inherit;
+  height: inherit;
   grid-column: 8 / 8;
 }
 
@@ -100,15 +100,26 @@
     font-size: 25px;
     height: 70px;
   }
+
   .mainButton {
     font-size: 25px;
   }
+
   .actionBtnContainer {
     height: 40px;
   }
+
   .hide-false {
     top: 70px;
     height: 150px;
+  }
+
+  .settingsBtn {
+    font-size: 25px;
+  }
+
+  .activeButton {
+    font-size: 25px;
   }
 }
 
@@ -117,7 +128,18 @@
     grid-row: 2;
     grid-column: 2 / 11;
   }
+
   .hide-false {
     width: 130%;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .container {
+    grid-row: 3;
+    grid-column: 1 / 21;
+  }
+  .hide-false {
+    width: 90%;
   }
 }

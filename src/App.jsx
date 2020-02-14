@@ -31,9 +31,6 @@ function App(props) {
         </Switch>
         <Pagination />
         <div className={style.buffer} />
-        <div className={style.pusher}>
-          <div className={style.pusherChild} />
-        </div>
       </div>
       <Footer />
     </Router>
