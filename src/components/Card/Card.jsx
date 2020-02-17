@@ -28,10 +28,15 @@ function Card(props) {
 
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
   const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w185/${item.poster_path}`);
+  const [notification, setNotification] = useState(card.notification);
 
   const toggleFavorite = () => {
     addFavorite(item);
     setFavorite(!favorite);
+    if (!favorite) {
+      setNotification(card.show);
+      setTimeout(() => setNotification(card.notification), 1000);
+    }
     if (section === 'favorite') {
       update();
     }
@@ -46,17 +51,20 @@ function Card(props) {
 
   return (
     <div className={card.card}>
-      <img
-        role="button"
-        alt="favorite"
-        src={
-          favorite
-            ? favoriteOn
-            : favoriteOff
-        }
-        className={card.favorite}
-        onClick={() => toggleFavorite()}
-      />
+      <div className={card.favoriteContainer}>
+        <div className={notification}>Added to favorite</div>
+        <img
+          role="button"
+          alt="favorite"
+          src={
+            favorite
+              ? favoriteOn
+              : favoriteOff
+          }
+          className={card.favorite}
+          onClick={() => toggleFavorite()}
+        />
+      </div>
       <h3>
         {`${item.title} (${item.release_date.substr(0, 4)})`}
       </h3>

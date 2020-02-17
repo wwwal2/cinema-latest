@@ -16,10 +16,32 @@
   height: 30px;
   width: 30px;
   border: none;
+  &:hover {
+    cursor: pointer;
+  }
 }
-.favorite:hover {
-  cursor: pointer;
+
+.favoriteContainer {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: end;
 }
+
+.notification {
+  opacity: 0;
+  height: 20px;
+  border: 3px solid black;
+}
+
+.show {
+  opacity: 1;
+  background-color: #ffffff;
+  color: #008080;
+  height: 20px;
+  border: 3px solid #008080;
+}
+
 
 .text {
   margin: 0px 12px;
@@ -28,3 +50,4 @@
 .poster {
   cursor: pointer;
 }
+
