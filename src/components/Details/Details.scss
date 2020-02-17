@@ -1,3 +1,7 @@
+.wrapper {
+  text-align: center;
+}
+
 .container {
   background-color: #3c5253;
   display: grid;
@@ -27,9 +31,25 @@
   height: 30px;
   width: 30px;
   border: none;
+  &:hover {
+    cursor: pointer;
+  }
 }
-.favorite:hover {
-  cursor: pointer;
+
+.backBtn {
+  width: 150px;
+  color: #20bf6b;
+  background: #ffffff;
+  padding: 10px;
+  margin: 1vh;
+  border: 4px solid #20bf6b;
+  border-radius: 6px;
+  transition: all 0.3s ease 0s;
+  &:hover {
+    color: #494949;
+    border-color: #494949;
+    transition: all 0.3s ease 0s;
+  }
 }
 
 @media all and (min-height: 1000px) {
@@ -47,6 +67,7 @@
     display: block;
     text-align: center;
   }
+
   .poster {
     height: 40vh;
   }
@@ -54,7 +75,8 @@
   .informContainer {
     font-size: 1.8vh;
   }
-}
 
-@media all and (max-width: 500px) {
+  .backBtn {
+    margin: 0;
+  }
 }
