@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import details from './Details.scss';
 import favoriteOn from '../../../images/starFilled.png';
 import favoriteOff from '../../../images/starEmpty.png';
+import noPoster from '../../../images/noPoster.png';
+
 
 import * as actions from '../../redux/actions';
 import { checkFavorite, parsePayloadArray } from '../Utils';
@@ -20,6 +22,7 @@ function Details(props) {
   } = props;
 
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
+  const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w500/${item.poster_path}`);
 
   const toggleFavorite = () => {
     addFavorite(item);
@@ -27,33 +30,43 @@ function Details(props) {
   };
 
   return (
-    <div className={details.container}>
-      <img
-        className={details.poster}
-        alt="no poster to this movie"
-        src={`http://image.tmdb.org/t/p/w500/${item.poster_path}`}
-        onClick={() => showDetails(false)}
-      />
-
-      <div className={details.informContainer}>
+    <div className={details.wrapper}>
+      <div className={details.container}>
         <img
-          alt="favorite"
-          src={favorite ? favoriteOn : favoriteOff}
-          className={details.favorite}
-          onClick={() => toggleFavorite()}
+          className={details.poster}
+          alt="no poster to this movie"
+          src={imagePath}
+          onClick={() => showDetails(false)}
+          onError={() => setImagePath(noPoster)}
         />
-        <h2>{item.title}</h2>
-        <div>{`Release: ${item.release_date}`}</div>
-        <div>
-          <span>Production: </span>
-          {parsePayloadArray(item.production_countries, 'name')}
+        <div className={details.informContainer}>
+          <img
+            alt="favorite"
+            src={favorite ? favoriteOn : favoriteOff}
+            className={details.favorite}
+            onClick={() => toggleFavorite()}
+          />
+          <h2>{item.title}</h2>
+          <div>{`Release: ${item.release_date}`}</div>
+          <div>
+            <span>Production: </span>
+            {parsePayloadArray(item.production_countries, 'name')}
+          </div>
+          <div>{`Budget: ${item.budget}$`}</div>
+          <div>{`Rating: ${item.vote_average} Votes: ${item.vote_count}`}</div>
+          <div>{parsePayloadArray(item.genres, 'name')}</div>
+          <p>{item.overview}</p>
         </div>
-        <div>{`Budget: ${item.budget}$`}</div>
-        <div>{`Rating: ${item.vote_average} Votes: ${item.vote_count}`}</div>
-        <div>{parsePayloadArray(item.genres, 'name')}</div>
-        <p>{item.overview}</p>
       </div>
+      <button
+        type="button"
+        onClick={() => showDetails(false)}
+        className={details.backBtn}
+      >
+        BACK
+      </button>
     </div>
+
   );
 }
 

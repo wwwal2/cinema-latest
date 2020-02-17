@@ -40,6 +40,7 @@ class Main extends React.Component {
       updateCounter,
       detailsId,
       addResults,
+      showDetails,
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
@@ -51,14 +52,7 @@ class Main extends React.Component {
     if (prevProps.detailsId !== detailsId) {
       const details = await this.request.getDetails(detailsId);
       this.updateState('details', details);
-    }
-  }
-
-
-  toggleDetails = () => {
-    const { isDetails, details } = this.state;
-    if (details.id) {
-      this.updateState('isDetails', !isDetails);
+      showDetails(true);
     }
   }
 
@@ -98,10 +92,11 @@ const mapStateToProps = (state) => (
 );
 
 const mapDispatchToProps = (dispatch) => {
-  const { addResults, addAllGenres } = bindActionCreators(actions, dispatch);
+  const { addResults, addAllGenres, showDetails } = bindActionCreators(actions, dispatch);
   return {
     addResults: (payload) => addResults(payload),
     addAllGenres: (payload) => addAllGenres(payload),
+    showDetails: (payload) => showDetails(payload),
   };
 };
 
@@ -113,6 +108,7 @@ Main.propTypes = {
   detailsId: PropTypes.number,
   addAllGenres: PropTypes.func,
   addResults: PropTypes.func,
+  showDetails: PropTypes.func,
   detailsTab: PropTypes.bool,
 };
 
@@ -123,4 +119,5 @@ Main.defaultProps = {
   detailsId: 0,
   addResults: () => { },
   addAllGenres: () => { },
+  showDetails: () => { },
 };

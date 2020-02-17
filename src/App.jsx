@@ -20,7 +20,7 @@ function App(props) {
 
   return (
     <Router>
-      <div className={style.wrapper}>
+      <div className={detailsTab ? `${style.wrapper} ${style.details}` : style.wrapper}>
         <Header routes={routes} />
         <Pagination />
         <Switch>
@@ -30,7 +30,7 @@ function App(props) {
           <Route path={`${routes.popular}`} exact component={Main} />
         </Switch>
         <Pagination />
-        <div className={detailsTab ? style.bufferOff : style.bufferOn} />
+        <div className={style.buffer} />
       </div>
       <Footer />
     </Router>

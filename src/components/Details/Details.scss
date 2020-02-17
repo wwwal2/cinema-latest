@@ -1,22 +1,28 @@
+.wrapper {
+  text-align: center;
+}
+
 .container {
-  background-color: #3c5253;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
   gap: 2vh;
 }
 
 .poster {
-}
-.poster:hover {
-  cursor: pointer;
+  grid-column: 1 / 2;
+  justify-self: end;
+  height: 80vh;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .informContainer {
+  grid-column: 2 / 3;
   color: #f6fafa;
   font-family: Ubuntu, sans-serif;
   font-size: 2.5vh;
-  width: 50%;
-  flex-shrink: 1;
 }
 
 .favorite {
@@ -24,9 +30,24 @@
   height: 30px;
   width: 30px;
   border: none;
+  &:hover {
+    cursor: pointer;
+  }
 }
-.favorite:hover {
-  cursor: pointer;
+
+.backBtn {
+  width: 150px;
+  color: #008080;
+  background: #ffffff;
+  padding: 10px;
+  margin: 1vh;
+  border: 4px solid #008080;
+  border-radius: 6px;
+  &:hover {
+    color: red;
+    border-color: red;
+    cursor: pointer;
+  }
 }
 
 @media all and (min-height: 1000px) {
@@ -40,9 +61,20 @@
 }
 
 @media all and (max-width: 800px) {
-  
-}
+  .container {
+    display: block;
+    text-align: center;
+  }
 
-@media all and (max-width: 500px) {
-  
+  .poster {
+    height: 40vh;
+  }
+
+  .informContainer {
+    font-size: 1.8vh;
+  }
+
+  .backBtn {
+    margin: 0;
+  }
 }

@@ -5,21 +5,14 @@ html body {
 }
 .wrapper {
 	min-height: 100vh;
-	// margin-bottom: -50px;
-	display: flex;
-	flex-wrap: wrap;
-	align-content: start;
+	margin-bottom: -50px;
+	background-color: #ffffff;
 }
 
-.background {
-	background-color: #3c5253;
+.details {
+	background-color: #47346d;
 }
 
-.bufferOn {
+.buffer {
 height: 50px;
-margin-top:50px;
-}
-
-.bufferOff {
-	display: none;
 }

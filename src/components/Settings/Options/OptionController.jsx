@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import cx from 'classnames';
+import { checkLimit } from '../../Utils';
+
 import options from './OptionsPayload.scss';
 
 import * as actions from '../../../redux/actions';
@@ -26,7 +27,7 @@ function OptionsController(props) {
       <div className={options.label}>{label}</div>
       <div className={options.blockContainer}>
         <i
-          className={cx(options.arrow, options.left)}
+          className={checkLimit(allControllers[target], minCardsNum, 'left')}
           onClick={
             () => changePayloadNum(-changeStep, target, allControllers[target] - minCardsNum)
           }
@@ -35,7 +36,7 @@ function OptionsController(props) {
           {allControllers[target]}
         </div>
         <i
-          className={cx(options.arrow, options.right)}
+          className={checkLimit(allControllers[target], maxCardsNum, 'right')}
           onClick={
             () => changePayloadNum(changeStep, target, maxCardsNum - allControllers[target])
           }
