@@ -20,6 +20,7 @@ function Card(props) {
     favoriteIds,
     addDetailsId,
     showDetails,
+    detailsId,
     update,
   } = props;
 
@@ -38,7 +39,9 @@ function Card(props) {
 
   const iconClick = (id) => {
     addDetailsId(id);
-    showDetails(true);
+    if (id === detailsId) {
+      showDetails(true);
+    }
   };
 
   return (
@@ -84,6 +87,7 @@ const mapStateToProps = (state) => (
   {
     favoriteIds: state.favoriteIds,
     section: state.section,
+    detailsId: state.detailsId,
   }
 );
 
@@ -109,6 +113,7 @@ Card.propTypes = {
   favoriteIds: PropTypes.array,
   addFavorite: PropTypes.func,
   addDetailsId: PropTypes.func,
+  detailsId: PropTypes.number,
   showDetails: PropTypes.func,
   update: PropTypes.func,
 };
@@ -117,6 +122,7 @@ Card.defaultProps = {
   section: '',
   item: { title: 'empty' },
   favoriteIds: [],
+  detailsId: 0,
   addFavorite: () => { },
   addDetailsId: () => { },
   showDetails: () => { },
