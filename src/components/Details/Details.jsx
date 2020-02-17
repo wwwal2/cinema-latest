@@ -34,7 +34,6 @@ function Details(props) {
         src={`http://image.tmdb.org/t/p/w500/${item.poster_path}`}
         onClick={() => showDetails(false)}
       />
-
       <div className={details.informContainer}>
         <img
           alt="favorite"

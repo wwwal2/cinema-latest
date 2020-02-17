@@ -11,7 +11,7 @@ import Footer from './components/Footer/Footer';
 import Pagination from './components/Pagination';
 
 function App(props) {
-  const { currentPage, detailsTab } = props;
+  const { currentPage } = props;
   const routes = {
     main: '/',
     favorite: '/favorite',
@@ -30,7 +30,7 @@ function App(props) {
           <Route path={`${routes.popular}`} exact component={Main} />
         </Switch>
         <Pagination />
-        <div className={detailsTab ? style.bufferOff : style.bufferOn} />
+        <div className={style.buffer} />
       </div>
       <Footer />
     </Router>
@@ -41,16 +41,13 @@ function App(props) {
 const mapStateToProps = (state) => (
   {
     currentPage: state.UIpage,
-    detailsTab: state.detailsTab,
   }
 );
 export default connect(mapStateToProps, null)(App);
 
 App.propTypes = {
   currentPage: PropTypes.number,
-  detailsTab: PropTypes.bool,
 };
 App.defaultProps = {
   currentPage: 0,
-  detailsTab: false,
 };
