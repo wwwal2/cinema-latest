@@ -20,25 +20,38 @@
   width: 0;
   height: 0;
   border: 0 solid transparent;
-  cursor: pointer;
 }
 
 .arrow.left {
   border-top-width: 1.5vh;
   border-bottom-width: 1.5vh;
   border-right: 2vh solid #f8f8f8;
+  cursor: pointer;
+  &:hover {
+    border-right-color: #ff0000;
+  }
 }
-.arrow.left:hover {
-  border-right-color: #ff0000;
+
+.arrow.leftLimit {
+  border-top-width: 1.5vh;
+  border-bottom-width: 1.5vh;
+  border-right: 2vh solid #a5a9b5;
 }
 
 .arrow.right {
   border-top-width: 1.5vh;
   border-bottom-width: 1.5vh;
   border-left: 2vh solid #f8f8f8;
+  cursor: pointer;
+  &:hover {
+    border-left-color: #ff0000;
+  }
 }
-.arrow.right:hover {
-  border-left-color: #ff0000;
+
+.arrow.rightLimit {
+  border-top-width: 1.5vh;
+  border-bottom-width: 1.5vh;
+  border-left: 2vh solid #a5a9b5;
 }
 
 .value {

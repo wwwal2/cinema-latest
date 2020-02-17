@@ -9,7 +9,7 @@ module.exports = {
   entry: ['babel-polyfill', './src/index.jsx'],
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'index.jsx',
+    filename: 'index.js',
     hashDigestLength: 5,
   },
   devtool: 'source-map',
@@ -36,7 +36,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[contenthash:5].[ext]',
-              outputPath: 'img',
+              outputPath: 'images',
             },
           },
         ],
@@ -49,7 +49,7 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -61,6 +61,7 @@ module.exports = {
               modules: true,
             },
           },
+          'sass-loader',
         ],
       },
     ],

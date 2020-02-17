@@ -8,6 +8,7 @@ import checkFavorite from './checkFavorite';
 import saveSettings from './saveSettings';
 import loadSettings from './loadSettings';
 import getSaveData from './getSaveData';
+import checkLimit from './checkLimit';
 
 export {
   numberValidation,
@@ -20,4 +21,5 @@ export {
   saveSettings,
   loadSettings,
   getSaveData,
+  checkLimit,
 };
