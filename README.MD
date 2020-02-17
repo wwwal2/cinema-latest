@@ -2,8 +2,8 @@
 
 ## Description
 This web page provides brief an information about all kind of movies. The data is taken from [The movie db](https://www.themoviedb.org) API. 
-![](https://gitlab.allbugs.info/cinema-app/oleksiis/cinema-app/blob/master/images/preview2.png)
-![](https://gitlab.allbugs.info/cinema-app/oleksiis/cinema-app/blob/master/images/preview1.png)
+![](images/preview2.png)
+![](images/preview1.png)
 
 ## Technology stack
 ES6+, Webpack, Babel, React, Redux, propTypes, css-modules
