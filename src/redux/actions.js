@@ -13,7 +13,6 @@ import {
   CHANGE_CARD_NUM,
   DEFINE_SECTION,
   ADD_QUERY,
-
 } from '../constants';
 
 export const addRating = (payload) => ({ type: ADD_RATING, payload });
