@@ -17,12 +17,12 @@ export default class Header extends React.Component {
   render() {
     const { routes } = this.props;
     return (
-      <div className={header.container}>
-        <img alt="out of logo" src={logo} className={header.logo} />
+      <header className={header.container}>
+        <img alt="logo" src={logo} className={header.logo} />
         <Menu routes={routes} />
         <Settings />
         <Search />
-      </div>
+      </header>
     );
   }
 }

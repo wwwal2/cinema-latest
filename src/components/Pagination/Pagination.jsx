@@ -15,14 +15,14 @@ function Pagination(props) {
 
   if (totalPages > 1 && !detailsTab) {
     return (
-      <div className={pagination.container}>
+      <nav className={pagination.container}>
         <Arrow page={currentPage - 1} image={arrowLeft} />
         <PaginationBoard totalPages={totalPages} currentPage={currentPage} />
         <Arrow page={currentPage + 1} image={arrowRight} />
-      </div>
+      </nav>
     );
   }
-  return <div />;
+  return null;
 }
 
 const mapStateToProps = (state) => (

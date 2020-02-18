@@ -30,7 +30,7 @@ function App(props) {
           <Route path={`${routes.popular}`} exact component={Main} />
         </Switch>
         <Pagination />
-        <div className={style.buffer} />
+        <footer className={style.buffer} />
       </div>
       <Footer />
     </Router>

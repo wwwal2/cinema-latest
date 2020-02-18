@@ -71,13 +71,13 @@ class Main extends React.Component {
       );
     }
     return (
-      <div className={mainStyles.pageBody}>
+      <main className={mainStyles.pageBody}>
         {items.map((item) => {
           return (
             <Card key={item.id} item={item} />
           );
         })}
-      </div>
+      </main>
     );
   }
 }

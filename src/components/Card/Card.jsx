@@ -50,8 +50,8 @@ function Card(props) {
   };
 
   return (
-    <div className={card.card}>
-      <div className={card.favoriteContainer}>
+    <figure className={card.card}>
+      <section className={card.favoriteContainer}>
         <div className={notification}>Added to favorite</div>
         <img
           role="button"
@@ -64,19 +64,17 @@ function Card(props) {
           className={card.favorite}
           onClick={() => toggleFavorite()}
         />
-      </div>
+      </section>
       <h3>
         {`${item.title} (${item.release_date.substr(0, 4)})`}
       </h3>
-      <div>
-        <img
-          className={card.poster}
-          alt="movie poster"
-          src={imagePath}
-          onError={() => setImagePath(noPoster)}
-          onClick={() => iconClick(item.id)}
-        />
-      </div>
+      <img
+        className={card.poster}
+        alt="movie poster"
+        src={imagePath}
+        onError={() => setImagePath(noPoster)}
+        onClick={() => iconClick(item.id)}
+      />
       <p className={card.text}>
         {
           item.overview.length > textLength
@@ -87,7 +85,7 @@ function Card(props) {
       <p>
         {`Rate ${item.vote_average}`}
       </p>
-    </div>
+    </figure>
   );
 }
 

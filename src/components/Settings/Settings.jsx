@@ -30,7 +30,7 @@ export default class Filter extends React.Component {
     const { settings, hide } = this.state;
 
     return (
-      <div className={settingsStyles.container}>
+      <section className={settingsStyles.container}>
         <button
           type="button"
           className={
@@ -60,7 +60,7 @@ export default class Filter extends React.Component {
               : <OptionsPayload />
           }
         </div>
-      </div>
+      </section>
     );
   }
 }
