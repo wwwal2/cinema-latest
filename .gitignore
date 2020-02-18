@@ -11,6 +11,3 @@ sshKey
 *.sw*
 
 *.log
-
-hints.js
-genres.js
