@@ -30,6 +30,9 @@ Latest version of the website starts at:<br/>
 ## Usage
 Follow this link [Cinema app](http://localhost:7000/)
 
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
 ## Contributing
 Alex Smirnov
 

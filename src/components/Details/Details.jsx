@@ -30,7 +30,7 @@ function Details(props) {
   };
 
   return (
-    <div className={details.wrapper}>
+    <section className={details.wrapper}>
       <div className={details.container}>
         <img
           className={details.poster}
@@ -65,7 +65,7 @@ function Details(props) {
       >
         BACK
       </button>
-    </div>
+    </section>
 
   );
 }

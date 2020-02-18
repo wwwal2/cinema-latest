@@ -39,7 +39,7 @@ function Search(props) {
   };
 
   return (
-    <div className={search.container}>
+    <section className={search.container}>
       <input
         value={query}
         type="text"
@@ -55,7 +55,7 @@ function Search(props) {
       >
         Start
       </button>
-    </div>
+    </section>
   );
 }
 

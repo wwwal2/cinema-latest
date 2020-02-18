@@ -10,7 +10,7 @@ export default function Menu(props) {
   } = props;
 
   return (
-    <div className={header.menuContainer}>
+    <nav className={header.menuContainer}>
       {
         tabNames.map(
           (tabName) => {
@@ -24,7 +24,7 @@ export default function Menu(props) {
           },
         )
       }
-    </div>
+    </nav>
   );
 }
 

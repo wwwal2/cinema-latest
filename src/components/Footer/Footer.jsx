@@ -5,10 +5,10 @@ import footer from './Footer.scss';
 export default function Footer(props) {
   const { created, email } = props;
   return (
-    <div className={footer.footer}>
-      <div className={footer.content}>{created}</div>
-      <div className={footer.content}>{email}</div>
-    </div>
+    <footer className={footer.footer}>
+      <span className={footer.content}>{created}</span>
+      <span className={footer.content}>{email}</span>
+    </footer>
   );
 }
 
