@@ -86,7 +86,7 @@ function YearFilter(props) {
   );
 }
 
-const mapStateToProps = (state) => ({ storeYear: state.year });
+const mapStateToProps = (state) => ({ storeYear: state.movie.year });
 
 const mapDispatchToProps = (dispatch) => {
   const { addYear } = bindActionCreators(actions, dispatch);

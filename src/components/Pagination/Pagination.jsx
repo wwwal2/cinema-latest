@@ -27,9 +27,9 @@ function Pagination(props) {
 
 const mapStateToProps = (state) => (
   {
-    totalPages: Math.ceil(state.totalResults / state[state.section]),
-    detailsTab: state.detailsTab,
-    currentPage: state.UIpage,
+    totalPages: Math.ceil(state.status.totalResults / state.cardsNum[state.status.section]),
+    detailsTab: state.status.detailsTab,
+    currentPage: state.status.UIpage,
   }
 );
 

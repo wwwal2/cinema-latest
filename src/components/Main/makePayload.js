@@ -4,19 +4,19 @@ import getItems from './getItems';
 
 export default async (props) => {
   const {
-    year,
-    rating,
-    genre,
-    allGenres,
-    main,
-    popular,
-    favorite,
-    search,
-    UIpage,
-    query,
+    cardsNum: {
+      main,
+      popular,
+      favorite,
+      search,
+    },
+    movie: { year, rating, genre },
+    status: { UIpage, section },
+    allGenres: { allGenres },
+    searchQuery: { searchQuery },
     favoriteMovies,
   } = props;
-  switch (props.section) {
+  switch (section) {
     case sections.main:
       const mainPayload = await getItems(
         'getMovies',
@@ -42,7 +42,7 @@ export default async (props) => {
     case sections.search:
       const searchPayload = await getItems(
         'findMovie',
-        [query],
+        [searchQuery],
         search,
         UIpage,
       );

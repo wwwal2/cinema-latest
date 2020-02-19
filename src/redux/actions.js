@@ -9,7 +9,8 @@ import {
   SHOW_DETAILS,
   ADD_DETAILS_ID,
   UPDATE,
-  RESET,
+  RESET_FILTERS,
+  RESET_OPTIONS,
   CHANGE_CARD_NUM,
   DEFINE_SECTION,
   ADD_QUERY,
@@ -28,7 +29,9 @@ export const defineSection = (payload) => ({ type: DEFINE_SECTION, payload });
 export const addQuery = (payload) => ({ type: ADD_QUERY, payload });
 
 export const update = () => ({ type: UPDATE });
-export const reset = () => ({ type: RESET });
+export const resetFilters = () => ({ type: RESET_FILTERS });
+export const resetOptions = () => ({ type: RESET_OPTIONS });
+
 export const changePayloadNum = (payload, target, distance) => (
   {
     type: CHANGE_CARD_NUM,

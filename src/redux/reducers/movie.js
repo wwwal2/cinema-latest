@@ -7,15 +7,16 @@ import {
   ADD_RATING,
   ADD_GENRE,
   ADD_YEAR,
+  RESET_FILTERS,
 } from '../../constants';
 
-const movieInitialState = {
+const initMovie = {
   year: ' ',
   genre: ' ',
   rating: ' ',
 };
 
-export default (state = movieInitialState, action) => {
+export default (state = initMovie, action) => {
   switch (action.type) {
     case ADD_RATING:
       saveSettings(getSaveData(state), action.payload, 'rating');
@@ -34,6 +35,11 @@ export default (state = movieInitialState, action) => {
       return {
         ...state,
         genre: action.payload,
+      };
+    case RESET_FILTERS:
+      // saveSettings(getSaveData(defaultOptions));
+      return {
+        ...initMovie,
       };
     default:
       return state;

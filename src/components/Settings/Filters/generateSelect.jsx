@@ -3,7 +3,7 @@ import filters from './FilterPayload.scss';
 
 export default function generateSelect(options, current, reduxAction, id) {
   return (
-    <div className={filters.gridContainer}>
+    <section className={filters.gridContainer}>
 
       <select
         onChange={(event) => reduxAction(event.target.value)}
@@ -32,6 +32,6 @@ export default function generateSelect(options, current, reduxAction, id) {
         {`select ${id}`}
       </label>
 
-    </div>
+    </section>
   );
 }

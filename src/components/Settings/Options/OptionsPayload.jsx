@@ -1,9 +1,9 @@
 import React from 'react';
 
-// import filterStyles from '../css_modules/filterStyles.scss';
+import { options } from '../../../constants';
 
 import OptionController from './OptionController';
-import TopButtons from '../TopButtons';
+import Buttons from '../Buttons';
 
 export default function OptionsPayload() {
   return (
@@ -11,7 +11,7 @@ export default function OptionsPayload() {
       <OptionController label="Main page card limit:" target="main" />
       <OptionController label="Popular page card limit:" target="popular" />
       <OptionController label="Favorite page card limit:" target="favorite" />
-      <TopButtons />
+      <Buttons reset={options} />
     </div>
   );
 }

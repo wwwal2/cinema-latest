@@ -6,7 +6,6 @@ export default {
   section: 'main',
 
   totalResults: 0,
-  requestPage: 1,
   UIpage: 1,
   detailsId: 0,
   updateCounter: 0,
@@ -17,7 +16,7 @@ export default {
   favoriteMovies: [],
   favoriteIds: [],
   // movie cards per page
-  main: 8,
+  main: 12,
   popular: 12,
   favorite: 4,
   search: 20,
