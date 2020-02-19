@@ -53,13 +53,13 @@ export default class Filter extends React.Component {
         >
           {options}
         </button>
-        <div className={settingsStyles[`hide-${hide}`]}>
+        <section className={settingsStyles[`hide-${hide}`]}>
           {
             settings === filters
               ? <FilterPayload />
               : <OptionsPayload />
           }
-        </div>
+        </section>
       </section>
     );
   }

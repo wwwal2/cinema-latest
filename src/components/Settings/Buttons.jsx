@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import settings from './Settings.scss';
 import * as actions from '../../redux/actions';
 
-function TopButtons(props) {
+function Buttons(props) {
   const { reset, update, addUIPageNum } = props;
 
   const apply = () => {
@@ -22,30 +22,27 @@ function TopButtons(props) {
   };
 
   return (
-    <div>
-      <div className={settings.actionBtnContainer}>
-        <Link to="/" className={settings.applyLink}>
-          <button
-            type="button"
-            onClick={apply}
-            className={`${settings.actionBtn} ${settings.apply}`}
-          >
-            Apply
-          </button>
-        </Link>
+    <section className={settings.actionBtnContainer}>
+      <Link to="/" className={settings.applyLink}>
+        <button
+          type="button"
+          onClick={apply}
+          className={`${settings.actionBtn} ${settings.apply}`}
+        >
+          Apply
+        </button>
+      </Link>
 
-        <Link to="/" className={settings.resetLink}>
-          <button
-            type="button"
-            onClick={doReset}
-            className={`${settings.actionBtn} ${settings.reset}`}
-          >
-            Reset
-          </button>
-        </Link>
-
-      </div>
-    </div>
+      <Link to="/" className={settings.resetLink}>
+        <button
+          type="button"
+          onClick={doReset}
+          className={`${settings.actionBtn} ${settings.reset}`}
+        >
+          Reset
+        </button>
+      </Link>
+    </section>
   );
 }
 
@@ -58,15 +55,15 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(TopButtons);
+export default connect(null, mapDispatchToProps)(Buttons);
 
-TopButtons.propTypes = {
+Buttons.propTypes = {
   addUIPageNum: PropTypes.func,
   update: PropTypes.func,
   reset: PropTypes.func,
 };
 
-TopButtons.defaultProps = {
+Buttons.defaultProps = {
   addUIPageNum: () => { },
   update: () => { },
   reset: () => { },

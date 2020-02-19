@@ -39,7 +39,7 @@ function Details(props) {
           onClick={() => showDetails(false)}
           onError={() => setImagePath(noPoster)}
         />
-        <div className={details.informContainer}>
+        <section className={details.informContainer}>
           <img
             alt="favorite"
             src={favorite ? favoriteOn : favoriteOff}
@@ -47,16 +47,18 @@ function Details(props) {
             onClick={() => toggleFavorite()}
           />
           <h2>{item.title}</h2>
-          <div>{`Release: ${item.release_date}`}</div>
-          <div>
+          <p className={details.shortText}>{`Release: ${item.release_date}`}</p>
+          <p className={details.shortText}>
             <span>Production: </span>
             {parsePayloadArray(item.production_countries, 'name')}
-          </div>
-          <div>{`Budget: ${item.budget}$`}</div>
-          <div>{`Rating: ${item.vote_average} Votes: ${item.vote_count}`}</div>
-          <div>{parsePayloadArray(item.genres, 'name')}</div>
-          <p>{item.overview}</p>
-        </div>
+          </p>
+          <p className={details.shortText}>{`Budget: ${item.budget}$`}</p>
+          <p className={details.shortText}>{`Rating: ${item.vote_average} Votes: ${item.vote_count}`}</p>
+          <p className={details.shortText}>{parsePayloadArray(item.genres, 'name')}</p>
+          <article>
+            <p>{item.overview}</p>
+          </article>
+        </section>
       </div>
       <button
         type="button"

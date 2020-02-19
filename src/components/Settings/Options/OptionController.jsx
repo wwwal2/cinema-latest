@@ -23,8 +23,8 @@ function OptionsController(props) {
   } = props;
 
   return (
-    <div className={options.container}>
-      <div className={options.label}>{label}</div>
+    <section className={options.container}>
+      <label className={options.label}>{label}</label>
       <div className={options.blockContainer}>
         <i
           className={checkLimit(allControllers[target], minCardsNum, 'left')}
@@ -42,7 +42,7 @@ function OptionsController(props) {
           }
         />
       </div>
-    </div>
+    </section>
   );
 }
 
