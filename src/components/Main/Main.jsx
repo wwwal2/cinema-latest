@@ -85,9 +85,9 @@ class Main extends React.Component {
 const mapStateToProps = (state) => (
   {
     reduxProps: state,
-    detailsTab: state.detailsTab,
+    detailsTab: state.status.detailsTab,
     detailsId: state.detailsId,
-    updateCounter: state.updateCounter,
+    updateCounter: state.status.updateCounter,
   }
 );
 

@@ -1,9 +1,9 @@
-import { ADD_ALL_GENRES } from '../../constants';
+import { ADD_QUERY } from '../../constants';
 
 
 export default (state = [], action) => {
   switch (action.type) {
-    case ADD_ALL_GENRES:
+    case ADD_QUERY:
       return {
         ...state,
         allGenres: action.payload,

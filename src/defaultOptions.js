@@ -16,7 +16,7 @@ export default {
   favoriteMovies: [],
   favoriteIds: [],
   // movie cards per page
-  main: 8,
+  main: 12,
   popular: 12,
   favorite: 4,
   search: 20,

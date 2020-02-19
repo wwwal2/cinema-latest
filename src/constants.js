@@ -1,5 +1,3 @@
-export const TEST = 'TEST';
-export const TEST_2 = 'TEST_2';
 export const ADD_RATING = 'ADD_RATING';
 export const ADD_GENRE = 'ADD_GENRE';
 export const ADD_YEAR = 'ADD_YEAR';

@@ -3,7 +3,8 @@ import allGenres from './allGenres';
 import cardsNum from './cardsNum';
 import favorite from './favorite';
 import status from './status';
-
+import searchQuery from './searchQuery';
+import detailsId from './detailsId';
 
 export {
   movie,
@@ -11,4 +12,6 @@ export {
   cardsNum,
   favorite,
   status,
+  searchQuery,
+  detailsId,
 };

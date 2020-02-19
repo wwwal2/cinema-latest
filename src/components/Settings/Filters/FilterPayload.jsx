@@ -26,9 +26,9 @@ function FilterPayload(props) {
 
 const mapStateToProps = (state) => (
   {
-    currentRating: state.rating,
-    currentGenre: state.genre,
-    allGenres: state.allGenres,
+    currentRating: state.movie.rating,
+    currentGenre: state.movie.genre,
+    allGenres: state.allGenres.allGenres,
   }
 );
 
