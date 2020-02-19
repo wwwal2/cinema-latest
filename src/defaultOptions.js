@@ -6,7 +6,6 @@ export default {
   section: 'main',
 
   totalResults: 0,
-  requestPage: 1,
   UIpage: 1,
   detailsId: 0,
   updateCounter: 0,
