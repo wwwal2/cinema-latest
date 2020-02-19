@@ -1,5 +1,5 @@
 import { getSaveData, saveSettings } from '../../components/Utils';
-import { CHANGE_CARD_NUM } from '../../constants';
+import { CHANGE_CARD_NUM, RESET_OPTIONS } from '../../constants';
 
 const initCardsNum = {
   main: 8,
@@ -19,6 +19,11 @@ export default (state = initCardsNum, action) => {
       return {
         ...state,
         [action.target]: state[action.target] + action.payload,
+      };
+    case RESET_OPTIONS:
+      // saveSettings(getSaveData(defaultOptions));
+      return {
+        ...initCardsNum,
       };
     default:
       return state;

@@ -6,7 +6,7 @@ export default (state = [], action) => {
     case ADD_QUERY:
       return {
         ...state,
-        allGenres: action.payload,
+        searchQuery: action.payload,
       };
     default:
       return state;

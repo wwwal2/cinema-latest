@@ -12,11 +12,10 @@ export default async (props) => {
     },
     movie: { year, rating, genre },
     status: { UIpage, section },
-    allGenres,
-    searchQuery,
+    allGenres: { allGenres },
+    searchQuery: { searchQuery },
     favoriteMovies,
   } = props;
-
   switch (section) {
     case sections.main:
       const mainPayload = await getItems(

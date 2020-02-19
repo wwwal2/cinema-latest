@@ -7,6 +7,7 @@ import {
   ADD_RATING,
   ADD_GENRE,
   ADD_YEAR,
+  RESET_FILTERS,
 } from '../../constants';
 
 const initMovie = {
@@ -34,6 +35,11 @@ export default (state = initMovie, action) => {
       return {
         ...state,
         genre: action.payload,
+      };
+    case RESET_FILTERS:
+      // saveSettings(getSaveData(defaultOptions));
+      return {
+        ...initMovie,
       };
     default:
       return state;

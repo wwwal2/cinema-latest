@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { filters } from '../../../constants';
+
 import Buttons from '../Buttons';
 import YearFilter from './YearFilter';
 import Select from './Select';
@@ -19,7 +21,7 @@ function FilterPayload(props) {
       <YearFilter />
       <Select selected={currentGenre} allGenres={blancGenre.concat(allGenres)} />
       <Select selected={currentRating} ratingPoints={ratingPoints} />
-      <Buttons />
+      <Buttons reset={filters} />
     </section>
   );
 }

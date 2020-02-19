@@ -40,8 +40,8 @@ function App(props) {
 
 const mapStateToProps = (state) => (
   {
-    currentPage: state.UIpage,
-    detailsTab: state.detailsTab,
+    currentPage: state.status.UIpage,
+    detailsTab: state.status.detailsTab,
   }
 );
 export default connect(mapStateToProps, null)(App);

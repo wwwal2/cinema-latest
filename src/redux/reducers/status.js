@@ -1,13 +1,9 @@
-import { getSaveData, saveSettings } from '../../components/Utils';
-import defaultOptions from '../../defaultOptions';
-
 import {
   ADD_RESULTS,
   ADD_UI_PAGE_NUM,
   DEFINE_SECTION,
   UPDATE,
   SHOW_DETAILS,
-  RESET,
 } from '../../constants';
 
 const initStatus = {
@@ -44,12 +40,6 @@ export default (state = initStatus, action) => {
       return {
         ...state,
         updateCounter: state.updateCounter + 1,
-      };
-    case RESET:
-      saveSettings(getSaveData(defaultOptions));
-      return {
-        ...defaultOptions,
-        allGenres: state.allGenres,
       };
     default:
       return state;

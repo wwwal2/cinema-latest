@@ -4,20 +4,32 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
+import { filters } from '../../constants';
+
 import settings from './Settings.scss';
 import * as actions from '../../redux/actions';
 
 function Buttons(props) {
-  const { reset, update, addUIPageNum } = props;
+  const {
+    resetFilters,
+    resetOptions,
+    reset,
+    update,
+    addUIPageNum,
+  } = props;
 
   const apply = () => {
     addUIPageNum(1);
     update();
   };
 
-  const doReset = () => {
+  const doReset = (element) => {
+    if (element === filters) {
+      resetFilters();
+    } else {
+      resetOptions();
+    }
     addUIPageNum(1);
-    reset();
     update();
   };
 
@@ -36,7 +48,7 @@ function Buttons(props) {
       <Link to="/" className={settings.resetLink}>
         <button
           type="button"
-          onClick={doReset}
+          onClick={() => doReset(reset)}
           className={`${settings.actionBtn} ${settings.reset}`}
         >
           Reset
@@ -47,10 +59,16 @@ function Buttons(props) {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const { update, reset, addUIPageNum } = bindActionCreators(actions, dispatch);
+  const {
+    update,
+    resetFilters,
+    resetOptions,
+    addUIPageNum,
+  } = bindActionCreators(actions, dispatch);
   return {
     update: () => update(),
-    reset: () => reset(),
+    resetFilters: () => resetFilters(),
+    resetOptions: () => resetOptions(),
     addUIPageNum: (payload) => addUIPageNum(payload),
   };
 };
@@ -58,13 +76,17 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(Buttons);
 
 Buttons.propTypes = {
+  reset: PropTypes.string,
   addUIPageNum: PropTypes.func,
   update: PropTypes.func,
-  reset: PropTypes.func,
+  resetFilters: PropTypes.func,
+  resetOptions: PropTypes.func,
 };
 
 Buttons.defaultProps = {
+  reset: '',
   addUIPageNum: () => { },
   update: () => { },
-  reset: () => { },
+  resetFilters: () => { },
+  resetOptions: () => { },
 };

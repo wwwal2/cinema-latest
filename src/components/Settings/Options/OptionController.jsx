@@ -49,9 +49,9 @@ function OptionsController(props) {
 const mapStateToProps = (state) => (
   {
     allControllers: {
-      main: state.main,
-      popular: state.popular,
-      favorite: state.favorite,
+      main: state.cardsNum.main,
+      popular: state.cardsNum.popular,
+      favorite: state.cardsNum.favorite,
     },
   }
 );

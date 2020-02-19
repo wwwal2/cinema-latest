@@ -27,8 +27,8 @@ class Main extends React.Component {
     const genres = await this.request.getGenres();
     addAllGenres(genres.genres);
 
-    const { reduxProps } = this.props;
-    const payload = await makePayload(reduxProps);
+    const { allProps } = this.props;
+    const payload = await makePayload(allProps);
 
     addResults(payload.totalResults);
     this.updateState('items', payload.items);
@@ -36,7 +36,7 @@ class Main extends React.Component {
 
   async componentDidUpdate(prevProps) {
     const {
-      reduxProps,
+      allProps,
       updateCounter,
       detailsId,
       addResults,
@@ -44,7 +44,7 @@ class Main extends React.Component {
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
-      const payload = await makePayload(reduxProps);
+      const payload = await makePayload(allProps);
       addResults(payload.totalResults);
       this.updateState('items', payload.items);
     }
@@ -84,7 +84,7 @@ class Main extends React.Component {
 
 const mapStateToProps = (state) => (
   {
-    reduxProps: state,
+    allProps: state,
     detailsTab: state.status.detailsTab,
     detailsId: state.detailsId,
     updateCounter: state.status.updateCounter,
@@ -103,7 +103,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
-  reduxProps: PropTypes.object,
+  allProps: PropTypes.object,
   updateCounter: PropTypes.number,
   detailsId: PropTypes.number,
   addAllGenres: PropTypes.func,
@@ -114,7 +114,7 @@ Main.propTypes = {
 
 Main.defaultProps = {
   detailsTab: false,
-  reduxProps: {},
+  allProps: {},
   updateCounter: 0,
   detailsId: 0,
   addResults: () => { },
