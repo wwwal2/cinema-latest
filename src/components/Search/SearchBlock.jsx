@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import * as actions from '../../redux/actions';
+import {
+  addQuery,
+  defineSection,
+  update,
+  addUIPageNum,
+  showDetails,
+} from '../../redux/actions';
+
 import { sections } from '../../constants';
 import search from './SearchBlock.scss';
 
@@ -59,24 +65,13 @@ function Search(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
-  const {
-    addQuery,
-    defineSection,
-    update,
-    addUIPageNum,
-    showDetails,
-  } = bindActionCreators(actions, dispatch);
-  return {
-    addQuery: (payload) => addQuery(payload),
-    addUIPageNum: (payload) => addUIPageNum(payload),
-    defineSection: (payload) => defineSection(payload),
-    showDetails: (payload) => showDetails(payload),
-    update: () => update(),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(Search);
+export default connect(null, {
+  addQuery,
+  defineSection,
+  update,
+  addUIPageNum,
+  showDetails,
+})(Search);
 
 Search.propTypes = {
   placeHolder: PropTypes.string,

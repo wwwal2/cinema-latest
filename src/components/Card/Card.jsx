@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import card from './Card.scss';
 import favoriteOn from '../../../images/starFilled.png';
 import favoriteOff from '../../../images/starEmpty.png';
 import noPoster from '../../../images/noPoster.png';
 
-import * as actions from '../../redux/actions';
+import {
+  addFavorite,
+  addDetailsId,
+  showDetails,
+  update,
+} from '../../redux/actions';
+
 import { checkFavorite } from '../Utils';
 
 
@@ -16,12 +21,12 @@ function Card(props) {
   const {
     section,
     item,
-    addFavorite,
     favoriteIds,
+    detailsId,
     addDetailsId,
     showDetails,
-    detailsId,
     update,
+    addFavorite,
   } = props;
 
   const textLength = 200;
@@ -67,7 +72,7 @@ function Card(props) {
       </section>
       <h3>
         {
-        `${item.title} (${item.release_date ? item.release_date.substr(0, 4) : 'coming soon'})`
+          `${item.title} (${item.release_date ? item.release_date.substr(0, 4) : 'coming soon'})`
         }
       </h3>
       <img
@@ -99,31 +104,22 @@ const mapStateToProps = (state) => (
   }
 );
 
-const mapDispatchToProps = (dispatch) => {
-  const {
-    addFavorite,
-    addDetailsId,
-    showDetails,
-    update,
-  } = bindActionCreators(actions, dispatch);
-  return {
-    addFavorite: (payload) => addFavorite(payload),
-    addDetailsId: (payload) => addDetailsId(payload),
-    showDetails: (payload) => showDetails(payload),
-    update: () => update(),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default connect(mapStateToProps, {
+  addFavorite,
+  addDetailsId,
+  showDetails,
+  update,
+})(Card);
 
 Card.propTypes = {
   section: PropTypes.string,
   item: PropTypes.object,
   favoriteIds: PropTypes.array,
-  addFavorite: PropTypes.func,
-  addDetailsId: PropTypes.func,
   detailsId: PropTypes.number,
   showDetails: PropTypes.func,
   update: PropTypes.func,
+  addFavorite: PropTypes.func,
+  addDetailsId: PropTypes.func,
 };
 
 Card.defaultProps = {

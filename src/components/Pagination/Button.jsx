@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 
-import * as actions from '../../redux/actions';
+import { addUIPageNum, update } from '../../redux/actions';
 
 import pagination from './Pagination.scss';
 
@@ -39,15 +38,7 @@ function Button(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
-  const { addUIPageNum, update } = bindActionCreators(actions, dispatch);
-  return {
-    addUIPageNum: (payload) => addUIPageNum(payload),
-    update: () => update(),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(Button);
+export default connect(null, { addUIPageNum, update })(Button);
 
 Button.propTypes = {
   page: PropTypes.node,

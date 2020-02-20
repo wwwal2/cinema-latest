@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import * as actions from '../../redux/actions';
+import {
+  addUIPageNum,
+  update,
+  defineSection,
+  showDetails,
+} from '../../redux/actions';
 import { sections } from '../../constants';
 import header from './Header.scss';
 
@@ -42,22 +46,12 @@ function Tab(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
-  const {
-    addUIPageNum,
-    update,
-    defineSection,
-    showDetails,
-  } = bindActionCreators(actions, dispatch);
-  return {
-    addUIPageNum: (payload) => addUIPageNum(payload),
-    defineSection: (payload) => defineSection(payload),
-    showDetails: (payload) => showDetails(payload),
-    update: () => update(),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(Tab);
+export default connect(null, {
+  addUIPageNum,
+  update,
+  defineSection,
+  showDetails,
+})(Tab);
 
 Tab.propTypes = {
   tabName: PropTypes.string,

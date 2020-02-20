@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 
 import filters from '../FilterPayload.scss';
 
-import * as actions from '../../../../redux/actions';
+import { addYear } from '../../../../redux/actions';
 import { numberValidation, onlyNumbers } from '../../../Utils';
 
 function useHook(initialValue) {
@@ -88,14 +87,7 @@ function YearFilter(props) {
 
 const mapStateToProps = (state) => ({ storeYear: state.movie.year });
 
-const mapDispatchToProps = (dispatch) => {
-  const { addYear } = bindActionCreators(actions, dispatch);
-  return {
-    addYear: (payload) => addYear(payload),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(YearFilter);
+export default connect(mapStateToProps, { addYear })(YearFilter);
 
 YearFilter.propTypes = {
   storeYear: PropTypes.string,

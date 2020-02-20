@@ -5,16 +5,11 @@ import {
   UPDATE,
   SHOW_DETAILS,
 } from '../../constants';
+import defaultOptions from '../../defaultOptions';
 
-const initStatus = {
-  totalResults: 0,
-  UIpage: 1,
-  updateCounter: 0,
-  detailsTab: false,
-  section: 'main',
-};
+const initialState = defaultOptions.status;
 
-export default (state = initStatus, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_RESULTS:
       return {

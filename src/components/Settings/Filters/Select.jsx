@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../../redux/actions';
+import { addRating, addGenre } from '../../../redux/actions';
 
 import generateSelect from './generateSelect';
 
@@ -21,15 +20,7 @@ function Select(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
-  const { addRating, addGenre } = bindActionCreators(actions, dispatch);
-  return {
-    addRating: (payload) => addRating(payload),
-    addGenre: (payload) => addGenre(payload),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(Select);
+export default connect(null, { addRating, addGenre })(Select);
 
 Select.propTypes = {
   allGenres: PropTypes.array,

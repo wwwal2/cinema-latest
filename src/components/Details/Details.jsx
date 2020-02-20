@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import details from './Details.scss';
 import favoriteOn from '../../../images/starFilled.png';
 import favoriteOff from '../../../images/starEmpty.png';
 import noPoster from '../../../images/noPoster.png';
 
-
-import * as actions from '../../redux/actions';
+import { addFavorite, addDetailsId, showDetails } from '../../redux/actions';
 import { checkFavorite, parsePayloadArray } from '../Utils';
 
 
@@ -72,21 +70,10 @@ function Details(props) {
   );
 }
 
-const mapStateToProps = (state) => (
-  {
-    favoriteIds: state.favoriteIds,
-  }
-);
+const mapStateToProps = (state) => ({ favoriteIds: state.favoriteIds });
 
-const mapDispatchToProps = (dispatch) => {
-  const { addFavorite, addDetailsId, showDetails } = bindActionCreators(actions, dispatch);
-  return {
-    addFavorite: (payload) => addFavorite(payload),
-    addDetailsId: (payload) => addDetailsId(payload),
-    showDetails: (payload) => showDetails(payload),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Details);
+
+export default connect(mapStateToProps, { addFavorite, addDetailsId, showDetails })(Details);
 
 Details.propTypes = {
   item: PropTypes.object,
