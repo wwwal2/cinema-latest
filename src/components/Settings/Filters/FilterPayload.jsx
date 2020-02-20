@@ -30,7 +30,7 @@ const mapStateToProps = (state) => (
   {
     currentRating: state.movie.rating,
     currentGenre: state.movie.genre,
-    allGenres: state.allGenres.allGenres,
+    allGenres: state.allGenres,
   }
 );
 

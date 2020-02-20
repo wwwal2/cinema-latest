@@ -66,7 +66,9 @@ function Card(props) {
         />
       </section>
       <h3>
-        {`${item.title} (${item.release_date.substr(0, 4)})`}
+        {
+        `${item.title} (${item.release_date ? item.release_date.substr(0, 4) : 'coming soon'})`
+        }
       </h3>
       <img
         className={card.poster}
@@ -91,8 +93,8 @@ function Card(props) {
 
 const mapStateToProps = (state) => (
   {
-    favoriteIds: state.favoriteIds,
-    section: state.section,
+    favoriteIds: state.favorite.favoriteIds,
+    section: state.status.section,
     detailsId: state.detailsId,
   }
 );

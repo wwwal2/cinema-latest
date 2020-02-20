@@ -12,9 +12,9 @@ export default async (props) => {
     },
     movie: { year, rating, genre },
     status: { UIpage, section },
-    allGenres: { allGenres },
-    searchQuery: { searchQuery },
-    favoriteMovies,
+    favorite: { favoriteMovies },
+    allGenres,
+    searchQuery,
   } = props;
   switch (section) {
     case sections.main:
