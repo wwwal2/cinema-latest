@@ -1,7 +1,4 @@
-import {
-  getSaveData,
-  saveSettings,
-} from '../../components/Utils';
+import { saveSettings } from '../../components/Utils';
 
 import {
   ADD_RATING,
@@ -10,36 +7,36 @@ import {
   RESET_FILTERS,
 } from '../../constants';
 
-const initMovie = {
+const initialState = {
   year: ' ',
   genre: ' ',
   rating: ' ',
 };
 
-export default (state = initMovie, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_RATING:
-      saveSettings(getSaveData(state), action.payload, 'rating');
+      saveSettings('movie', state, action.payload, 'rating');
       return {
         ...state,
         rating: action.payload,
       };
     case ADD_YEAR:
-      saveSettings(getSaveData(state), action.payload, 'year');
+      saveSettings('movie', state, action.payload, 'year');
       return {
         ...state,
         year: action.payload,
       };
     case ADD_GENRE:
-      saveSettings(getSaveData(state), action.payload, 'genre');
+      saveSettings('movie', state, action.payload, 'genre');
       return {
         ...state,
         genre: action.payload,
       };
     case RESET_FILTERS:
-      // saveSettings(getSaveData(defaultOptions));
+      saveSettings('movie', initialState);
       return {
-        ...initMovie,
+        ...initialState,
       };
     default:
       return state;

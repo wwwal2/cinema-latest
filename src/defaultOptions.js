@@ -1,25 +1,27 @@
 export default {
-  // default start page request
-  year: ' ',
-  genre: ' ',
-  rating: ' ',
-  section: 'main',
-
-  totalResults: 0,
-  UIpage: 1,
-  detailsId: 0,
-  updateCounter: 0,
+  movie: {
+    year: '2000',
+    genre: ' ',
+    rating: ' ',
+  },
+  status: {
+    totalResults: 0,
+    UIpage: 1,
+    updateCounter: 0,
+    detailsTab: false,
+    section: 'main',
+  },
+  cardsNum: {
+    main: 12,
+    popular: 12,
+    favorite: 4,
+    search: 20,
+  },
+  favorite: {
+    favoriteMovies: [],
+    favoriteIds: [],
+  },
   allGenres: [],
-  query: '',
-  detailsTab: false,
-  // favorite items
-  favoriteMovies: [],
-  favoriteIds: [],
-  // movie cards per page
-  main: 12,
-  popular: 12,
-  favorite: 4,
-  search: 20,
+  detailsId: 0,
+  searchQuery: '',
 };
-
-// you can see available genres in Header tab: Filters -> Genres

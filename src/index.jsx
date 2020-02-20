@@ -4,9 +4,11 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import rootReducer from './redux/rootReducer';
+import initialState from './defaultOptions';
+
 import App from './App';
 
-const store = createStore(rootReducer,
+const store = createStore(rootReducer, initialState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
