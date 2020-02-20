@@ -28,6 +28,7 @@ function App(props) {
           <Route path={`/${currentPage}`} component={Main} />
           <Route path={`${routes.favorite}`} exact component={Main} />
           <Route path={`${routes.popular}`} exact component={Main} />
+          <Route path={`${routes.popular}:id`} exact component={Main} />
         </Switch>
         <Pagination />
         <footer className={style.buffer} />
