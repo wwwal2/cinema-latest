@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import mainStyles from './Main.scss';
 import makePayload from './makePayload';
 
 import Request from './Request';
-import * as actions from '../../redux/actions';
+import { addResults, addAllGenres, showDetails } from '../../redux/actions';
 
 import Card from '../Card';
 import Details from '../Details';
@@ -19,6 +18,7 @@ class Main extends React.Component {
       items: [],
       details: {},
     };
+    console.log('this.props:', this.props);
     this.request = new Request();
   }
 
@@ -91,16 +91,7 @@ const mapStateToProps = (state) => (
   }
 );
 
-const mapDispatchToProps = (dispatch) => {
-  const { addResults, addAllGenres, showDetails } = bindActionCreators(actions, dispatch);
-  return {
-    addResults: (payload) => addResults(payload),
-    addAllGenres: (payload) => addAllGenres(payload),
-    showDetails: (payload) => showDetails(payload),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, { addResults, addAllGenres, showDetails })(Main);
 
 Main.propTypes = {
   allProps: PropTypes.object,

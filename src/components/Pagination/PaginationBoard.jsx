@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { paginationShape } from '../Utils';
+import { paginationShape } from '../../Utils';
 import Button from './Button';
 
 import pagination from './Pagination.scss';

@@ -2,12 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
 
 import { filters } from '../../constants';
 
 import settings from './Settings.scss';
-import * as actions from '../../redux/actions';
+
+import {
+  update,
+  resetFilters,
+  resetOptions,
+  addUIPageNum,
+} from '../../redux/actions';
 
 function Buttons(props) {
   const {
@@ -58,22 +63,12 @@ function Buttons(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
-  const {
-    update,
-    resetFilters,
-    resetOptions,
-    addUIPageNum,
-  } = bindActionCreators(actions, dispatch);
-  return {
-    update: () => update(),
-    resetFilters: () => resetFilters(),
-    resetOptions: () => resetOptions(),
-    addUIPageNum: (payload) => addUIPageNum(payload),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(Buttons);
+export default connect(null, {
+  update,
+  resetFilters,
+  resetOptions,
+  addUIPageNum,
+})(Buttons);
 
 Buttons.propTypes = {
   reset: PropTypes.string,

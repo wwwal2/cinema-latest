@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import { checkLimit } from '../../Utils';
+import { checkLimit } from '../../../Utils';
 
 import options from './OptionsPayload.scss';
+import { changePayloadNum } from '../../../redux/actions';
 
-import * as actions from '../../../redux/actions';
 import {
   maxCardsNum,
   minCardsNum,
@@ -56,14 +55,7 @@ const mapStateToProps = (state) => (
   }
 );
 
-const mapDispatchToProps = (dispatch) => {
-  const { changePayloadNum } = bindActionCreators(actions, dispatch);
-  return {
-    changePayloadNum: (payload, target, distance) => changePayloadNum(payload, target, distance),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(OptionsController);
+export default connect(mapStateToProps, { changePayloadNum })(OptionsController);
 
 OptionsController.propTypes = {
   label: PropTypes.string,

@@ -9,6 +9,8 @@ import saveSettings from './saveSettings';
 import checkSavedSettings from './checkSavedSettings';
 import getSaveData from './getSaveData';
 import checkLimit from './checkLimit';
+import unavailableDetails from './unavailableDetails';
+import toggleFavorite from './toggleFavorite';
 
 export {
   numberValidation,
@@ -22,4 +24,6 @@ export {
   checkSavedSettings,
   getSaveData,
   checkLimit,
+  unavailableDetails,
+  toggleFavorite,
 };

@@ -1,4 +1,4 @@
-import { saveSettings } from '../../components/Utils';
+import { saveSettings } from '../../Utils';
 import { CHANGE_CARD_NUM, RESET_OPTIONS } from '../../constants';
 import defaultOptions from '../../defaultOptions';
 

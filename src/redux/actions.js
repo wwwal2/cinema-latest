@@ -27,7 +27,6 @@ export const addDetailsId = (payload) => ({ type: ADD_DETAILS_ID, payload });
 export const showDetails = (payload) => ({ type: SHOW_DETAILS, payload });
 export const defineSection = (payload) => ({ type: DEFINE_SECTION, payload });
 export const addQuery = (payload) => ({ type: ADD_QUERY, payload });
-
 export const update = () => ({ type: UPDATE });
 export const resetFilters = () => ({ type: RESET_FILTERS });
 export const resetOptions = () => ({ type: RESET_OPTIONS });
