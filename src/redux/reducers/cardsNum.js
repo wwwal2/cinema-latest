@@ -1,12 +1,8 @@
 import { saveSettings } from '../../components/Utils';
 import { CHANGE_CARD_NUM, RESET_OPTIONS } from '../../constants';
+import defaultOptions from '../../defaultOptions';
 
-const initialState = {
-  main: 8,
-  popular: 12,
-  favorite: 4,
-  search: 20,
-};
+const initialState = defaultOptions.cardsNum;
 
 export default (state = initialState, action) => {
   switch (action.type) {

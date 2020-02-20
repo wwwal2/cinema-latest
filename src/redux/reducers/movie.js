@@ -1,4 +1,5 @@
 import { saveSettings } from '../../components/Utils';
+import defaultOptions from '../../defaultOptions';
 
 import {
   ADD_RATING,
@@ -7,11 +8,7 @@ import {
   RESET_FILTERS,
 } from '../../constants';
 
-const initialState = {
-  year: ' ',
-  genre: ' ',
-  rating: ' ',
-};
+const initialState = defaultOptions.movie;
 
 export default (state = initialState, action) => {
   switch (action.type) {

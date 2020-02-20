@@ -1,6 +1,6 @@
 export default {
   movie: {
-    year: '2000',
+    year: ' ',
     genre: ' ',
     rating: ' ',
   },
@@ -12,9 +12,9 @@ export default {
     section: 'main',
   },
   cardsNum: {
-    main: 12,
-    popular: 12,
-    favorite: 4,
+    main: 8,
+    popular: 8,
+    favorite: 8,
     search: 20,
   },
   favorite: {

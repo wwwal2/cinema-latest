@@ -6,7 +6,7 @@ import paginationShape from './paginationShape';
 import parsePayloadArray from './parsePayloadArray';
 import checkFavorite from './checkFavorite';
 import saveSettings from './saveSettings';
-import loadSettings from './loadSettings';
+import checkSavedSettings from './checkSavedSettings';
 import getSaveData from './getSaveData';
 import checkLimit from './checkLimit';
 
@@ -19,7 +19,7 @@ export {
   parsePayloadArray,
   checkFavorite,
   saveSettings,
-  loadSettings,
+  checkSavedSettings,
   getSaveData,
   checkLimit,
 };
