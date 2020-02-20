@@ -91,8 +91,8 @@ function Card(props) {
 
 const mapStateToProps = (state) => (
   {
-    favoriteIds: state.favoriteIds,
-    section: state.section,
+    favoriteIds: state.favorite.favoriteIds,
+    section: state.status.section,
     detailsId: state.detailsId,
   }
 );

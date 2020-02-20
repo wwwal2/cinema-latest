@@ -1,14 +1,14 @@
 import { getSaveData, saveSettings } from '../../components/Utils';
 import { CHANGE_CARD_NUM, RESET_OPTIONS } from '../../constants';
 
-const initCardsNum = {
+const initialState = {
   main: 8,
   popular: 12,
   favorite: 4,
   search: 20,
 };
 
-export default (state = initCardsNum, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_CARD_NUM:
       saveSettings(getSaveData(state), state[action.target] + action.payload, action.target);
@@ -23,7 +23,7 @@ export default (state = initCardsNum, action) => {
     case RESET_OPTIONS:
       // saveSettings(getSaveData(defaultOptions));
       return {
-        ...initCardsNum,
+        ...initialState,
       };
     default:
       return state;
