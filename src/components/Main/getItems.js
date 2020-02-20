@@ -1,4 +1,4 @@
-import { calculateRequestProps } from '../Utils';
+import { calculateRequestProps } from '../../Utils';
 import { apiResultsPerPage } from '../../constants';
 import Request from './Request';
 

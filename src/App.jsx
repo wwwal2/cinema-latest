@@ -1,5 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import style from './App.scss';
@@ -28,7 +32,7 @@ function App(props) {
           <Route path={`/${currentPage}`} component={Main} />
           <Route path={`${routes.favorite}`} exact component={Main} />
           <Route path={`${routes.popular}`} exact component={Main} />
-          <Route path={`${routes.popular}:id`} exact component={Main} />
+          <Route path={`${routes.popular}`} exact component={Main} />
         </Switch>
         <Pagination />
         <footer className={style.buffer} />

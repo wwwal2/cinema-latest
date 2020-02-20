@@ -1,4 +1,4 @@
-import { saveSettings } from '../../components/Utils';
+import { saveSettings } from '../../Utils';
 import defaultOptions from '../../defaultOptions';
 
 import {

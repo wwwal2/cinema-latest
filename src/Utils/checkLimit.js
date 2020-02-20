@@ -1,4 +1,4 @@
-import options from '../Settings/Options/OptionsPayload.scss';
+import options from '../components/Settings/Options/OptionsPayload.scss';
 
 export default (current, limit, direction) => {
   if (current === limit) {

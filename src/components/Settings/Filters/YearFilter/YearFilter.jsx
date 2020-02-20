@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import filters from '../FilterPayload.scss';
 
 import { addYear } from '../../../../redux/actions';
-import { numberValidation, onlyNumbers } from '../../../Utils';
+import { numberValidation, onlyNumbers } from '../../../../Utils';
 
 function useHook(initialValue) {
   const [value, setValue] = useState(initialValue);

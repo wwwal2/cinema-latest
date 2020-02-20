@@ -1,4 +1,4 @@
-import { toggleFavorite } from '../../components/Utils';
+import { toggleFavorite } from '../../Utils';
 import { TOGGLE_FAVORITE } from '../../constants';
 import defaultOptions from '../../defaultOptions';
 

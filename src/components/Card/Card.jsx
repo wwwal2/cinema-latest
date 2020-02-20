@@ -14,7 +14,7 @@ import {
   update,
 } from '../../redux/actions';
 
-import { checkFavorite } from '../Utils';
+import { checkFavorite } from '../../Utils';
 
 
 function Card(props) {

@@ -8,7 +8,7 @@ import favoriteOff from '../../../images/starEmpty.png';
 import noPoster from '../../../images/noPoster.png';
 
 import { addFavorite, addDetailsId, showDetails } from '../../redux/actions';
-import { checkFavorite, parsePayloadArray } from '../Utils';
+import { checkFavorite, parsePayloadArray } from '../../Utils';
 
 
 function Details(props) {
