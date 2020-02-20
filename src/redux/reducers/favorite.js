@@ -1,5 +1,5 @@
-import { checkFavorite } from '../../components/Utils';
-import { ADD_FAVORITE } from '../../constants';
+import { toggleFavorite } from '../../components/Utils';
+import { TOGGLE_FAVORITE } from '../../constants';
 
 const initFavorite = {
   favoriteMovies: [],
@@ -8,28 +8,8 @@ const initFavorite = {
 
 export default (state = initFavorite, action) => {
   switch (action.type) {
-    case ADD_FAVORITE:
-      const { payload } = action;
-
-      if (checkFavorite(state.favoriteIds, payload.id)) {
-        const index = state.favoriteIds.findIndex((id) => (id === payload.id));
-
-        return {
-          ...state,
-          favoriteMovies: [
-            ...state.favoriteMovies.slice(0, index), ...state.favoriteMovies.slice(index + 1),
-          ],
-          favoriteIds: [
-            ...state.favoriteIds.slice(0, index), ...state.favoriteIds.slice(index + 1),
-          ],
-        };
-      }
-      return {
-        ...state,
-        favoriteMovies: [...state.favoriteMovies, action.payload],
-        favoriteIds: [...state.favoriteIds, payload.id],
-      };
-
+    case TOGGLE_FAVORITE:
+      return toggleFavorite(state, action.payload);
     default:
       return state;
   }
