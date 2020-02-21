@@ -25,7 +25,7 @@ function App(props) {
         <Pagination />
         <Switch>
           <Route path="/" exact component={Main} />
-          <Route path="/:section/:page/" exact component={Main} />
+          <Route path="/:section/" exact component={Main} />
           <Route path="/:section/:page/:cardsNum/" exact component={Main} />
         </Switch>
         <Pagination />

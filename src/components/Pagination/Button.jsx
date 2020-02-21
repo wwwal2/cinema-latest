@@ -26,7 +26,7 @@ function Button(props) {
 
   return (
     <Link
-      to={`${routes[section]}${page}${cardsNum}`}
+      to={`${routes[section]}/${page}/${cardsNum}`}
       key={page}
     >
       <button

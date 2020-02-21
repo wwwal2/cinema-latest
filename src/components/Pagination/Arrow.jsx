@@ -26,7 +26,7 @@ function Arrow(props) {
 
   return (
     <Link
-      to={`${routes[section]}${page}${cardsNum}`}
+      to={`${routes[section]}/${page}/${cardsNum}`}
       key={page}
       className={pagination.arrow}
     >
