@@ -63,8 +63,8 @@ function Card(props) {
           alt="favorite"
           src={
             favorite
-              ? favoriteOn
-              : favoriteOff
+              ? `/${favoriteOn}`
+              : `/${favoriteOff}`
           }
           className={card.favorite}
           onClick={() => toggleFavorite()}

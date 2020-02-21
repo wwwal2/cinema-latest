@@ -18,7 +18,6 @@ class Main extends React.Component {
       items: [],
       details: {},
     };
-    console.log('this.props:', this.props);
     this.request = new Request();
   }
 

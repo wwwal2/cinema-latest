@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { addUIPageNum, update } from '../../redux/actions';
+import { routes } from '../../constants';
 
 import pagination from './Pagination.scss';
 
@@ -14,6 +15,7 @@ function Button(props) {
     addUIPageNum,
     update,
     disabled,
+    section,
   } = props;
 
   const changePage = (value) => {
@@ -23,7 +25,7 @@ function Button(props) {
 
   return (
     <Link
-      to={`/${page}`}
+      to={`${routes[section]}${page}`}
       key={page}
     >
       <button
@@ -38,9 +40,15 @@ function Button(props) {
   );
 }
 
-export default connect(null, { addUIPageNum, update })(Button);
+
+const mapStateToProps = (state) => (
+  { section: state.status.section }
+);
+
+export default connect(mapStateToProps, { addUIPageNum, update })(Button);
 
 Button.propTypes = {
+  section: PropTypes.string,
   page: PropTypes.node,
   btnClass: PropTypes.string,
   addUIPageNum: PropTypes.func,
@@ -49,6 +57,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  section: '',
   page: 0,
   btnClass: '',
   addUIPageNum: () => { },
