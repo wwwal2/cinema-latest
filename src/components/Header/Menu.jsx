@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { routes } from '../../constants';
 import header from './Header.scss';
 import Tab from './Tab';
 
 export default function Menu(props) {
-  const {
-    tabNames,
-    routes,
-  } = props;
+  const { tabNames } = props;
 
   return (
     <menu className={header.menuContainer}>
@@ -17,7 +15,7 @@ export default function Menu(props) {
             return (
               <Tab
                 tabName={tabName}
-                route={routes[tabName.toLowerCase()]}
+                route={`${routes[tabName.toLowerCase()]}1`}
                 key={tabName}
               />
             );
@@ -31,7 +29,6 @@ export default function Menu(props) {
 
 Menu.propTypes = {
   tabNames: PropTypes.array,
-  routes: PropTypes.object,
 };
 
 Menu.defaultProps = {
@@ -40,7 +37,4 @@ Menu.defaultProps = {
     'Popular',
     'Favorite',
   ],
-  routes: {
-    main: '/',
-  },
 };

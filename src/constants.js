@@ -24,5 +24,10 @@ export const sections = {
   favorite: 'favorite',
   search: 'search',
 };
+export const routes = {
+  main: '/',
+  favorite: '/favorite/',
+  popular: '/popular/',
+};
 export const filters = 'Filters';
 export const options = 'Options';
