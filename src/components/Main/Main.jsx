@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+// import { withRouter } from 'react-router-dom';
 import mainStyles from './Main.scss';
 import makePayload from './makePayload';
 
 import Request from './Request';
-import { addResults, addAllGenres, showDetails } from '../../redux/actions';
+import {
+  addResults,
+  addAllGenres,
+  showDetails,
+  addUIPageNum,
+} from '../../redux/actions';
 
 import Card from '../Card';
 import Details from '../Details';
@@ -35,13 +40,14 @@ class Main extends React.Component {
 
   async componentDidUpdate(prevProps) {
     const {
+      match,
       allProps,
       updateCounter,
       detailsId,
       addResults,
       showDetails,
     } = this.props;
-
+    console.log('this.props:', match);
     if (prevProps.updateCounter !== updateCounter) {
       const payload = await makePayload(allProps);
       addResults(payload.totalResults);
@@ -90,9 +96,15 @@ const mapStateToProps = (state) => (
   }
 );
 
-export default connect(mapStateToProps, { addResults, addAllGenres, showDetails })(Main);
+export default connect(mapStateToProps, {
+  addResults,
+  addAllGenres,
+  showDetails,
+  addUIPageNum,
+})(Main);
 
 Main.propTypes = {
+  match: PropTypes.object,
   allProps: PropTypes.object,
   updateCounter: PropTypes.number,
   detailsId: PropTypes.number,
@@ -103,6 +115,7 @@ Main.propTypes = {
 };
 
 Main.defaultProps = {
+  match: {},
   detailsTab: false,
   allProps: {},
   updateCounter: 0,

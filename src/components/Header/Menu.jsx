@@ -15,7 +15,7 @@ export default function Menu(props) {
             return (
               <Tab
                 tabName={tabName}
-                route={`${routes[tabName.toLowerCase()]}1`}
+                route={`${routes[tabName.toLowerCase()]}`}
                 key={tabName}
               />
             );

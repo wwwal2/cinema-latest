@@ -11,6 +11,7 @@ import pagination from './Pagination.scss';
 
 function Arrow(props) {
   const {
+    cardsNum,
     section,
     addUIPageNum,
     update,
@@ -25,21 +26,25 @@ function Arrow(props) {
 
   return (
     <Link
-      to={`${routes[section]}${page}`}
+      to={`${routes[section]}/${page}/${cardsNum}`}
       key={page}
       className={pagination.arrow}
     >
-      <img alt="arrow" src={`/${image}`} onClick={() => changePage(page)} className={pagination.arrow} />
+      <img alt="arrow" src={image} onClick={() => changePage(page)} className={pagination.arrow} />
     </Link>
   );
 }
 
 const mapStateToProps = (state) => (
-  { section: state.status.section }
+  {
+    section: state.status.section,
+    cardsNum: state.cardsNum[state.status.section],
+  }
 );
 export default connect(mapStateToProps, { addUIPageNum, update })(Arrow);
 
 Arrow.propTypes = {
+  cardsNum: PropTypes.number,
   section: PropTypes.string,
   page: PropTypes.number,
   image: PropTypes.string,
@@ -48,6 +53,7 @@ Arrow.propTypes = {
 };
 
 Arrow.defaultProps = {
+  cardsNum: 0,
   section: '',
   page: 0,
   image: '',
