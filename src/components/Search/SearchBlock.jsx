@@ -15,7 +15,7 @@ import { sections } from '../../constants';
 import search from './SearchBlock.scss';
 
 function Search(props) {
-  const [query, setQuery] = useState('');
+  const [searchInput, setSearchInput] = useState('');
   const {
     placeHolder,
     addQuery,
@@ -29,25 +29,25 @@ function Search(props) {
 
   const userInput = (event) => {
     const { value } = event.target;
-    setQuery(value);
+    setSearchInput(value);
   };
 
   const submit = (event) => {
     if (event.key === 'Enter' || event.type === 'click') {
       addUIPageNum(1);
-      addQuery(encodeURIComponent(query.trim()));
+      addQuery(encodeURIComponent(searchInput.trim()));
       defineSection(sections.search);
       showDetails(false);
       update();
-      setQuery('');
-      history.push('/');
+      setSearchInput('');
+      history.push('/search/1');
     }
   };
 
   return (
     <section className={search.container}>
       <input
-        value={query}
+        value={searchInput}
         type="text"
         placeholder={placeHolder}
         className={search.input}

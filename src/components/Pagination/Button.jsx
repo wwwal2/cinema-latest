@@ -11,6 +11,7 @@ import pagination from './Pagination.scss';
 function Button(props) {
   const {
     page,
+    cardsNum,
     btnClass,
     addUIPageNum,
     update,
@@ -25,7 +26,7 @@ function Button(props) {
 
   return (
     <Link
-      to={`${routes[section]}${page}`}
+      to={`${routes[section]}${page}${cardsNum}`}
       key={page}
     >
       <button
@@ -42,12 +43,16 @@ function Button(props) {
 
 
 const mapStateToProps = (state) => (
-  { section: state.status.section }
+  {
+    section: state.status.section,
+    cardsNum: state.cardsNum[state.status.section],
+  }
 );
 
 export default connect(mapStateToProps, { addUIPageNum, update })(Button);
 
 Button.propTypes = {
+  cardsNum: PropTypes.number,
   section: PropTypes.string,
   page: PropTypes.node,
   btnClass: PropTypes.string,
@@ -57,6 +62,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  cardsNum: 0,
   section: '',
   page: 0,
   btnClass: '',

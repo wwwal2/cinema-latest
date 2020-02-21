@@ -7,6 +7,7 @@ module.exports = {
     path: path.join(__dirname, '/dist'),
     filename: 'index.js',
     hashDigestLength: 5,
+    publicPath: '/',
   },
   devtool: 'source-map',
   devServer: {

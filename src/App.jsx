@@ -8,8 +8,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import style from './App.scss';
 
-import { routes } from './constants';
-
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer/Footer';
@@ -18,7 +16,7 @@ import Footer from './components/Footer/Footer';
 import Pagination from './components/Pagination';
 
 function App(props) {
-  const { currentPage, detailsTab, section } = props;
+  const { detailsTab } = props;
 
   return (
     <Router>
@@ -26,8 +24,9 @@ function App(props) {
         <Header />
         <Pagination />
         <Switch>
-          <Route path={`${routes.main}`} exact component={Main} />
-          <Route path={`${routes[section]}${currentPage}`} exact component={Main} />
+          <Route path="/" exact component={Main} />
+          <Route path="/:section/:page/" exact component={Main} />
+          <Route path="/:section/:page/:cardsNum/" exact component={Main} />
         </Switch>
         <Pagination />
         <footer className={style.buffer} />
@@ -40,20 +39,14 @@ function App(props) {
 
 const mapStateToProps = (state) => (
   {
-    currentPage: state.status.UIpage,
     detailsTab: state.status.detailsTab,
-    section: state.status.section,
   }
 );
 export default connect(mapStateToProps, null)(App);
 
 App.propTypes = {
-  currentPage: PropTypes.number,
   detailsTab: PropTypes.bool,
-  section: PropTypes.string,
 };
 App.defaultProps = {
-  section: '',
-  currentPage: 0,
   detailsTab: false,
 };

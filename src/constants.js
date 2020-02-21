@@ -25,9 +25,10 @@ export const sections = {
   search: 'search',
 };
 export const routes = {
-  main: '/',
+  main: '/main/',
   favorite: '/favorite/',
   popular: '/popular/',
+  search: '/search/',
 };
 export const filters = 'Filters';
 export const options = 'Options';
