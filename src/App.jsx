@@ -25,8 +25,8 @@ function App(props) {
         <Pagination />
         <Switch>
           <Route path="/" exact component={Main} />
-          <Route path="/:section/" exact component={Main} />
           <Route path="/:section/:page/:cardsNum/" exact component={Main} />
+          <Route path="/:section/:page/:cardsNum/:year/:genre:/rating" exact component={Main} />
         </Switch>
         <Pagination />
         <footer className={style.buffer} />

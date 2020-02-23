@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { filters } from '../../constants';
+import { calculatePath } from '../../Utils';
 
 import settings from './Settings.scss';
 
@@ -21,11 +22,14 @@ function Buttons(props) {
     reset,
     update,
     addUIPageNum,
+    movie,
+    briefStatus,
   } = props;
 
   const apply = () => {
     addUIPageNum(1);
     update();
+    calculatePath(briefStatus, movie);
   };
 
   const doReset = (element) => {
@@ -63,7 +67,17 @@ function Buttons(props) {
   );
 }
 
-export default connect(null, {
+const mapStateToProps = (state) => (
+  {
+    briefStatus: [
+      state.status.section,
+      state.status.UIpage,
+      state.cardsNum[state.status.section],
+    ],
+    movie: state.movie,
+  }
+);
+export default connect(mapStateToProps, {
   update,
   resetFilters,
   resetOptions,
@@ -71,6 +85,8 @@ export default connect(null, {
 })(Buttons);
 
 Buttons.propTypes = {
+  movie: PropTypes.object,
+  briefStatus: PropTypes.array,
   reset: PropTypes.string,
   addUIPageNum: PropTypes.func,
   update: PropTypes.func,
@@ -79,6 +95,8 @@ Buttons.propTypes = {
 };
 
 Buttons.defaultProps = {
+  movie: {},
+  briefStatus: [],
   reset: '',
   addUIPageNum: () => { },
   update: () => { },

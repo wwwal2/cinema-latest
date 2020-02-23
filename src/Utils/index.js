@@ -11,6 +11,8 @@ import getSaveData from './getSaveData';
 import checkLimit from './checkLimit';
 import unavailableDetails from './unavailableDetails';
 import toggleFavorite from './toggleFavorite';
+import calculatePath from './calculatePath';
+
 
 export {
   numberValidation,
@@ -26,4 +28,5 @@ export {
   checkLimit,
   unavailableDetails,
   toggleFavorite,
+  calculatePath,
 };
