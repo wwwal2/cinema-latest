@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { withRouter } from 'react-router-dom';
+
 import mainStyles from './Main.scss';
 import makePayload from './makePayload';
 
@@ -27,7 +27,8 @@ class Main extends React.Component {
   }
 
   async componentDidMount() {
-    const { addAllGenres, addResults } = this.props;
+    const { addAllGenres, addResults, match } = this.props;
+    console.log('match 1', match);
     const genres = await this.request.getGenres();
     addAllGenres(genres.genres);
 
@@ -47,7 +48,8 @@ class Main extends React.Component {
       addResults,
       showDetails,
     } = this.props;
-    console.log('this.props:', match);
+    console.log('match 2', match);
+
     if (prevProps.updateCounter !== updateCounter) {
       const payload = await makePayload(allProps);
       addResults(payload.totalResults);

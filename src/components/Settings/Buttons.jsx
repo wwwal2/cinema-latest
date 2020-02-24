@@ -21,15 +21,14 @@ function Buttons(props) {
     resetOptions,
     reset,
     update,
-    addUIPageNum,
+    // addUIPageNum,
     movie,
     briefStatus,
   } = props;
 
   const apply = () => {
-    addUIPageNum(1);
+    // addUIPageNum(briefStatus[2]);
     update();
-    calculatePath(briefStatus, movie);
   };
 
   const doReset = (element) => {
@@ -38,13 +37,13 @@ function Buttons(props) {
     } else {
       resetOptions();
     }
-    addUIPageNum(1);
+    // addUIPageNum(briefStatus[2]);
     update();
   };
 
   return (
     <section className={settings.actionBtnContainer}>
-      <Link to="/" className={settings.applyLink}>
+      <Link to={calculatePath(briefStatus, movie)} className={settings.applyLink}>
         <button
           type="button"
           onClick={apply}
@@ -54,7 +53,7 @@ function Buttons(props) {
         </button>
       </Link>
 
-      <Link to="/" className={settings.resetLink}>
+      <Link to={calculatePath(briefStatus, movie)} className={settings.resetLink}>
         <button
           type="button"
           onClick={() => doReset(reset)}
@@ -88,7 +87,7 @@ Buttons.propTypes = {
   movie: PropTypes.object,
   briefStatus: PropTypes.array,
   reset: PropTypes.string,
-  addUIPageNum: PropTypes.func,
+  // addUIPageNum: PropTypes.func,
   update: PropTypes.func,
   resetFilters: PropTypes.func,
   resetOptions: PropTypes.func,
@@ -98,7 +97,7 @@ Buttons.defaultProps = {
   movie: {},
   briefStatus: [],
   reset: '',
-  addUIPageNum: () => { },
+  // addUIPageNum: () => { },
   update: () => { },
   resetFilters: () => { },
   resetOptions: () => { },

@@ -27,5 +27,6 @@ module.exports = {
     'react/no-array-index-key': 0,
     'no-case-declarations': 0,
     'no-shadow': 0,
+    'no-unused-expressions': 0,
   },
 };

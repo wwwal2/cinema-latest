@@ -31,6 +31,12 @@ const mapStateToProps = (state) => (
   {
     page: state.status.UIpage,
     cardsNum: state.cardsNum,
+    briefStatus: [
+      state.status.section,
+      state.status.UIpage,
+      state.cardsNum[state.status.section],
+    ],
+    movie: state.movie,
   }
 );
 
