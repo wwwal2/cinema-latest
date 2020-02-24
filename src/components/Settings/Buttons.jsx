@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { filters } from '../../constants';
+import { calculatePath } from '../../Utils';
 
 import settings from './Settings.scss';
 
@@ -20,12 +21,14 @@ function Buttons(props) {
     resetOptions,
     reset,
     update,
-    addUIPageNum,
+    // addUIPageNum,
+    briefStatus,
   } = props;
 
   const apply = () => {
-    addUIPageNum(1);
+    // addUIPageNum(briefStatus[2]);
     update();
+    calculatePath(briefStatus);
   };
 
   const doReset = (element) => {
@@ -34,13 +37,13 @@ function Buttons(props) {
     } else {
       resetOptions();
     }
-    addUIPageNum(1);
+    // addUIPageNum(briefStatus[2]);
     update();
   };
 
   return (
     <section className={settings.actionBtnContainer}>
-      <Link to="/" className={settings.applyLink}>
+      <Link to={calculatePath(briefStatus)} className={settings.applyLink}>
         <button
           type="button"
           onClick={apply}
@@ -63,7 +66,19 @@ function Buttons(props) {
   );
 }
 
-export default connect(null, {
+const mapStateToProps = (state) => (
+  {
+    briefStatus: {
+      section: state.status.section,
+      page: state.status.UIpage,
+      cardsNum: state.cardsNum[state.status.section],
+      year: state.movie.year,
+      genre: state.movie.genre,
+      rating: state.movie.rating,
+    },
+  }
+);
+export default connect(mapStateToProps, {
   update,
   resetFilters,
   resetOptions,
@@ -71,16 +86,18 @@ export default connect(null, {
 })(Buttons);
 
 Buttons.propTypes = {
+  briefStatus: PropTypes.object,
   reset: PropTypes.string,
-  addUIPageNum: PropTypes.func,
+  // addUIPageNum: PropTypes.func,
   update: PropTypes.func,
   resetFilters: PropTypes.func,
   resetOptions: PropTypes.func,
 };
 
 Buttons.defaultProps = {
+  briefStatus: [],
   reset: '',
-  addUIPageNum: () => { },
+  // addUIPageNum: () => { },
   update: () => { },
   resetFilters: () => { },
   resetOptions: () => { },
