@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 
 import mainStyles from './Main.scss';
 import makePayload from './makePayload';
+import { decodePath } from '../../Utils';
 
 import Request from './Request';
 import {
   addResults,
   addAllGenres,
   showDetails,
-  addUIPageNum,
 } from '../../redux/actions';
 
 import Card from '../Card';
@@ -27,28 +27,27 @@ class Main extends React.Component {
   }
 
   async componentDidMount() {
-    const { addAllGenres, addResults, match } = this.props;
-    console.log('match 1', match);
+    const { addAllGenres, addResults, location: { search } } = this.props;
     const genres = await this.request.getGenres();
     addAllGenres(genres.genres);
 
     const { allProps } = this.props;
     const payload = await makePayload(allProps);
-
+    console.log('decodePath(search):', decodePath(search));
     addResults(payload.totalResults);
     this.updateState('items', payload.items);
   }
 
   async componentDidUpdate(prevProps) {
     const {
-      match,
       allProps,
       updateCounter,
       detailsId,
       addResults,
       showDetails,
+      location: { search },
     } = this.props;
-    console.log('match 2', match);
+    console.log('Update', decodePath(search));
 
     if (prevProps.updateCounter !== updateCounter) {
       const payload = await makePayload(allProps);
@@ -102,11 +101,10 @@ export default connect(mapStateToProps, {
   addResults,
   addAllGenres,
   showDetails,
-  addUIPageNum,
 })(Main);
 
 Main.propTypes = {
-  match: PropTypes.object,
+  location: PropTypes.object,
   allProps: PropTypes.object,
   updateCounter: PropTypes.number,
   detailsId: PropTypes.number,
@@ -117,7 +115,7 @@ Main.propTypes = {
 };
 
 Main.defaultProps = {
-  match: {},
+  location: {},
   detailsTab: false,
   allProps: {},
   updateCounter: 0,

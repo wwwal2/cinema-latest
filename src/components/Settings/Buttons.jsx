@@ -22,13 +22,13 @@ function Buttons(props) {
     reset,
     update,
     // addUIPageNum,
-    movie,
     briefStatus,
   } = props;
 
   const apply = () => {
     // addUIPageNum(briefStatus[2]);
     update();
+    calculatePath(briefStatus);
   };
 
   const doReset = (element) => {
@@ -43,7 +43,7 @@ function Buttons(props) {
 
   return (
     <section className={settings.actionBtnContainer}>
-      <Link to={calculatePath(briefStatus, movie)} className={settings.applyLink}>
+      <Link to={calculatePath(briefStatus)} className={settings.applyLink}>
         <button
           type="button"
           onClick={apply}
@@ -53,7 +53,7 @@ function Buttons(props) {
         </button>
       </Link>
 
-      <Link to={calculatePath(briefStatus, movie)} className={settings.resetLink}>
+      <Link to="/" className={settings.resetLink}>
         <button
           type="button"
           onClick={() => doReset(reset)}
@@ -68,12 +68,14 @@ function Buttons(props) {
 
 const mapStateToProps = (state) => (
   {
-    briefStatus: [
-      state.status.section,
-      state.status.UIpage,
-      state.cardsNum[state.status.section],
-    ],
-    movie: state.movie,
+    briefStatus: {
+      section: state.status.section,
+      page: state.status.UIpage,
+      cardsNum: state.cardsNum[state.status.section],
+      year: state.movie.year,
+      genre: state.movie.genre,
+      rating: state.movie.rating,
+    },
   }
 );
 export default connect(mapStateToProps, {
@@ -84,8 +86,7 @@ export default connect(mapStateToProps, {
 })(Buttons);
 
 Buttons.propTypes = {
-  movie: PropTypes.object,
-  briefStatus: PropTypes.array,
+  briefStatus: PropTypes.object,
   reset: PropTypes.string,
   // addUIPageNum: PropTypes.func,
   update: PropTypes.func,
@@ -94,7 +95,6 @@ Buttons.propTypes = {
 };
 
 Buttons.defaultProps = {
-  movie: {},
   briefStatus: [],
   reset: '',
   // addUIPageNum: () => { },

@@ -1,16 +1,13 @@
-export default (status, movie) => {
-  const urlArray = status.concat(Object.values(movie));
-  // const variables = urlArray.map((item) => {
-  //   if (item === ' ') {
-  //     return 'blanc';
-  //   }
-  //   return item;
-  // });
-  const urlPath = urlArray.reduce((acc, item) => {
+export default (status) => {
+  const keys = Object.keys(status);
+  const values = Object.values(status);
+  const urlPath = values.reduce((acc, item, index) => {
     if (item === ' ') {
-      return `${acc}/blanc`;
+      return acc;
     }
-    return `${acc}/${encodeURIComponent(item)}`;
-  }, '');
-  return urlPath;
+    return `${acc}&${keys[index]}=${encodeURIComponent(item)}`;
+  }, 'status?');
+  const cutUrl = urlPath.replace('&', '');
+
+  return cutUrl;
 };

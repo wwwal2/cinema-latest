@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { routes } from '../../constants';
+import { calculatePath } from '../../Utils';
 import header from './Header.scss';
 import Tab from './Tab';
 
 function Menu(props) {
-  const { tabNames, page, cardsNum } = props;
-
+  const {
+    tabNames,
+    briefStatus,
+    movie,
+  } = props;
   return (
     <menu className={header.menuContainer}>
       {
@@ -16,7 +19,7 @@ function Menu(props) {
             return (
               <Tab
                 tabName={tabName}
-                route={`${routes[tabName.toLowerCase()]}/${page}/${cardsNum[tabName.toLowerCase()]}`}
+                route={`${calculatePath(briefStatus, movie)}`}
                 key={tabName}
               />
             );
@@ -44,13 +47,13 @@ export default connect(mapStateToProps, null)(Menu);
 
 Menu.propTypes = {
   tabNames: PropTypes.array,
-  page: PropTypes.number,
-  cardsNum: PropTypes.object,
+  briefStatus: PropTypes.array,
+  movie: PropTypes.object,
 };
 
 Menu.defaultProps = {
-  page: 0,
-  cardsNum: {},
+  briefStatus: [],
+  movie: {},
   tabNames: [
     'Main',
     'Popular',

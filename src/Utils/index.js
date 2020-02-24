@@ -12,7 +12,7 @@ import checkLimit from './checkLimit';
 import unavailableDetails from './unavailableDetails';
 import toggleFavorite from './toggleFavorite';
 import calculatePath from './calculatePath';
-
+import decodePath from './decodePath';
 
 export {
   numberValidation,
@@ -29,4 +29,5 @@ export {
   unavailableDetails,
   toggleFavorite,
   calculatePath,
+  decodePath,
 };
