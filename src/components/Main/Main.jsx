@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-// import mainStyles from './Main.scss';
 import makePayload from './makePayload';
 import { decodePath } from '../../Utils';
 
@@ -14,7 +13,6 @@ import {
   addUrlData,
 } from '../../redux/actions';
 
-// import Card from '../Card';
 import Payload from './Payload';
 import Details from '../Details';
 
@@ -79,13 +77,10 @@ class Main extends React.Component {
   render() {
     const { detailsTab } = this.props;
     const { items, details } = this.state;
-    if (details.id && detailsTab) {
-      return (
-        <Details item={details} />
-      );
-    }
     return (
-      <Payload items={items} />
+      (details.id && detailsTab)
+        ? (<Details item={details} />)
+        : (<Payload items={items} />)
     );
   }
 }

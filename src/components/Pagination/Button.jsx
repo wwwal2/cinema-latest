@@ -10,8 +10,6 @@ import { calculatePath } from '../../Utils';
 import pagination from './Pagination.scss';
 
 function Button(props) {
-  // const history = useHistory();
-
   const {
     page,
     btnClass,
@@ -24,9 +22,6 @@ function Button(props) {
   const changePage = (value) => {
     addUIPageNum(value);
     update();
-    // const { briefStatus } = props;
-    // console.log('briefStatus', briefStatus);
-    // history.push(calculatePath(briefStatus));
   };
 
   return (

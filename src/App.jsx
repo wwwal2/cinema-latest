@@ -25,7 +25,8 @@ function App(props) {
         <Header />
         <Pagination />
         <Switch>
-          <Route path="/" component={Main} />
+          <Route exact path="/:query/" component={Main} />
+          <Route exact path="/" component={Main} />
           <Route component={PageNotFound} />
         </Switch>
         <Pagination />
