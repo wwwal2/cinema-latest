@@ -21,12 +21,10 @@ function Buttons(props) {
     resetOptions,
     reset,
     update,
-    // addUIPageNum,
     briefStatus,
   } = props;
 
   const apply = () => {
-    // addUIPageNum(briefStatus[2]);
     update();
     calculatePath(briefStatus);
   };
@@ -37,7 +35,6 @@ function Buttons(props) {
     } else {
       resetOptions();
     }
-    // addUIPageNum(briefStatus[2]);
     update();
   };
 
@@ -88,7 +85,6 @@ export default connect(mapStateToProps, {
 Buttons.propTypes = {
   briefStatus: PropTypes.object,
   reset: PropTypes.string,
-  // addUIPageNum: PropTypes.func,
   update: PropTypes.func,
   resetFilters: PropTypes.func,
   resetOptions: PropTypes.func,
@@ -97,7 +93,6 @@ Buttons.propTypes = {
 Buttons.defaultProps = {
   briefStatus: [],
   reset: '',
-  // addUIPageNum: () => { },
   update: () => { },
   resetFilters: () => { },
   resetOptions: () => { },

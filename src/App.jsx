@@ -11,6 +11,7 @@ import style from './App.scss';
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer/Footer';
+import PageNotFound from './components/PageNotFound';
 
 
 import Pagination from './components/Pagination';
@@ -25,6 +26,7 @@ function App(props) {
         <Pagination />
         <Switch>
           <Route path="/" component={Main} />
+          <Route component={PageNotFound} />
         </Switch>
         <Pagination />
         <footer className={style.buffer} />

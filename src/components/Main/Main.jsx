@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import mainStyles from './Main.scss';
+// import mainStyles from './Main.scss';
 import makePayload from './makePayload';
 import { decodePath } from '../../Utils';
 
@@ -14,7 +14,8 @@ import {
   addUrlData,
 } from '../../redux/actions';
 
-import Card from '../Card';
+// import Card from '../Card';
+import Payload from './Payload';
 import Details from '../Details';
 
 class Main extends React.Component {
@@ -84,13 +85,7 @@ class Main extends React.Component {
       );
     }
     return (
-      <main className={mainStyles.pageBody}>
-        {items.map((item) => {
-          return (
-            <Card key={item.id} item={item} />
-          );
-        })}
-      </main>
+      <Payload items={items} />
     );
   }
 }
