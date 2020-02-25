@@ -1,5 +1,5 @@
 import { saveSettings } from '../../Utils';
-import { CHANGE_CARD_NUM, RESET_OPTIONS } from '../../constants';
+import { CHANGE_CARD_NUM, RESET_OPTIONS, ADD_URL_DATA } from '../../constants';
 import defaultOptions from '../../defaultOptions';
 
 const initialState = defaultOptions.cardsNum;
@@ -20,6 +20,12 @@ export default (state = initialState, action) => {
       saveSettings('cardsNum', initialState);
       return {
         ...initialState,
+      };
+    case ADD_URL_DATA:
+      const { section, cardsNum } = action.payload;
+      return {
+        ...state,
+        [section]: Number(cardsNum) || state[section],
       };
     default:
       return state;

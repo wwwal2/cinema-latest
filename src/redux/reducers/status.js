@@ -4,6 +4,7 @@ import {
   DEFINE_SECTION,
   UPDATE,
   SHOW_DETAILS,
+  ADD_URL_DATA,
 } from '../../constants';
 import defaultOptions from '../../defaultOptions';
 
@@ -35,6 +36,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         updateCounter: state.updateCounter + 1,
+      };
+    case ADD_URL_DATA:
+      const { section, page } = action.payload;
+      return {
+        ...state,
+        UIpage: Number(page) || state.UIpage,
+        section: section || state.section,
       };
     default:
       return state;

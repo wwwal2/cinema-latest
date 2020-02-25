@@ -37,13 +37,13 @@ export default (state = initialState, action) => {
         ...initialState,
       };
     case ADD_URL_DATA:
-      // saveSettings('movie', initialState);
       const { year, genre, rating } = action.payload;
+
       return {
         ...state,
-        year,
-        genre,
-        rating,
+        year: year || state.year,
+        genre: genre || state.genre,
+        rating: rating || state.rating,
       };
 
     default:

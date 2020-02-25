@@ -9,7 +9,6 @@ function Menu(props) {
   const {
     tabNames,
     briefStatus,
-    movie,
   } = props;
   return (
     <menu className={header.menuContainer}>
@@ -19,7 +18,7 @@ function Menu(props) {
             return (
               <Tab
                 tabName={tabName}
-                route={`${calculatePath(briefStatus, movie)}`}
+                route={`${calculatePath(briefStatus)}`}
                 key={tabName}
               />
             );
@@ -34,12 +33,14 @@ const mapStateToProps = (state) => (
   {
     page: state.status.UIpage,
     cardsNum: state.cardsNum,
-    briefStatus: [
-      state.status.section,
-      state.status.UIpage,
-      state.cardsNum[state.status.section],
-    ],
-    movie: state.movie,
+    briefStatus: {
+      section: state.status.section,
+      page: state.status.UIpage,
+      cardsNum: state.cardsNum[state.status.section],
+      year: state.movie.year,
+      genre: state.movie.genre,
+      rating: state.movie.rating,
+    },
   }
 );
 
@@ -47,13 +48,11 @@ export default connect(mapStateToProps, null)(Menu);
 
 Menu.propTypes = {
   tabNames: PropTypes.array,
-  briefStatus: PropTypes.array,
-  movie: PropTypes.object,
+  briefStatus: PropTypes.object,
 };
 
 Menu.defaultProps = {
-  briefStatus: [],
-  movie: {},
+  briefStatus: {},
   tabNames: [
     'Main',
     'Popular',

@@ -37,9 +37,9 @@ class Main extends React.Component {
 
     const genres = await this.request.getGenres();
     addAllGenres(genres.genres);
+    addUrlData(decodePath(search));
 
     const { allProps } = this.props;
-    addUrlData(decodePath(search));
 
     const payload = await makePayload(allProps);
     addResults(payload.totalResults);
