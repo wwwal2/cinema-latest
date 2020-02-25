@@ -13,6 +13,7 @@ import unavailableDetails from './unavailableDetails';
 import toggleFavorite from './toggleFavorite';
 import calculatePath from './calculatePath';
 import decodePath from './decodePath';
+import replaceUndefined from './replaceUndefined';
 
 export {
   numberValidation,
@@ -30,4 +31,5 @@ export {
   toggleFavorite,
   calculatePath,
   decodePath,
+  replaceUndefined,
 };

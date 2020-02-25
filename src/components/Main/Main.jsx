@@ -11,6 +11,7 @@ import {
   addResults,
   addAllGenres,
   showDetails,
+  addUrlData,
 } from '../../redux/actions';
 
 import Card from '../Card';
@@ -27,13 +28,20 @@ class Main extends React.Component {
   }
 
   async componentDidMount() {
-    const { addAllGenres, addResults, location: { search } } = this.props;
+    const {
+      addAllGenres,
+      addResults,
+      addUrlData,
+      location: { search },
+    } = this.props;
+
     const genres = await this.request.getGenres();
     addAllGenres(genres.genres);
 
     const { allProps } = this.props;
+    addUrlData(decodePath(search));
+
     const payload = await makePayload(allProps);
-    console.log('decodePath(search):', decodePath(search));
     addResults(payload.totalResults);
     this.updateState('items', payload.items);
   }
@@ -45,9 +53,8 @@ class Main extends React.Component {
       detailsId,
       addResults,
       showDetails,
-      location: { search },
     } = this.props;
-    console.log('Update', decodePath(search));
+
 
     if (prevProps.updateCounter !== updateCounter) {
       const payload = await makePayload(allProps);
@@ -101,6 +108,7 @@ export default connect(mapStateToProps, {
   addResults,
   addAllGenres,
   showDetails,
+  addUrlData,
 })(Main);
 
 Main.propTypes = {
@@ -112,6 +120,7 @@ Main.propTypes = {
   addResults: PropTypes.func,
   showDetails: PropTypes.func,
   detailsTab: PropTypes.bool,
+  addUrlData: PropTypes.func,
 };
 
 Main.defaultProps = {
@@ -123,4 +132,5 @@ Main.defaultProps = {
   addResults: () => { },
   addAllGenres: () => { },
   showDetails: () => { },
+  addUrlData: () => { },
 };

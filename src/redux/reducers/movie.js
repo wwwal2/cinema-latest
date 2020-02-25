@@ -6,6 +6,7 @@ import {
   ADD_GENRE,
   ADD_YEAR,
   RESET_FILTERS,
+  ADD_URL_DATA,
 } from '../../constants';
 
 const initialState = defaultOptions.movie;
@@ -35,6 +36,16 @@ export default (state = initialState, action) => {
       return {
         ...initialState,
       };
+    case ADD_URL_DATA:
+      // saveSettings('movie', initialState);
+      const { year, genre, rating } = action.payload;
+      return {
+        ...state,
+        year,
+        genre,
+        rating,
+      };
+
     default:
       return state;
   }

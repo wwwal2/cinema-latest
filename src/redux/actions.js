@@ -14,6 +14,7 @@ import {
   CHANGE_CARD_NUM,
   DEFINE_SECTION,
   ADD_QUERY,
+  ADD_URL_DATA,
 } from '../constants';
 
 export const addRating = (payload) => ({ type: ADD_RATING, payload });
@@ -30,6 +31,8 @@ export const addQuery = (payload) => ({ type: ADD_QUERY, payload });
 export const update = () => ({ type: UPDATE });
 export const resetFilters = () => ({ type: RESET_FILTERS });
 export const resetOptions = () => ({ type: RESET_OPTIONS });
+export const addUrlData = (payload) => ({ type: ADD_URL_DATA, payload });
+
 
 export const changePayloadNum = (payload, target, distance) => (
   {
