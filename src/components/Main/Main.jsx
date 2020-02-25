@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import mainStyles from './Main.scss';
 import makePayload from './makePayload';
 import { decodePath } from '../../Utils';
 
@@ -11,9 +10,10 @@ import {
   addResults,
   addAllGenres,
   showDetails,
+  addUrlData,
 } from '../../redux/actions';
 
-import Card from '../Card';
+import Payload from './Payload';
 import Details from '../Details';
 
 class Main extends React.Component {
@@ -27,13 +27,20 @@ class Main extends React.Component {
   }
 
   async componentDidMount() {
-    const { addAllGenres, addResults, location: { search } } = this.props;
+    const {
+      addAllGenres,
+      addResults,
+      addUrlData,
+      location: { search },
+    } = this.props;
+
     const genres = await this.request.getGenres();
     addAllGenres(genres.genres);
+    addUrlData(decodePath(search));
 
     const { allProps } = this.props;
+
     const payload = await makePayload(allProps);
-    console.log('decodePath(search):', decodePath(search));
     addResults(payload.totalResults);
     this.updateState('items', payload.items);
   }
@@ -45,9 +52,8 @@ class Main extends React.Component {
       detailsId,
       addResults,
       showDetails,
-      location: { search },
     } = this.props;
-    console.log('Update', decodePath(search));
+
 
     if (prevProps.updateCounter !== updateCounter) {
       const payload = await makePayload(allProps);
@@ -71,19 +77,10 @@ class Main extends React.Component {
   render() {
     const { detailsTab } = this.props;
     const { items, details } = this.state;
-    if (details.id && detailsTab) {
-      return (
-        <Details item={details} />
-      );
-    }
     return (
-      <main className={mainStyles.pageBody}>
-        {items.map((item) => {
-          return (
-            <Card key={item.id} item={item} />
-          );
-        })}
-      </main>
+      (details.id && detailsTab)
+        ? (<Details item={details} />)
+        : (<Payload items={items} />)
     );
   }
 }
@@ -101,6 +98,7 @@ export default connect(mapStateToProps, {
   addResults,
   addAllGenres,
   showDetails,
+  addUrlData,
 })(Main);
 
 Main.propTypes = {
@@ -112,6 +110,7 @@ Main.propTypes = {
   addResults: PropTypes.func,
   showDetails: PropTypes.func,
   detailsTab: PropTypes.bool,
+  addUrlData: PropTypes.func,
 };
 
 Main.defaultProps = {
@@ -123,4 +122,5 @@ Main.defaultProps = {
   addResults: () => { },
   addAllGenres: () => { },
   showDetails: () => { },
+  addUrlData: () => { },
 };

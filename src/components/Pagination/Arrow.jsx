@@ -4,19 +4,18 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { addUIPageNum, update } from '../../redux/actions';
-import { routes } from '../../constants';
+import { calculatePath } from '../../Utils';
 
 import pagination from './Pagination.scss';
 
 
 function Arrow(props) {
   const {
-    cardsNum,
-    section,
     addUIPageNum,
     update,
     image,
     page,
+    briefStatus,
   } = props;
 
   const changePage = (myPage) => {
@@ -26,7 +25,7 @@ function Arrow(props) {
 
   return (
     <Link
-      to={`${routes[section]}/${page}/${cardsNum}`}
+      to={calculatePath(briefStatus)}
       key={page}
       className={pagination.arrow}
     >
@@ -37,15 +36,20 @@ function Arrow(props) {
 
 const mapStateToProps = (state) => (
   {
-    section: state.status.section,
-    cardsNum: state.cardsNum[state.status.section],
+    briefStatus: {
+      section: state.status.section,
+      page: state.status.UIpage,
+      cardsNum: state.cardsNum[state.status.section],
+      year: state.movie.year,
+      genre: state.movie.genre,
+      rating: state.movie.rating,
+    },
   }
 );
 export default connect(mapStateToProps, { addUIPageNum, update })(Arrow);
 
 Arrow.propTypes = {
-  cardsNum: PropTypes.number,
-  section: PropTypes.string,
+  briefStatus: PropTypes.object,
   page: PropTypes.number,
   image: PropTypes.string,
   addUIPageNum: PropTypes.func,
@@ -53,8 +57,7 @@ Arrow.propTypes = {
 };
 
 Arrow.defaultProps = {
-  cardsNum: 0,
-  section: '',
+  briefStatus: {},
   page: 0,
   image: '',
   addUIPageNum: () => { },
