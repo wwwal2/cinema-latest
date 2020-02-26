@@ -65,11 +65,10 @@ function Details(props) {
         BACK
       </button>
     </section>
-
   );
 }
 
-const mapStateToProps = (state) => ({ favoriteIds: state.favoriteIds });
+const mapStateToProps = (state) => ({ favoriteIds: state.favorite.favoriteIds });
 
 
 export default connect(mapStateToProps, { addFavorite, addDetailsId, showDetails })(Details);

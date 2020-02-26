@@ -11,7 +11,6 @@ import defaultOptions from './defaultOptions';
 import App from './App';
 
 const initialState = checkSavedSettings(defaultOptions);
-
 const store = createStore(rootReducer, initialState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
