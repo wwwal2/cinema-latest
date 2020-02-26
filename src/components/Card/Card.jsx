@@ -29,11 +29,11 @@ function Card(props) {
     addFavorite,
   } = props;
 
-  const textLength = 200;
-
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
   const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w185/${item.poster_path}`);
   const [notification, setNotification] = useState(card.notification);
+
+  const textLength = 200;
 
   const toggleFavorite = () => {
     addFavorite(item);

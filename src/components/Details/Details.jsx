@@ -26,7 +26,6 @@ function Details(props) {
     addFavorite(item);
     setFavorite(!favorite);
   };
-
   return (
     <section className={details.wrapper}>
       <div className={details.container}>
