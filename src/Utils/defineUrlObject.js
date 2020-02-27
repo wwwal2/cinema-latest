@@ -3,12 +3,22 @@ export default (object) => {
     section,
     page,
     cardsNum,
+    year,
+    genre,
+    rating,
     query,
   } = object;
 
   switch (object.section) {
     case 'main':
-      return object;
+      return {
+        section,
+        page,
+        cardsNum,
+        year,
+        genre,
+        rating,
+      };
 
     case 'popular':
       return {
