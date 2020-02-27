@@ -23,5 +23,5 @@ export default {
   },
   allGenres: [],
   detailsId: 0,
-  searchQuery: '',
+  searchQuery: ' ',
 };

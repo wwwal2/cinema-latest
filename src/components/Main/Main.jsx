@@ -54,6 +54,7 @@ class Main extends React.Component {
       showDetails,
       briefStatus,
       history,
+      query,
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
@@ -61,6 +62,7 @@ class Main extends React.Component {
       addResults(payload.totalResults);
       this.updateState('items', payload.items);
       history.push(calculatePath(briefStatus));
+      console.log('query:', query);
     }
 
     if (prevProps.detailsId !== detailsId) {
@@ -93,6 +95,7 @@ const mapStateToProps = (state) => (
     detailsTab: state.status.detailsTab,
     detailsId: state.detailsId,
     updateCounter: state.status.updateCounter,
+    query: state.searchQuery,
     briefStatus: {
       section: state.status.section,
       page: state.status.UIpage,
@@ -112,6 +115,7 @@ export default connect(mapStateToProps, {
 })(Main);
 
 Main.propTypes = {
+  query: PropTypes.string,
   history: PropTypes.object,
   location: PropTypes.object,
   briefStatus: PropTypes.object,
@@ -126,6 +130,7 @@ Main.propTypes = {
 };
 
 Main.defaultProps = {
+  query: ' ',
   history: {},
   location: {},
   briefStatus: {},
