@@ -14,7 +14,6 @@ import calculatePath from './calculatePath';
 import decodePath from './decodePath';
 import inRange from './inRange';
 
-
 export {
   numberValidation,
   onlyNumbers,

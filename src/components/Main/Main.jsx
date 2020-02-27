@@ -54,15 +54,13 @@ class Main extends React.Component {
       showDetails,
       briefStatus,
       history,
-      query,
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
       const payload = await makePayload(allProps);
       addResults(payload.totalResults);
       this.updateState('items', payload.items);
-      history.push(calculatePath(briefStatus));
-      console.log('query:', query);
+      history.push(calculatePath(briefStatus, 'genre', 'year'));
     }
 
     if (prevProps.detailsId !== detailsId) {
@@ -95,7 +93,6 @@ const mapStateToProps = (state) => (
     detailsTab: state.status.detailsTab,
     detailsId: state.detailsId,
     updateCounter: state.status.updateCounter,
-    query: state.searchQuery,
     briefStatus: {
       section: state.status.section,
       page: state.status.UIpage,
@@ -103,6 +100,7 @@ const mapStateToProps = (state) => (
       year: state.movie.year,
       genre: state.movie.genre,
       rating: state.movie.rating,
+      query: state.searchQuery,
     },
   }
 );
@@ -115,7 +113,6 @@ export default connect(mapStateToProps, {
 })(Main);
 
 Main.propTypes = {
-  query: PropTypes.string,
   history: PropTypes.object,
   location: PropTypes.object,
   briefStatus: PropTypes.object,
@@ -130,7 +127,6 @@ Main.propTypes = {
 };
 
 Main.defaultProps = {
-  query: ' ',
   history: {},
   location: {},
   briefStatus: {},

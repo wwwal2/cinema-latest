@@ -5,6 +5,5 @@ export default (path) => {
     allEntries.push(entry);
   }
   const urlObject = Object.fromEntries(allEntries);
-  console.log('urlObject:', urlObject);
   return urlObject;
 };
