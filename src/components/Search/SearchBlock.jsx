@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -25,8 +24,6 @@ function Search(props) {
     showDetails,
   } = props;
 
-  const history = useHistory();
-
   const userInput = (event) => {
     const { value } = event.target;
     setSearchInput(value);
@@ -40,7 +37,6 @@ function Search(props) {
       showDetails(false);
       update();
       setSearchInput('');
-      history.push('/search/1');
     }
   };
 

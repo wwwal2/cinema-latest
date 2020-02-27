@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import makePayload from './makePayload';
-import { decodePath } from '../../Utils';
+import { decodePath, calculatePath } from '../../Utils';
 
 import Request from './Request';
 import {
@@ -52,13 +52,15 @@ class Main extends React.Component {
       detailsId,
       addResults,
       showDetails,
+      briefStatus,
+      history,
     } = this.props;
-
 
     if (prevProps.updateCounter !== updateCounter) {
       const payload = await makePayload(allProps);
       addResults(payload.totalResults);
       this.updateState('items', payload.items);
+      history.push(calculatePath(briefStatus));
     }
 
     if (prevProps.detailsId !== detailsId) {
@@ -91,6 +93,14 @@ const mapStateToProps = (state) => (
     detailsTab: state.status.detailsTab,
     detailsId: state.detailsId,
     updateCounter: state.status.updateCounter,
+    briefStatus: {
+      section: state.status.section,
+      page: state.status.UIpage,
+      cardsNum: state.cardsNum[state.status.section],
+      year: state.movie.year,
+      genre: state.movie.genre,
+      rating: state.movie.rating,
+    },
   }
 );
 
@@ -102,7 +112,9 @@ export default connect(mapStateToProps, {
 })(Main);
 
 Main.propTypes = {
+  history: PropTypes.object,
   location: PropTypes.object,
+  briefStatus: PropTypes.object,
   allProps: PropTypes.object,
   updateCounter: PropTypes.number,
   detailsId: PropTypes.number,
@@ -114,7 +126,9 @@ Main.propTypes = {
 };
 
 Main.defaultProps = {
+  history: {},
   location: {},
+  briefStatus: {},
   detailsTab: false,
   allProps: {},
   updateCounter: 0,
