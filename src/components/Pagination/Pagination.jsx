@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import arrowLeft from '../../../images/arr3.png';
 import arrowRight from '../../../images/arr2.png';
+import { inRange } from '../../Utils';
 import pagination from './Pagination.scss';
 
 import PaginationBoard from './PaginationBoard';
@@ -12,13 +13,12 @@ import Arrow from './Arrow';
 
 function Pagination(props) {
   const { totalPages, currentPage, detailsTab } = props;
-
   if (totalPages > 1 && !detailsTab) {
     return (
       <nav className={pagination.container}>
-        <Arrow page={currentPage - 1} image={arrowLeft} />
+        <Arrow page={inRange(currentPage, -1, totalPages)} image={arrowLeft} />
         <PaginationBoard totalPages={totalPages} currentPage={currentPage} />
-        <Arrow page={currentPage + 1} image={arrowRight} />
+        <Arrow page={inRange(currentPage, 1, totalPages)} image={arrowRight} />
       </nav>
     );
   }
