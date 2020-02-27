@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import {
   addUIPageNum,
@@ -15,7 +14,6 @@ import header from './Header.scss';
 function Tab(props) {
   const {
     tabName,
-    route,
     addUIPageNum,
     defineSection,
     update,
@@ -30,19 +28,14 @@ function Tab(props) {
   };
 
   return (
-    <Link
-      to={route}
-      className={header.tabs}
+    <button
       key={tabName}
+      className={header.tabs}
+      onClick={() => changeTab(tabName)}
+      type="button"
     >
-      <button
-        className={header.tabs}
-        onClick={() => changeTab(tabName)}
-        type="button"
-      >
-        {tabName}
-      </button>
-    </Link>
+      {tabName}
+    </button>
   );
 }
 
@@ -55,7 +48,6 @@ export default connect(null, {
 
 Tab.propTypes = {
   tabName: PropTypes.string,
-  route: PropTypes.string,
   addUIPageNum: PropTypes.func,
   defineSection: PropTypes.func,
   showDetails: PropTypes.func,
@@ -64,7 +56,6 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
   tabName: '',
-  route: '',
   addUIPageNum: () => { },
   defineSection: () => { },
   showDetails: () => { },

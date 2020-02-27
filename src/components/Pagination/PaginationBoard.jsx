@@ -22,9 +22,9 @@ export default function PaginationBoard(props) {
   };
 
   return (
-    <div className={pagination.boardContainer}>
+    <section className={pagination.boardContainer}>
       {assemble(totalPages, currentPage)}
-    </div>
+    </section>
   );
 }
 
