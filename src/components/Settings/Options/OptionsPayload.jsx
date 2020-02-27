@@ -11,7 +11,7 @@ export default function OptionsPayload() {
       <OptionController label="Main page card limit:" target="main" />
       <OptionController label="Popular page card limit:" target="popular" />
       <OptionController label="Favorite page card limit:" target="favorite" />
-      <Buttons reset={options} />
+      <Buttons elementName={options} />
     </div>
   );
 }

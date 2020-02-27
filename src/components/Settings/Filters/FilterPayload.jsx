@@ -21,7 +21,7 @@ function FilterPayload(props) {
       <YearFilter />
       { allGenres && <Select selected={currentGenre} allGenres={blancGenre.concat(allGenres)} /> }
       <Select selected={currentRating} ratingPoints={ratingPoints} />
-      <Buttons reset={filters} />
+      <Buttons elementName={filters} />
     </section>
   );
 }
