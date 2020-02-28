@@ -20,7 +20,7 @@ function App(props) {
   const { detailsTab } = props;
 
   return (
-    <Router basename="/">
+    <Router basename="https://wwwal2.github.io/cinema-latest/dist/">
       <div className={detailsTab ? `${style.wrapper} ${style.details}` : style.wrapper}>
         <Header />
         <Pagination />
