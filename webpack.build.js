@@ -11,7 +11,7 @@ module.exports = {
     path: path.join(__dirname, '/dist'),
     filename: 'index.js',
     hashDigestLength: 5,
-    publicPath: '/',
+    publicPath: 'https://wwwal2.github.io/cinema-latest/dist/',
   },
   devtool: 'source-map',
   devServer: {
