@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom';
@@ -20,7 +20,7 @@ function App(props) {
   const { detailsTab } = props;
 
   return (
-    <Router>
+    <Router basename="/">
       <div className={detailsTab ? `${style.wrapper} ${style.details}` : style.wrapper}>
         <Header />
         <Pagination />
