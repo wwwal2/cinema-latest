@@ -15,7 +15,7 @@ import {
   DEFINE_SECTION,
   ADD_QUERY,
   ADD_URL_DATA,
-} from '../constants';
+} from '../constants/actionTypes';
 
 export const addRating = (payload) => ({ type: ADD_RATING, payload });
 export const addGenre = (payload) => ({ type: ADD_GENRE, payload });

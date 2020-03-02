@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { options } from '../../../constants';
+import { options } from '../../../constants/other';
 
 import OptionController from './OptionController';
 import Buttons from '../Buttons';

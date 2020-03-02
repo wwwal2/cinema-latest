@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { filters } from '../../../constants';
+import { filters } from '../../../constants/other';
 
 import Buttons from '../Buttons';
 import YearFilter from './YearFilter';

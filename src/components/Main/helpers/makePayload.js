@@ -1,4 +1,4 @@
-import { sections, apiResultsPerPage } from '../../../constants';
+import { sections, apiResultsPerPage } from '../../../constants/other';
 import { codeGenre, calculateRequestProps } from '../../../utils';
 import getItems from './getItems';
 

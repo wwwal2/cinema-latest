@@ -1,5 +1,5 @@
 import { toggleFavorite } from '../../utils';
-import { TOGGLE_FAVORITE } from '../../constants';
+import { TOGGLE_FAVORITE } from '../../constants/actionTypes';
 import defaultOptions from '../../defaultOptions';
 
 const initialState = defaultOptions.favorite;

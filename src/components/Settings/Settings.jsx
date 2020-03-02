@@ -1,5 +1,5 @@
 import React from 'react';
-import { filters, options } from '../../constants';
+import { filters, options } from '../../constants/other';
 import settingsStyles from './Settings.scss';
 
 import FilterPayload from './Filters';

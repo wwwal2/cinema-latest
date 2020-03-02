@@ -5,7 +5,7 @@ import {
   UPDATE,
   SHOW_DETAILS,
   ADD_URL_DATA,
-} from '../../constants';
+} from '../../constants/actionTypes';
 import defaultOptions from '../../defaultOptions';
 
 const initialState = defaultOptions.status;

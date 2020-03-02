@@ -1,5 +1,5 @@
 import { saveSettings } from '../../utils';
-import { CHANGE_CARD_NUM, RESET_OPTIONS, ADD_URL_DATA } from '../../constants';
+import { CHANGE_CARD_NUM, RESET_OPTIONS, ADD_URL_DATA } from '../../constants/actionTypes';
 import defaultOptions from '../../defaultOptions';
 
 const initialState = defaultOptions.cardsNum;

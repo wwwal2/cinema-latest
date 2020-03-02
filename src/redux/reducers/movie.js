@@ -7,7 +7,7 @@ import {
   ADD_YEAR,
   RESET_FILTERS,
   ADD_URL_DATA,
-} from '../../constants';
+} from '../../constants/actionTypes';
 
 const initialState = defaultOptions.movie;
 
