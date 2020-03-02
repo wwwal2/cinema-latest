@@ -6,7 +6,7 @@ export default {
   },
   status: {
     totalResults: 0,
-    UIpage: 1,
+    uiPage: 1,
     updateCounter: 0,
     detailsTab: false,
     section: 'main',

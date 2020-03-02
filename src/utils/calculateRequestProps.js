@@ -1,5 +1,5 @@
-export default (UIpage, cardsPerPage, apiResultsPerPage) => {
-  const endResult = UIpage * cardsPerPage;
+export default (uiPage, cardsPerPage, apiResultsPerPage) => {
+  const endResult = uiPage * cardsPerPage;
   const startResult = endResult - cardsPerPage;
 
   const startPage = Math.floor(startResult / apiResultsPerPage) + 1;

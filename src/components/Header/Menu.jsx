@@ -26,7 +26,7 @@ function Menu(props) {
 
 const mapStateToProps = (state) => (
   {
-    page: state.status.UIpage,
+    page: state.status.uiPage,
     cardsNum: state.cardsNum,
   }
 );

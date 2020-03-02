@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
-  addUIPageNum,
+  addUiPageNum,
   update,
   defineSection,
   showDetails,
@@ -14,14 +14,14 @@ import header from './Header.scss';
 function Tab(props) {
   const {
     tabName,
-    addUIPageNum,
+    addUiPageNum,
     defineSection,
     update,
     showDetails,
   } = props;
 
   const changeTab = (value) => {
-    addUIPageNum(1);
+    addUiPageNum(1);
     defineSection(sections[value.toLowerCase()]);
     showDetails(false);
     update();
@@ -40,7 +40,7 @@ function Tab(props) {
 }
 
 export default connect(null, {
-  addUIPageNum,
+  addUiPageNum,
   update,
   defineSection,
   showDetails,
@@ -48,7 +48,7 @@ export default connect(null, {
 
 Tab.propTypes = {
   tabName: PropTypes.string,
-  addUIPageNum: PropTypes.func,
+  addUiPageNum: PropTypes.func,
   defineSection: PropTypes.func,
   showDetails: PropTypes.func,
   update: PropTypes.func,
@@ -56,7 +56,7 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
   tabName: '',
-  addUIPageNum: () => { },
+  addUiPageNum: () => { },
   defineSection: () => { },
   showDetails: () => { },
   update: () => { },

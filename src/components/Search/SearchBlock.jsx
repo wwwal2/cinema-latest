@@ -6,7 +6,7 @@ import {
   addQuery,
   defineSection,
   update,
-  addUIPageNum,
+  addUiPageNum,
   showDetails,
 } from '../../redux/actions';
 
@@ -20,7 +20,7 @@ function Search(props) {
     addQuery,
     defineSection,
     update,
-    addUIPageNum,
+    addUiPageNum,
     showDetails,
   } = props;
 
@@ -31,7 +31,7 @@ function Search(props) {
 
   const submit = (event) => {
     if (event.key === 'Enter' || event.type === 'click') {
-      addUIPageNum(1);
+      addUiPageNum(1);
       addQuery(encodeURIComponent(searchInput.trim()));
       defineSection(sections.search);
       showDetails(false);
@@ -65,7 +65,7 @@ export default connect(null, {
   addQuery,
   defineSection,
   update,
-  addUIPageNum,
+  addUiPageNum,
   showDetails,
 })(Search);
 
@@ -75,7 +75,7 @@ Search.propTypes = {
   defineSection: PropTypes.func,
   showDetails: PropTypes.func,
   update: PropTypes.func,
-  addUIPageNum: PropTypes.func,
+  addUiPageNum: PropTypes.func,
 };
 
 Search.defaultProps = {
@@ -83,6 +83,6 @@ Search.defaultProps = {
   addQuery: () => { },
   defineSection: () => { },
   update: () => { },
-  addUIPageNum: () => { },
+  addUiPageNum: () => { },
   showDetails: () => { },
 };

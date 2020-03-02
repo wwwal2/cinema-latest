@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
     case ADD_UI_PAGE_NUM:
       return {
         ...state,
-        UIpage: action.payload,
+        uiPage: action.payload,
       };
     case DEFINE_SECTION:
       return {
@@ -41,7 +41,7 @@ export default (state = initialState, action) => {
       const { section, page } = action.payload;
       return {
         ...state,
-        UIpage: Number(page) || state.UIpage,
+        uiPage: Number(page) || state.uiPage,
         section: section || state.section,
       };
     default:

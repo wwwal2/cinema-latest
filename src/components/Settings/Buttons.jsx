@@ -17,7 +17,7 @@ import {
   update,
   resetFilters,
   resetOptions,
-  addUIPageNum,
+  addUiPageNum,
   defineSection,
 } from '../../redux/actions';
 
@@ -73,7 +73,7 @@ export default connect(null, {
   update,
   resetFilters,
   resetOptions,
-  addUIPageNum,
+  addUiPageNum,
   defineSection,
 })(Buttons);
 
