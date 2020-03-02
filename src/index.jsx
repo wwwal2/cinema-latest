@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import { checkSavedSettings } from './Utils';
+import { checkSavedSettings } from './utils';
 
 import rootReducer from './redux/rootReducer';
 import defaultOptions from './defaultOptions';

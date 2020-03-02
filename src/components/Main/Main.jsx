@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import makePayload from './makePayload';
-import { decodePath, calculatePath } from '../../Utils';
+import makePayload from './helpers/makePayload';
+import { decodePath, calculatePath } from '../../utils';
 
-import Request from './Request';
+import Request from './helpers/Request';
 import {
   addResults,
   addAllGenres,
@@ -60,7 +60,7 @@ class Main extends React.Component {
       const payload = await makePayload(allProps);
       addResults(payload.totalResults);
       this.updateState('items', payload.items);
-      history.push(calculatePath(briefStatus, 'genre', 'year'));
+      history.push(calculatePath(briefStatus));
     }
 
     if (prevProps.detailsId !== detailsId) {
@@ -80,9 +80,9 @@ class Main extends React.Component {
     const { detailsTab } = this.props;
     const { items, details } = this.state;
     return (
-      (details.id && detailsTab)
-        ? (<Details item={details} />)
-        : (<Payload items={items} />)
+      details.id && detailsTab
+        ? <Details item={details} />
+        : <Payload items={items} />
     );
   }
 }

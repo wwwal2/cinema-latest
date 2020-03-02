@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { checkLimit } from '../../../Utils';
+import { checkLimit } from '../../../utils';
 
 import options from './OptionsPayload.scss';
 import { changePayloadNum } from '../../../redux/actions';

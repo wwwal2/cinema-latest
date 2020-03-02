@@ -22,8 +22,8 @@ export default class Request {
     if (!data.ok) {
       throw new Error(`Request with options ${url} failed. Status: ${data.status}`);
     }
-    const response = await data.json();
-    return response;
+
+    return data.json();
   }
 
   getMovies(...args) {

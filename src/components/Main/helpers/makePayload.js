@@ -1,5 +1,5 @@
-import { sections, apiResultsPerPage } from '../../constants';
-import { codeGenre, calculateRequestProps } from '../../Utils';
+import { sections, apiResultsPerPage } from '../../../constants';
+import { codeGenre, calculateRequestProps } from '../../../utils';
 import getItems from './getItems';
 
 export default async (props) => {
