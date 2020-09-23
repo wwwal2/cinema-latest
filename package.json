@@ -1,7 +1,7 @@
 {
   "name": "cinema",
   "version": "1.0.0",
-  "description": "test task: cinema site",
+  "description": "cinema webApp",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot --config webpack.dev",
